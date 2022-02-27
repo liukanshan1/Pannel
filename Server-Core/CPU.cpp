@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <string>
-#if WIN32
 #include "windows.h"
-#else
+//#if WIN32
+//#include "windows.h"
+//#else
 //#include "unistd.h"
-#endif
+//#endif
 #include "CPU.h"
 
 CPU::CPU()
@@ -15,13 +16,18 @@ CPU::CPU()
 void CPU::updateBasicInfo()
 {
     //获取核心数量
-    #if WIN32
-        SYSTEM_INFO sysInfo;
-        GetSystemInfo(&sysInfo);
-        core_ = sysInfo.dwNumberOfProcessors;
-    #else //linux
-        //core = sysconf(_SC_NPROCESSORS_CONF); //获取当前系统的所有CPU核数，包含禁用的
-    #endif
+    SYSTEM_INFO sysInfo;
+    GetSystemInfo(&sysInfo);
+    core = sysInfo.dwNumberOfProcessors;
+
+    //#if WIN32
+    //    SYSTEM_INFO sysInfo;
+    //    GetSystemInfo(&sysInfo);
+    //    core = sysInfo.dwNumberOfProcessors;
+    //#else //linux
+    //    core = sysconf(_SC_NPROCESSORS_CONF); //获取当前系统的所有CPU核数，包含禁用的
+    //#endif
+    
     //获取CPU信息
     
     //获取CPU架构

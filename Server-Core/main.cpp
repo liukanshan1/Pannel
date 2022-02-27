@@ -1,5 +1,5 @@
 #include<iostream>
-#include"getTime.h"
+#include"Time.h"
 
 int main()
 {

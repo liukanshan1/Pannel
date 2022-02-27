@@ -6,15 +6,29 @@ class task
 {
 public:
 	task();
-
+	//更新信息
+	void updateBasicInfo();
+	void update();
+	//返回信息
+	std::string getName();
+	int getPid();
+	std::string getUser();
+	std::string getFilePath();
+	std::string getStatus();
+	int getMemory();
+	int getCPU();
+	int getNetwork();
 private:
-	//动态信息
+	//静态信息
 	std::string name;
 	int pid;
-	std::string status;
 	std::string user;
+	std::string filePath;
+	//动态信息
+	std::string status;
 	int memory;
-	std::string architecture;
-	std::string description;
+	int CPU;
+	int network;
+
 };
 #endif

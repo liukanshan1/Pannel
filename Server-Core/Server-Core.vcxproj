@@ -139,8 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="disk.cpp" />
-    <ClCompile Include="getTime.cpp" />
+    <ClCompile Include="disks.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="GPU.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CPU.cpp" />
@@ -151,8 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPU.h" />
-    <ClInclude Include="disk.h" />
-    <ClInclude Include="getTime.h" />
+    <ClInclude Include="disks.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="GPU.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="Network.h" />

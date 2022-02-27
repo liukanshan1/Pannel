@@ -1,7 +1,7 @@
 #ifndef CPU_H
 #define CPU_H
 #include<string>
-class CPU
+class CPU //！多个CPU的实现
 {
 public:
 	CPU();

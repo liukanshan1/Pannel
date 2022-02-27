@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="getTime.cpp">
+    <ClCompile Include="Time.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CPU.cpp">
@@ -39,18 +39,18 @@
     <ClCompile Include="operatingSystem.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="disk.cpp">
+    <ClCompile Include="disks.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="getTime.h">
+    <ClInclude Include="Time.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CPU.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="disk.h">
+    <ClInclude Include="disks.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="GPU.h">

@@ -1,19 +1,11 @@
 #include <cstdio>
 #include <ctime>
 #include "getTime.h"
-getTime::getTime()
+Time::Time()
 {
-    date = -1; 
-    mon = -1;  
-    year = -1; 
-    day = -1;  
-    sec = -1;  
-    min = -1;  
-    hour = -1;
-    timeZone = 0;
     updateTime();
 }
-void getTime::updateTime()
+void Time::updateTime()
 {
     time_t t = time(NULL);
     struct tm local;
@@ -29,35 +21,35 @@ void getTime::updateTime()
     hour = local.tm_hour;
     timeZone = local.tm_hour - utc.tm_hour;
 }
-int getTime::getDate()
+int Time::getDate()
 {
     return date;
 }
-int getTime::getMon()
+int Time::getMon()
 {
     return mon;
 }
-int getTime::getYear()
+int Time::getYear()
 {
     return year;
 }
-int getTime::getDay()
+int Time::getDay()
 {
     return day;
 }
-int getTime::getSec()
+int Time::getSec()
 {
     return sec;
 }
-int getTime::getMin()
+int Time::getMin()
 {
     return min;
 }
-int getTime::getHour()
+int Time::getHour()
 {
     return hour;
 }
-int getTime::getTimeZone()
+int Time::getTimeZone()
 {
     return timeZone;
 }

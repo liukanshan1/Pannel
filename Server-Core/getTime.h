@@ -1,11 +1,12 @@
-//#pragma once
-#ifndef GETTIME_H
-#define GETTIME_H
-class getTime
+#ifndef TIME_H
+#define TIME_H
+class Time
 {
 public:
-    getTime();
+    Time();
+    //更新动态信息
     void updateTime();
+    //返回信息
     int getDate();
     int getMon();
     int getYear();
@@ -15,6 +16,7 @@ public:
     int getHour();
     int getTimeZone();
 private:
+    //动态信息
     int date;  // 一月中的第几天，范围从 1 到 31
     int mon;   // 月，范围从 0 到 11
     int year;  // 年

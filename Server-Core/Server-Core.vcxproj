@@ -139,13 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="disk.cpp" />
     <ClCompile Include="getTime.cpp" />
+    <ClCompile Include="GPU.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CPU.cpp" />
+    <ClCompile Include="memory.cpp" />
+    <ClCompile Include="Network.cpp" />
+    <ClCompile Include="operatingSystem.cpp" />
+    <ClCompile Include="task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPU.h" />
+    <ClInclude Include="disk.h" />
     <ClInclude Include="getTime.h" />
+    <ClInclude Include="GPU.h" />
+    <ClInclude Include="memory.h" />
+    <ClInclude Include="Network.h" />
+    <ClInclude Include="operatingSystem.h" />
+    <ClInclude Include="task.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,2 +1,11 @@
-﻿  getTime.cpp
-  Server-Core.vcxproj -> C:\Users\L-kanshan\OneDrive - arocyx\桌面\服务区监控面板\Server-Core\x64\Debug\Server-Core.exe
+﻿  disk.cpp
+  getTime.cpp
+  GPU.cpp
+  main.cpp
+  CPU.cpp
+  memory.cpp
+  Network.cpp
+  operatingSystem.cpp
+  task.cpp
+  正在生成代码...
+  Server-Core.vcxproj -> C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Server-Core\x64\Debug\Server-Core.exe

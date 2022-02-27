@@ -24,12 +24,48 @@
     <ClCompile Include="CPU.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="GPU.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="memory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="task.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Network.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="operatingSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="disk.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getTime.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CPU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="disk.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GPU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="memory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="operatingSystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="task.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,7 +13,7 @@ public:
 	int getQuantity();
 	std::string getName(int n);
 	std::string getType(int n);
-	double getUsage(int n);
+	int getUsage(int n);
 	int getTotalSpace(int n);
 	int getFreeSpace(int n);
 private:
@@ -22,7 +22,7 @@ private:
 	std::string* name;
 	std::string* type;
 	//¶¯Ì¬ÐÅÏ¢
-	double* usage;
+	int* usage;
 	int* totalSpace;
 	int* freeSpace;
 };

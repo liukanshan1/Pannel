@@ -6,7 +6,7 @@ public:
 	memory();
 	void updateBasicInfo();
 	void update();
-	double getUsage();
+	int getUsage();
 	int getTotalSpace();
 	int getFreeSpace();
 
@@ -16,7 +16,7 @@ private:
 	int totalSpace;
 	//¶¯Ì¬ÐÅÏ¢
 	int freeSpace;
-	double usage;
+	int usage;
 
 };
 #endif

@@ -7,7 +7,7 @@ network::network()
 	speed = new int[quantity];
 	IPv4 = new std::string[quantity];
 	IPv6 = new std::string[quantity];
-	usage = new double[quantity];
+	usage = new int[quantity];
 	upload = new int[quantity];
 	download = new int[quantity];
 	updateBasicInfo();
@@ -41,7 +41,7 @@ std::string network::getIPv6(int n)
 {
 	return IPv6[n];
 }
-double network::getUsage(int n)
+int network::getUsage(int n)
 {
 	return usage[n];
 }

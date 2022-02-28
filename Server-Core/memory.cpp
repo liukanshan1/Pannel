@@ -19,7 +19,7 @@ void memory::update()
 
 }
 
-double memory::getUsage()
+int memory::getUsage()
 {
     return usage;
 }

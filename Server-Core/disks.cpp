@@ -8,7 +8,7 @@ disks::disks()
 	//初始化变量
 	name = new std::string[quantity];
 	type = new std::string[quantity];
-	usage = new double[quantity];
+	usage = new int[quantity];
 	totalSpace = new int[quantity];
 	freeSpace = new int[quantity];
 	updateBasicInfo(quantity);
@@ -43,7 +43,7 @@ std::string disks::getType(int n)
 {
 	return type[n];
 }
-double disks::getUsage(int n)
+int disks::getUsage(int n)
 {
 	return usage[n];
 }

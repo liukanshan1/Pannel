@@ -15,7 +15,7 @@ public:
 	int getSpeed(int n);
 	std::string getIPv4(int n);
 	std::string getIPv6(int n);
-	double getUsage(int n);
+	int getUsage(int n);
 	int getUpload(int n);
 	int getDownload(int n);
 
@@ -26,7 +26,7 @@ private:
 	std::string* IPv4;
 	std::string* IPv6;
 	//¶¯Ì¬Êý¾Ý
-	double* usage;
+	int* usage;
 	int* upload;
 	int* download;
 

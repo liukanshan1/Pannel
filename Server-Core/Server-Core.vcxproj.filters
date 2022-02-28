@@ -33,7 +33,7 @@
     <ClCompile Include="task.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Network.cpp">
+    <ClCompile Include="network.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="operatingSystem.cpp">
@@ -59,7 +59,7 @@
     <ClInclude Include="memory.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Network.h">
+    <ClInclude Include="network.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="operatingSystem.h">

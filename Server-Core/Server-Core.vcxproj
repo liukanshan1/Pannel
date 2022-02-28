@@ -145,7 +145,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CPU.cpp" />
     <ClCompile Include="memory.cpp" />
-    <ClCompile Include="Network.cpp" />
+    <ClCompile Include="network.cpp" />
     <ClCompile Include="operatingSystem.cpp" />
     <ClCompile Include="task.cpp" />
   </ItemGroup>
@@ -155,7 +155,7 @@
     <ClInclude Include="Time.h" />
     <ClInclude Include="GPU.h" />
     <ClInclude Include="memory.h" />
-    <ClInclude Include="Network.h" />
+    <ClInclude Include="network.h" />
     <ClInclude Include="operatingSystem.h" />
     <ClInclude Include="task.h" />
   </ItemGroup>

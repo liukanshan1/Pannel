@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <ctime>
+#include "libCommon.h"
 #include "Time.h"
 Time::Time()
 {
@@ -53,3 +52,4 @@ int Time::getTimeZone()
 {
     return timeZone;
 }
+

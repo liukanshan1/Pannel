@@ -1,6 +1,5 @@
 #ifndef NETWORK_H
 #define NETWORK_H
-#include<string>
 class network
 {
 

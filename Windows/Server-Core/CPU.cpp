@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <string>
-#include <windows.h>
-#include <iostream>
-#include <malloc.h> 
-#include <tchar.h>
-#include <sysinfoapi.h>
+#include "libCommon.h"
 #include "CPU.h"
 
 CPU::CPU()

@@ -150,8 +150,10 @@
     <ClCompile Include="task.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="classLib.h" />
     <ClInclude Include="CPU.h" />
     <ClInclude Include="disks.h" />
+    <ClInclude Include="libCommon.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="GPU.h" />
     <ClInclude Include="memory.h" />

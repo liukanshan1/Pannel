@@ -1,6 +1,5 @@
 #ifndef DISKS_H
 #define DISKS_H
-#include <string>
 class disks
 {
 public:
@@ -25,5 +24,6 @@ private:
 	int* usage;
 	int* totalSpace;
 	int* freeSpace;
+	int io; //new
 };
 #endif

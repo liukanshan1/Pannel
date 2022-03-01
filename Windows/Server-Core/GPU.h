@@ -1,6 +1,5 @@
 #ifndef GPU_H
 #define GPU_H
-#include<string>
 class GPU //！多个GPU的实现
 {
 public:

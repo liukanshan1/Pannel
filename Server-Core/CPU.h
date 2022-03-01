@@ -1,26 +1,33 @@
 #ifndef CPU_H
 #define CPU_H
 #include<string>
-class CPU //！多个CPU的实现
+struct cpuInfo
+{
+	std::string discription;
+	std::string architecture;
+	int numaNodeQuantity;
+	int processorPackageQuantity;
+	int processorCoreQuantity;
+	int logicalProcessorQuantity;
+	int processorL1CacheQuantity;
+	int processorL2CacheQuantity;
+	int processorL3CacheQuantity;
+};
+class CPU
 {
 public:
 	CPU();
-	//更新信息
-	void updateBasicInfo();
 	void update();
-	//返回信息
 	int getUsage();
-	int getCore();
-	std::string getInfo();
 	int getSpeed();
-	std::string getArchitecture();
+	cpuInfo getInfo();
 private:
+	void updateBasicInfo();
+	void getLogicalProcessorInfo();
 	//动态信息
 	int usage;
 	int speed;
 	//静态信息
-	int core;
-	std::string info;
-	std::string architecture;
+	cpuInfo info;
 };
 #endif

@@ -7,6 +7,7 @@ public:
 	void update();
 	int getUsage();
 	cpuInfo getInfo();
+	std::string getDescription();
 private:
 	void updateBasicInfo();
 	void updateLogicalProcessorInfo();

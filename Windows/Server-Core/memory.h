@@ -7,15 +7,14 @@ public:
 	void updateBasicInfo();
 	void update();
 	int getUsage();
-	int getTotalSpace();
-	int getFreeSpace();
+	double getTotalSpace();
+	double getFreeSpace();
 
 private:
-
 	//静态信息
-	int totalSpace;
+	double totalSpace;
 	//动态信息
-	int freeSpace;
+	double freeSpace;
 	int usage;
 
 };

@@ -45,6 +45,10 @@ void CPU::update()
 {
     updateCpuUsage();
 }
+std::string CPU::getDescription()
+{
+    return info.discription;
+}
 
 void CPU::updateCpuUsage()
 {

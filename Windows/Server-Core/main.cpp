@@ -3,12 +3,14 @@
 
 int main()
 {
-	CPU s;
+	memory s;
 	//while (true)
 	{
 		//s.update();
-		cpuInfo i = s.getInfo();
-		std::cout << i.discription<<std::endl;
+		
+		std::cout << " "<<s.getTotalSpace()
+			<<" "<<s.getFreeSpace()<<" "
+			<< s.getUsage() << std::endl;
 	}
 	
 	//IsWindows10OrGreater();

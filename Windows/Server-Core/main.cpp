@@ -3,14 +3,16 @@
 
 int main()
 {
-	memory s;
+	disks s;
 	//while (true)
 	{
 		//s.update();
-		
-		std::cout << " "<<s.getTotalSpace()
-			<<" "<<s.getFreeSpace()<<" "
-			<< s.getUsage() << std::endl;
+
+		std::cout <<s.getTotalSpace(0)
+			<<" "<<s.getFreeSpace(0)
+			<<" "<< s.getUsage(0) 
+			<<" "<< s.getQuantity()
+		<<" "<< s.getName(0) << std::endl;
 	}
 	
 	//IsWindows10OrGreater();

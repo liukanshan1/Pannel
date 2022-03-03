@@ -2,61 +2,82 @@
 #include "disks.h"
 disks::disks()
 {
-	//获取磁盘数量
-	//quantity=?;
-
-	//初始化变量
-	name = new std::string[quantity];
-	type = new std::string[quantity];
-	usage = new int[quantity];
-	totalSpace = new int[quantity];
-	freeSpace = new int[quantity];
-	updateBasicInfo(quantity);
+	updateBasicInfo();
 	update(quantity);
 }
-void disks::updateBasicInfo(int quantity)
+disks::~disks()
 {
-	//依次获取磁盘名称
-
-	//依次获取磁盘类型
-
+	if (usage != nullptr)
+	{
+		delete[] usage;
+	}
+	if (totalSpace != nullptr)
+	{
+		delete[] totalSpace;
+	}
+	if (freeSpace != nullptr)
+	{
+		delete[] freeSpace;
+	}
+}
+void disks::updateBasicInfo()
+{
+	usage = nullptr;
+	totalSpace = nullptr;
+	freeSpace = nullptr;
+	int count = 0;
+	quantity = 0;
+	// 获取磁盘数量
+	DWORD diskQuantity = GetLogicalDrives();
+	while (diskQuantity != 0)
+	{
+		if ((diskQuantity & 1) != 0)
+		{
+			name += char('A' + count);
+			quantity++;
+		}
+		diskQuantity >>= 1;
+		count++;
+	}
+	//初始化变量
+	usage = new int[quantity];
+	totalSpace = new double[quantity];
+	freeSpace = new double[quantity];
 }
 void disks::update(int quantity)
 {
-	//依次获取磁盘总容量
+	//依次获取磁盘总容量、剩余容量、计算使用率
+	for (int i = 0; i < quantity; i++)
+	{
+		wchar_t temp[4] = {name[i], ':','\\','\0'}; //'\\'实际上是一个\，第一个\是转义字符
+		const wchar_t* dir = temp;
+		unsigned _int64 total, free;
+		if (GetDiskFreeSpaceEx(dir, (PULARGE_INTEGER)&free, (PULARGE_INTEGER)&total,NULL))
+		{
 
-	//依次获取磁盘剩余容量
-
-	//依次计算使用率
-	//usage = freeSpace[] / totalSpace[];
-
+			totalSpace[i] = total / 1024.0 / 1024.0 / 1024.0;
+			freeSpace[i] = free / 1024.0 / 1024.0 / 1024.0;
+			usage[i] = 100 - free * 100 / total;
+		}
+	}
 }
 int disks::getQuantity()
 {
 	return quantity;
 }
-std::string disks::getName(int n)
+char disks::getName(int n)
 {
 	return name[n];
-}
-std::string disks::getType(int n)
-{
-	return type[n];
 }
 int disks::getUsage(int n)
 {
 	return usage[n];
 }
-int disks::getTotalSpace(int n)
+double disks::getTotalSpace(int n)
 {
 	return totalSpace[n];
 }
-int disks::getFreeSpace(int n)
+double disks::getFreeSpace(int n)
 {
 	return freeSpace[n];
-}
-
-disks::~disks()
-{
-	//依次释放内存
 }

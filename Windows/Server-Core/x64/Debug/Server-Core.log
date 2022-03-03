@@ -1,5 +1,4 @@
-﻿  main.cpp
-  memory.cpp
-  正在生成代码...
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(54): warning C4715: “operatingSystem::checkVersion”: 不是所有的控件路径都返回值
+﻿  disks.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\disks.cpp(37,28): warning C4838: 从“char”转换到“wchar_t”需要收缩转换
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\disks.cpp(45,19): warning C4244: “=”: 从“unsigned __int64”转换到“int”，可能丢失数据
   Server-Core.vcxproj -> C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\x64\Debug\Server-Core.exe

@@ -6,24 +6,23 @@ public:
 	disks();
 	~disks();
 
-	void updateBasicInfo(int quantity);
+	void updateBasicInfo();
 	void update(int quantity);
 
 	int getQuantity();
-	std::string getName(int n);
-	std::string getType(int n);
+	char getName(int n);
 	int getUsage(int n);
-	int getTotalSpace(int n);
-	int getFreeSpace(int n);
+	double getTotalSpace(int n);
+	double getFreeSpace(int n);
 private:
-	//静态信息
+	//半静态信息
 	int quantity;
-	std::string* name;
-	std::string* type;
+	std::string name;
 	//动态信息
 	int* usage;
-	int* totalSpace;
-	int* freeSpace;
+	double* totalSpace;
+	double* freeSpace;
+
 	int io; //new
 };
 #endif

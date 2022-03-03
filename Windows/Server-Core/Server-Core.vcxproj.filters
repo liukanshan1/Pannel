@@ -76,8 +76,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="文本.txt">
+    <None Include="CpuUsage">
       <Filter>资源文件</Filter>
-    </Text>
+    </None>
+    <None Include="CpuUsage.bat">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

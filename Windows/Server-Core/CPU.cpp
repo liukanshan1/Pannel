@@ -1,12 +1,10 @@
 #include "libCommon.h"
 #include "CPU.h"
-
 CPU::CPU()
 {
     updateBasicInfo();
     update();
 }
-
 void CPU::updateBasicInfo()
 {
     ////获取逻辑处理器数量
@@ -15,7 +13,9 @@ void CPU::updateBasicInfo()
     //cpuInfo.logicalProcessorQuantity = coreInfo.dwNumberOfProcessors;
 
     //获取CPU信息
-    getLogicalProcessorInfo();
+    updateLogicalProcessorInfo();
+    //获取CPU描述
+    updateCpuDiscription();
     //获取CPU架构
     SYSTEM_INFO architectureInfo;
     GetSystemInfo(&architectureInfo);
@@ -43,28 +43,30 @@ void CPU::updateBasicInfo()
 }
 void CPU::update()
 {
-    //获取CPU利用率
-    
-    //获取CPU频率
-
+    updateCpuUsage();
 }
 
+void CPU::updateCpuUsage()
+{
+    //const wchar_t* fileName = L"CpuUsage.bat";
+    //const char* fileName = "CpuUsage";
+    runTask(L"CpuUsage.bat");
+    openFile("CpuUsage", usage);
+}
+void CPU::updateCpuDiscription()
+{
+
+}
 cpuInfo CPU::getInfo()
 {
     return info;
-}
-int CPU::getSpeed()
-{
-    return speed;
 }
 int CPU::getUsage()
 {
     return usage;
 }
 
-typedef BOOL(WINAPI* LPFN_GLPI)(
-    PSYSTEM_LOGICAL_PROCESSOR_INFORMATION,
-    PDWORD);
+
 // Helper function to count set bits in the processor mask.
 DWORD CountSetBits(ULONG_PTR bitMask)
 {
@@ -81,7 +83,7 @@ DWORD CountSetBits(ULONG_PTR bitMask)
 
     return bitSetCount;
 }
-void CPU::getLogicalProcessorInfo()
+void CPU::updateLogicalProcessorInfo()
 {
     LPFN_GLPI glpi;
     BOOL done = FALSE;

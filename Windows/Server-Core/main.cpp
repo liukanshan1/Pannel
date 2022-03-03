@@ -1,12 +1,15 @@
 #include "libCommon.h"
 #include "classLib.h"
 
-
-
 int main()
 {
-	operatingSystem s;
-	std::cout << s.getVersion();
+	CPU s;
+	while (true)
+	{
+		s.update();
+		std::cout << s.getUsage()<<std::endl;
+	}
+	
 	//IsWindows10OrGreater();
 	/*getTime t;
 	std::cout << t.getDate() << " " << t.getDay() << " " << t.getHour() << " " << t.getMin() << " "
@@ -45,4 +48,42 @@ std::string operatingSystem::checkVersion() //在operatingSystem.cpp定义会报错
 			return versions[i];
 		}
 	}
+}
+void runTask(const wchar_t* fileName)
+{
+	PROCESS_INFORMATION pi;
+	STARTUPINFO si;
+	ZeroMemory(&si, sizeof(si));
+	si.cb = sizeof(si);
+	si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+	if (CreateProcess(fileName,// 位于工程所在目录下
+		NULL,
+		NULL,
+		NULL,
+		FALSE,
+		CREATE_NO_WINDOW,// 这里不为该进程创建一个控制台窗口
+		NULL,
+		NULL,
+		&si, &pi))
+	{
+		WaitForSingleObject(pi.hProcess, INFINITE);// 等待bat执行结束
+		CloseHandle(pi.hProcess);
+		CloseHandle(pi.hThread);
+	}
+}
+void openFile(const char* fileName,int& data)
+{
+	std::fstream file(fileName);
+	data = -1;
+	if (!file.is_open())
+	{
+		return;
+	}
+	while (!file.eof())
+	{
+		file >> data;
+	}
+	file.close();
+	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
+	cleanFile.close();
 }

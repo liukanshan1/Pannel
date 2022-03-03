@@ -82,5 +82,11 @@
     <None Include="CpuUsage.bat">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="CpuDiscription">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="CpuDiscription.bat">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

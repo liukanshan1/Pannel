@@ -55,7 +55,8 @@ void CPU::updateCpuUsage()
 }
 void CPU::updateCpuDiscription()
 {
-
+    runTask(L"CpuDiscription.bat");
+    openFile("CpuDiscription", info.discription);
 }
 cpuInfo CPU::getInfo()
 {

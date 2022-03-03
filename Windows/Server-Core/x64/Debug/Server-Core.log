@@ -1,3 +1,3 @@
 ﻿  main.cpp
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(51): warning C4715: “operatingSystem::checkVersion”: 不是所有的控件路径都返回值
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(52): warning C4715: “operatingSystem::checkVersion”: 不是所有的控件路径都返回值
   Server-Core.vcxproj -> C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\x64\Debug\Server-Core.exe

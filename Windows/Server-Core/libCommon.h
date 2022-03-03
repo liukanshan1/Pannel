@@ -32,3 +32,4 @@ struct cpuInfo
 
 void runTask(const wchar_t* fileName);
 void openFile(const char* fileName, int& data);
+void openFile(const char* fileName, std::string& data);

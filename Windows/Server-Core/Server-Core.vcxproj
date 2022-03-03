@@ -162,6 +162,8 @@
     <ClInclude Include="task.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CpuDiscription" />
+    <None Include="CpuDiscription.bat" />
     <None Include="CpuUsage" />
     <None Include="CpuUsage.bat" />
   </ItemGroup>

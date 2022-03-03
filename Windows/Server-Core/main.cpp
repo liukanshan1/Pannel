@@ -4,10 +4,11 @@
 int main()
 {
 	CPU s;
-	while (true)
+	//while (true)
 	{
-		s.update();
-		std::cout << s.getUsage()<<std::endl;
+		//s.update();
+		cpuInfo i = s.getInfo();
+		std::cout << i.discription<<std::endl;
 	}
 	
 	//IsWindows10OrGreater();
@@ -83,6 +84,26 @@ void openFile(const char* fileName,int& data)
 	{
 		file >> data;
 	}
+	//std::cout << data;
+	file.close();
+	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
+	cleanFile.close();
+}
+void openFile(const char* fileName, std::string& data)
+{
+	std::fstream file(fileName);
+	if (!file.is_open())
+	{
+		return;
+	}
+	std::string pre, now;
+	while (!file.eof())
+	{
+		pre = now;
+		getline(file, now);
+	}
+	//std::cout << pre << std::endl;
+	data = pre;
 	file.close();
 	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
 	cleanFile.close();

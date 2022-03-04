@@ -4,6 +4,7 @@ class Time
 {
 public:
     Time();
+    Time(bool loacl);
     //更新动态信息
     void updateTime();
     //返回信息

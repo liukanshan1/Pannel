@@ -4,6 +4,7 @@
 operatingSystem::operatingSystem()
 {
 	updateBasicInfo();
+	update();
 }
 void operatingSystem::updateBasicInfo()
 {
@@ -21,6 +22,26 @@ void operatingSystem::updateBasicInfo()
 	//获取Windows版本
 	version = checkVersion();
 }
+void operatingSystem::update()
+{
+	//获取系统运行时间
+	t.sec = GetTickCount64() / 1000;
+	if (t.sec >= 60)
+	{
+		t.min = t.sec / 60;
+		t.sec %= 60;
+	}
+	if (t.min >= 60)
+	{
+		t.hour = t.min / 60;
+		t.min %= 60;
+	}
+	if (t.hour >= 24)
+	{
+		t.day = t.hour / 24;
+		t.hour %= 24;
+	}
+}
 std::string operatingSystem::getName()
 {
 	return name;
@@ -29,9 +50,9 @@ std::string operatingSystem::getVersion()
 {
 	return version;
 }
-std::string operatingSystem::getRnningTime()
+runningTime operatingSystem::getRuningTime()
 {
-	return runningTime;
+	return t;
 }
 
 //copy

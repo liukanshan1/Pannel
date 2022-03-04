@@ -4,16 +4,17 @@ class operatingSystem
 {
 public:
 	operatingSystem();
+	void update();
 	void updateBasicInfo();
 	std::string getName();
 	std::string getVersion();
-	std::string getRnningTime();
+	runningTime getRuningTime();
 private:
 	//静态数据
 	std::string name;
 	std::string version;
 	std::string checkVersion();
 	//动态数据
-	std::string runningTime;
+	runningTime t;
 };
 #endif

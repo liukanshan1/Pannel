@@ -33,6 +33,13 @@ struct cpuInfo
 	int processorL2CacheQuantity;
 	int processorL3CacheQuantity;
 };
+struct runningTime
+{
+	int day = -1;
+	int hour = -1;
+	int min = -1;
+	int sec = -1;
+};
 
 void runTask(const wchar_t* fileName);
 void openFile(const char* fileName, int& data);

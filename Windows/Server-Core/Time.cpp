@@ -9,7 +9,22 @@ Time::Time()
     sec = -1;
     min = -1;
     hour = -1;
-    updateTime();
+    timeZone = 0;
+}
+Time::Time(bool local)
+{
+    date = -1;
+    mon = -1;
+    year = -1;
+    day = -1;
+    sec = -1;
+    min = -1;
+    hour = -1;
+    timeZone = 0;
+    if (local)
+    {
+        updateTime();
+    }
 }
 void Time::updateTime()
 {

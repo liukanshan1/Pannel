@@ -13,6 +13,7 @@ private:
 	void updateLogicalProcessorInfo();
 	void updateCpuUsage();
 	void updateCpuDiscription();
+	DWORD CountSetBits(ULONG_PTR bitMask);
 	//动态信息
 	int usage;
 	//静态信息

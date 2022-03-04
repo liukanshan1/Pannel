@@ -3,12 +3,15 @@
 
 int main()
 {
-	CPU s;
-	while (true)
+	GPU s;
+	//while (true)
 	{
-		s.update();
+		//s.update();
 
-		std::cout <<s.getUsage()
+		std::cout <<s.getQuantity()<<" "
+			<<s.getDedicatedVideoMemory(0)<<" "<<s.getDedicatedVideoMemory(1) << " "
+			<<s.getInfo(0)<<" "<<s.getInfo(1) << " "
+			<<s.getSharedSystemMemory(0)<<" "<<s.getSharedSystemMemory(1)<<" "
 			<< std::endl;
 	}
 	
@@ -108,4 +111,25 @@ void openFile(const char* fileName, std::string& data)
 	file.close();
 	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
 	cleanFile.close();
+}
+std::string tcharToString(TCHAR* str)
+{
+	std::string s;
+	try
+	{
+		int iLen = WideCharToMultiByte(CP_ACP, 0, str, -1, NULL, 0, NULL, NULL);
+		char* chRtn = new char[iLen * sizeof(char)];
+		WideCharToMultiByte(CP_ACP, 0, str, -1, chRtn, iLen, NULL, NULL);
+		s = chRtn;
+	}
+	catch (std::exception e)
+	{
+	}
+	return s;
+}
+std::string WStringToString(const std::wstring& wstr)
+{
+	std::string str(wstr.length(), ' ');
+	std::copy(wstr.begin(), wstr.end(), str.begin());
+	return str;
 }

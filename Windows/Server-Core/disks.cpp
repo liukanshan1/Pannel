@@ -2,6 +2,10 @@
 #include "disks.h"
 disks::disks()
 {
+	quantity = -1;
+	usage = nullptr;
+	totalSpace = nullptr;
+	freeSpace = nullptr;
 	updateBasicInfo();
 	update(quantity);
 }
@@ -22,9 +26,6 @@ disks::~disks()
 }
 void disks::updateBasicInfo()
 {
-	usage = nullptr;
-	totalSpace = nullptr;
-	freeSpace = nullptr;
 	int count = 0;
 	quantity = 0;
 	// 获取磁盘数量

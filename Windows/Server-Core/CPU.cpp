@@ -80,7 +80,7 @@ int CPU::getUsage()
 }
 
 // Helper function to count set bits in the processor mask.
-DWORD CountSetBits(ULONG_PTR bitMask)
+DWORD CPU::CountSetBits(ULONG_PTR bitMask)
 {
     DWORD LSHIFT = sizeof(ULONG_PTR) * 8 - 1;
     DWORD bitSetCount = 0;

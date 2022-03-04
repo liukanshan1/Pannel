@@ -5,21 +5,6 @@ operatingSystem::operatingSystem()
 {
 	updateBasicInfo();
 }
-std::string tcharToString(TCHAR* str)
-{
-	std::string s;
-	try
-	{
-		int iLen = WideCharToMultiByte(CP_ACP, 0, str, -1, NULL, 0, NULL, NULL);
-		char* chRtn = new char[iLen * sizeof(char)];
-		WideCharToMultiByte(CP_ACP, 0, str, -1, chRtn, iLen, NULL, NULL);
-		s = chRtn;
-	}
-	catch (std::exception e)
-	{
-	}
-	return s;
-}
 void operatingSystem::updateBasicInfo()
 {
 	//获取计算机名称

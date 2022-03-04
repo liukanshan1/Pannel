@@ -60,6 +60,8 @@ void disks::update(int quantity)
 			usage[i] = 100 - free * 100 / total;
 		}
 	}
+	//ªÒ»°io
+
 }
 int disks::getQuantity()
 {
@@ -72,6 +74,10 @@ char disks::getName(int n)
 int disks::getUsage(int n)
 {
 	return usage[n];
+}
+int disks::getIO()
+{
+	return io;
 }
 double disks::getTotalSpace(int n)
 {

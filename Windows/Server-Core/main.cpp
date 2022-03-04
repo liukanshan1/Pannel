@@ -3,16 +3,13 @@
 
 int main()
 {
-	disks s;
-	//while (true)
+	CPU s;
+	while (true)
 	{
-		//s.update();
+		s.update();
 
-		std::cout <<s.getTotalSpace(0)
-			<<" "<<s.getFreeSpace(0)
-			<<" "<< s.getUsage(0) 
-			<<" "<< s.getQuantity()
-		<<" "<< s.getName(0) << std::endl;
+		std::cout <<s.getUsage()
+			<< std::endl;
 	}
 	
 	//IsWindows10OrGreater();

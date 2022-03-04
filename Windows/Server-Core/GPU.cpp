@@ -2,9 +2,8 @@
 #include "GPU.h"
 GPU::GPU()
 {
-	//获取GPU数量
+	quantity = -1;
 
-	//初始化
 }
 GPU::~GPU()
 {
@@ -13,34 +12,26 @@ GPU::~GPU()
 
 void GPU::updateBasicInfo()
 {
-	
-}
-void GPU::update()
-{
 
 }
 
-int GPU::getUsage()
-{
-	return usage;
-}
-int GPU::getTotalGPUMemory()
-{
-	return totalGPUMemory;
-}
-int GPU::getUsingGPUMemory()
-{
-	return usingGPUMemory;
-}
-int GPU::getMemoryUsage()
-{
-	return usingGPUMemory;
-}
 int GPU::getQuantity()
 {
 	return quantity;
 }
-std::string GPU::getInfo()
+int GPU::getDedicatedVideoMemory(int n)
 {
-	return info;
+	return dedicatedVideoMemory[n];
+}
+int GPU::getDedicatedSystemMemory(int n)
+{
+	return dedicatedSystemMemory[n];
+}
+int GPU::getSharedSystemMemory(int n)
+{
+	return sharedSystemMemory[n];
+}
+std::string GPU::getInfo(int n)
+{
+	return info[n];
 }

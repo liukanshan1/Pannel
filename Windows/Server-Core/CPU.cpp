@@ -2,6 +2,14 @@
 #include "CPU.h"
 CPU::CPU()
 {
+    usage = -1;
+    info.numaNodeQuantity = -1;
+    info.processorPackageQuantity = -1;
+    info.processorCoreQuantity = -1;
+    info.logicalProcessorQuantity = -1;
+    info.processorL1CacheQuantity = -1;
+    info.processorL2CacheQuantity = -1;
+    info.processorL3CacheQuantity = -1;
     updateBasicInfo();
     update();
 }
@@ -70,7 +78,6 @@ int CPU::getUsage()
 {
     return usage;
 }
-
 
 // Helper function to count set bits in the processor mask.
 DWORD CountSetBits(ULONG_PTR bitMask)

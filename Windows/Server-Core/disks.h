@@ -14,6 +14,7 @@ public:
 	int getUsage(int n);
 	double getTotalSpace(int n);
 	double getFreeSpace(int n);
+	int getIO();
 private:
 	//°ë¾²Ì¬ÐÅÏ¢
 	int quantity;
@@ -22,7 +23,6 @@ private:
 	int* usage;
 	double* totalSpace;
 	double* freeSpace;
-
-	int io; //new
+	int io;
 };
 #endif

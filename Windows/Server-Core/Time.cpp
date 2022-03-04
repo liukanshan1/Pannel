@@ -2,6 +2,13 @@
 #include "Time.h"
 Time::Time()
 {
+    date = -1;
+    mon = -1;
+    year = -1;
+    day = -1;
+    sec = -1;
+    min = -1;
+    hour = -1;
     updateTime();
 }
 void Time::updateTime()

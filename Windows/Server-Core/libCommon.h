@@ -12,6 +12,8 @@
 #include <functional>
 #include <fstream>
 
+#define _WIN32_WINNT 0x0500
+
 //在CPU.cpp中会用到
 typedef BOOL(WINAPI* LPFN_GLPI)(
     PSYSTEM_LOGICAL_PROCESSOR_INFORMATION,

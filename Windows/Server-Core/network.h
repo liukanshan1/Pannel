@@ -19,6 +19,7 @@ public:
 	int getDownload(int n);
 
 private:
+	friend class update;
 	//¾²Ì¬Êý¾Ý
 	int quantity;
 	int* speed;

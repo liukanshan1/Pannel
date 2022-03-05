@@ -14,8 +14,11 @@ public:
 	int getUsage(int n);
 	double getTotalSpace(int n);
 	double getFreeSpace(int n);
-	int getIO();
+	io getDiskIO();
+	io getRead();
+	io getWrite();
 private:
+	friend class update;
 	//°ë¾²Ì¬ÐÅÏ¢
 	int quantity;
 	std::string name;
@@ -23,6 +26,8 @@ private:
 	int* usage;
 	double* totalSpace;
 	double* freeSpace;
-	int io;
+	io diskIO;
+	io read;
+	io write;
 };
 #endif

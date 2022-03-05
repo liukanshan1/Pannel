@@ -3,13 +3,16 @@
 
 int main()
 {
-	CPU s;
+	CPU c;
+	disks d;
 	while (true)
 	{
-		s.update();
-
-		std::cout <<s.getUsage()<<" "
-			
+		update::updateCpuDiskNetwork(&c, &d, nullptr);
+		
+		std::cout << c.getUsage() << std::endl
+			<< d.getWrite().speed << " " << d.getWrite().unit << std::endl
+			<< d.getRead().speed << " " << d.getWrite().unit << std::endl
+			<< d.getDiskIO().speed << " " << d.getDiskIO().unit << std::endl
 			<< std::endl;
 	}
 	

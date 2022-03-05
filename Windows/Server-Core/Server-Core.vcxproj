@@ -148,6 +148,7 @@
     <ClCompile Include="network.cpp" />
     <ClCompile Include="operatingSystem.cpp" />
     <ClCompile Include="task.cpp" />
+    <ClCompile Include="update.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="classLib.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="network.h" />
     <ClInclude Include="operatingSystem.h" />
     <ClInclude Include="task.h" />
+    <ClInclude Include="update.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CpuDiscription" />

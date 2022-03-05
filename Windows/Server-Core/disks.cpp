@@ -24,6 +24,7 @@ disks::~disks()
 		delete[] freeSpace;
 	}
 }
+
 void disks::updateBasicInfo()
 {
 	int count = 0;
@@ -61,9 +62,8 @@ void disks::update(int quantity)
 			usage[i] = 100 - free * 100 / total;
 		}
 	}
-	//ªÒ»°io
-
 }
+
 int disks::getQuantity()
 {
 	return quantity;
@@ -76,10 +76,6 @@ int disks::getUsage(int n)
 {
 	return usage[n];
 }
-int disks::getIO()
-{
-	return io;
-}
 double disks::getTotalSpace(int n)
 {
 	return totalSpace[n];
@@ -88,3 +84,16 @@ double disks::getFreeSpace(int n)
 {
 	return freeSpace[n];
 }
+io disks::getDiskIO()
+{
+	return diskIO;
+}
+io disks::getRead()
+{
+	return read;
+}
+io disks::getWrite()
+{
+	return write;
+}
+

@@ -8,6 +8,7 @@ public:
 
 	void updateBasicInfo();
 	void update(int quantity);
+	friend void updateDisksIO(disks* d);
 
 	int getQuantity();
 	char getName(int n);

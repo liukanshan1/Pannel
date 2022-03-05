@@ -7,6 +7,7 @@ public:
 	int getUsage();
 	cpuInfo getInfo();
 	std::string getDescription();
+	friend void updateCpuUsage(CPU* c);
 private:
 	friend class update;
 	void updateBasicInfo();

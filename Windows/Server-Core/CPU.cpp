@@ -11,7 +11,7 @@ CPU::CPU()
     info.processorL2CacheQuantity = -1;
     info.processorL3CacheQuantity = -1;
     updateBasicInfo();
-    //updateCpuDiskNetwork(this, nullptr, nullptr);
+    updateCpuUsage(this);
 }
 
 void CPU::updateBasicInfo()

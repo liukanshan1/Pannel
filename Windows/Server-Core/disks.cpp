@@ -8,6 +8,7 @@ disks::disks()
 	freeSpace = nullptr;
 	updateBasicInfo();
 	update(quantity);
+	updateDisksIO(this);
 }
 disks::~disks()
 {

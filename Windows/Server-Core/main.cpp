@@ -16,10 +16,6 @@ int main()
 			<< std::endl;
 	}
 	
-	//IsWindows10OrGreater();
-	/*getTime t;
-	std::cout << t.getDate() << " " << t.getDay() << " " << t.getHour() << " " << t.getMin() << " "
-		<< t.getMon() << " " << t.getSec() << " " << t.getTimeZone() << " " << t.getYear() << std::endl;*/
 
 }
 
@@ -133,4 +129,16 @@ std::string WStringToString(const std::wstring& wstr)
 	std::string str(wstr.length(), ' ');
 	std::copy(wstr.begin(), wstr.end(), str.begin());
 	return str;
+}
+void updateCpuUsage(CPU* c)
+{
+	update::updateCpuDiskNetwork(c, nullptr, nullptr);
+}
+void updateDisksIO(disks* d)
+{
+	update::updateCpuDiskNetwork(nullptr, d, nullptr);
+}
+void updateNetworkUD(network* n)
+{
+	update::updateCpuDiskNetwork(nullptr, nullptr, n);
 }

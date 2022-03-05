@@ -8,27 +8,32 @@ public:
 	~network();
 
 	void updateBasicInfo();
-	void update();
+	friend void updateNetworkUD(network* n);
 
 	int getQuantity();
-	int getSpeed(int n);
+	DWORD getBestIndex();
+	std::string getDescription(int n);
+	std::string getHardwareAddress(int n);
 	std::string getIPv4(int n);
 	std::string getIPv6(int n);
-	int getUsage(int n);
-	int getUpload(int n);
-	int getDownload(int n);
+	std::string getGatewayAddress(int n);
+	dhcpInfo getDHCP(int n);
+	io getUpload(int n);
+	io getDownload(int n);
 
 private:
 	friend class update;
 	//静态数据
 	int quantity;
-	int* speed;
+	DWORD bestIndex;
+	std::string* description;
+	std::string* hardwareAddress;
 	std::string* IPv4;
 	std::string* IPv6;
+	std::string* gatewayAddress;
+	dhcpInfo* dhcp;
 	//动态数据
-	int* usage;
-	int* upload;
-	int* download;
-
+	io* upload;
+	io* download;
 };
 #endif

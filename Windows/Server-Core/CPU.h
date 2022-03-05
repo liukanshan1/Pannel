@@ -4,14 +4,13 @@ class CPU
 {
 public:
 	CPU();
-	void update();
 	int getUsage();
 	cpuInfo getInfo();
 	std::string getDescription();
 private:
+	friend class update;
 	void updateBasicInfo();
 	void updateLogicalProcessorInfo();
-	void updateCpuUsage();
 	void updateCpuDiscription();
 	DWORD CountSetBits(ULONG_PTR bitMask);
 	//¶¯Ì¬ÐÅÏ¢

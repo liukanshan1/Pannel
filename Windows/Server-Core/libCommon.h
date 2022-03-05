@@ -18,12 +18,15 @@
 #include <pdh.h>
 #include <pdhmsg.h>
 
+
 #define _WIN32_WINNT 0x0500
 
 //在CPU.cpp中会用到
 typedef BOOL(WINAPI* LPFN_GLPI)(
     PSYSTEM_LOGICAL_PROCESSOR_INFORMATION,
     PDWORD);
+
+enum dataUnit { b = -1, kb = 0, mb = 1, gb = 2, tb = 3 };
 
 struct cpuInfo
 {
@@ -36,6 +39,11 @@ struct cpuInfo
 	int processorL1CacheQuantity;
 	int processorL2CacheQuantity;
 	int processorL3CacheQuantity;
+};
+struct io
+{
+	int speed = -1;
+	dataUnit unit = kb;
 };
 struct runningTime
 {

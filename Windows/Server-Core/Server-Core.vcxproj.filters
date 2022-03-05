@@ -42,6 +42,9 @@
     <ClCompile Include="disks.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="update.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">
@@ -72,6 +75,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="classLib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="update.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

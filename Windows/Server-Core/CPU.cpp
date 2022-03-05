@@ -62,8 +62,44 @@ void CPU::updateCpuUsage()
 {
     //const wchar_t* fileName = L"CpuUsage.bat";
     //const char* fileName = "CpuUsage";
-    runTask(L"CpuUsage.bat");
-    openFile("CpuUsage", usage);
+
+    /*runTask(L"CpuUsage.bat");
+    openFile("CpuUsage", usage);*/
+
+    HQUERY query;
+    HCOUNTER pCounterHandle = nullptr;
+    PDH_STATUS status = PdhOpenQuery(NULL, NULL, &query);
+    HCOUNTER cpuUsage;
+    status = PdhAddCounter(query, _TEXT("\\Processor(_Total)\\% Processor Time"), NULL, &cpuUsage); //%号和P之间要有空格
+    if (ERROR_SUCCESS != status)
+    {
+        return;
+    }
+    PdhCollectQueryData(query);
+    Sleep(500);  //这里要有延时不然结果相当不准确  
+    PdhCollectQueryData(query);
+    if (ERROR_SUCCESS != status)
+    {
+        return;
+    }
+    PDH_FMT_COUNTERVALUE pdhValue;
+    DWORD dwValue;
+    status = PdhGetFormattedCounterValue(cpuUsage, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
+    if (ERROR_SUCCESS != status)
+    {
+        return;
+    }
+    else
+    {
+        double temp = pdhValue.doubleValue;
+        usage = (int)(temp + 0.5);
+    }
+    PdhRemoveCounter(cpuUsage);
+    PdhCloseQuery(query);
+    if (status != ERROR_SUCCESS)
+    {
+        return;
+    }
 }
 void CPU::updateCpuDiscription()
 {

@@ -1,5 +1,21 @@
-﻿  main.cpp
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(17,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+﻿  CPU.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  GPU.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\GPU.cpp(62,75): warning C4244: “=”: 从“SIZE_T”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\GPU.cpp(63,71): warning C4244: “=”: 从“SIZE_T”转换到“int”，可能丢失数据
+  Time.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  disks.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\disks.cpp(53,28): warning C4838: 从“char”转换到“wchar_t”需要收缩转换
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\disks.cpp(61,19): warning C4244: “=”: 从“unsigned __int64”转换到“int”，可能丢失数据
+  main.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\xutility(4022,18): warning C4244: “=”: 从“const wchar_t”转换到“char”，可能丢失数据
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\xutility(4034): message : 查看对正在编译的函数 模板 实例化“_OutIt *std::_Copy_unchecked<const wchar_t*,char*>(_InIt,_InIt,_OutIt)”的引用
@@ -8,12 +24,26 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.3070
               _OutIt=char *,
               _InIt=const wchar_t *
           ]
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(133): message : 查看对正在编译的函数 模板 实例化“_OutIt std::copy<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<char>>>>(_InIt,_InIt,_OutIt)”的引用
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(131): message : 查看对正在编译的函数 模板 实例化“_OutIt std::copy<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<char>>>>(_InIt,_InIt,_OutIt)”的引用
           with
           [
               _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
               _Elem=wchar_t,
               _InIt=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>
           ]
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(56): warning C4715: “operatingSystem::checkVersion”: 不是所有的控件路径都返回值
+  memory.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  network.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  operatingSystem.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\operatingSystem.cpp(28,27): warning C4244: “=”: 从“ULONGLONG”转换到“int”，可能丢失数据
+  task.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(21,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  正在生成代码...
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(54): warning C4715: “operatingSystem::checkVersion”: 不是所有的控件路径都返回值
   Server-Core.vcxproj -> C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\x64\Debug\Server-Core.exe

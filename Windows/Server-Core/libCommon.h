@@ -1,4 +1,5 @@
 //放置整个类库公共的声明部分，可能用到的系统库
+#pragma comment(lib,"pdh")
 #pragma comment(lib, "dxgi.lib")
 #include <iostream>
 #include <string>
@@ -12,7 +13,10 @@
 #include <vector>
 #include <functional>
 #include <fstream>
-#include <DXGI.h>  
+#include <DXGI.h>
+#include <locale.h>
+#include <pdh.h>
+#include <pdhmsg.h>
 
 #define _WIN32_WINNT 0x0500
 
@@ -42,7 +46,7 @@ struct runningTime
 };
 
 void runTask(const wchar_t* fileName);
-void openFile(const char* fileName, int& data);
+//void openFile(const char* fileName, int& data);
 void openFile(const char* fileName, std::string& data);
 std::string WStringToString(const std::wstring& wstr);
 std::string tcharToString(TCHAR* str);

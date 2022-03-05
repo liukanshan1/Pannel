@@ -76,12 +76,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CpuUsage">
-      <Filter>资源文件</Filter>
-    </None>
-    <None Include="CpuUsage.bat">
-      <Filter>资源文件</Filter>
-    </None>
     <None Include="CpuDiscription">
       <Filter>资源文件</Filter>
     </None>

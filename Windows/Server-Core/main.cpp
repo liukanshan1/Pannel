@@ -3,15 +3,13 @@
 
 int main()
 {
-	GPU s;
-	//while (true)
+	CPU s;
+	while (true)
 	{
-		//s.update();
+		s.update();
 
-		std::cout <<s.getQuantity()<<" "
-			<<s.getDedicatedVideoMemory(0)<<" "<<s.getDedicatedVideoMemory(1) << " "
-			<<s.getInfo(0)<<" "<<s.getInfo(1) << " "
-			<<s.getSharedSystemMemory(0)<<" "<<s.getSharedSystemMemory(1)<<" "
+		std::cout <<s.getUsage()<<" "
+			
 			<< std::endl;
 	}
 	
@@ -76,23 +74,23 @@ void runTask(const wchar_t* fileName)
 		CloseHandle(pi.hThread);
 	}
 }
-void openFile(const char* fileName,int& data)
-{
-	std::fstream file(fileName);
-	data = -1;
-	if (!file.is_open())
-	{
-		return;
-	}
-	while (!file.eof())
-	{
-		file >> data;
-	}
-	//std::cout << data;
-	file.close();
-	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
-	cleanFile.close();
-}
+//void openFile(const char* fileName,int& data)
+//{
+//	std::fstream file(fileName);
+//	data = -1;
+//	if (!file.is_open())
+//	{
+//		return;
+//	}
+//	while (!file.eof())
+//	{
+//		file >> data;
+//	}
+//	//std::cout << data;
+//	file.close();
+//	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
+//	cleanFile.close();
+//}
 void openFile(const char* fileName, std::string& data)
 {
 	std::fstream file(fileName);

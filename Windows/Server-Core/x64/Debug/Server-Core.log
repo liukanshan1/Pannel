@@ -1,23 +1,11 @@
-﻿  main.cpp
+﻿  update.cpp
 C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(27,1): warning C4005: “_WIN32_WINNT”: 宏重定义
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\xutility(4022,18): warning C4244: “=”: 从“const wchar_t”转换到“char”，可能丢失数据
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\xutility(4034): message : 查看对正在编译的函数 模板 实例化“_OutIt *std::_Copy_unchecked<const wchar_t*,char*>(_InIt,_InIt,_OutIt)”的引用
-          with
-          [
-              _OutIt=char *,
-              _InIt=const wchar_t *
-          ]
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(130): message : 查看对正在编译的函数 模板 实例化“_OutIt std::copy<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<char>>>>(_InIt,_InIt,_OutIt)”的引用
-          with
-          [
-              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
-              _Elem=wchar_t,
-              _InIt=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>
-          ]
-  network.cpp
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(27,1): warning C4005: “_WIN32_WINNT”: 宏重定义
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
-  正在生成代码...
-C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(53): warning C4715: “operatingSystem::checkVersion”: 不是所有的控件路径都返回值
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(65,13): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(93,14): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(116,22): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(122,22): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(127,22): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(143,16): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(170,13): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   Server-Core.vcxproj -> C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\x64\Debug\Server-Core.exe

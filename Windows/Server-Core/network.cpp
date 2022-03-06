@@ -10,9 +10,10 @@ network::network()
     IPv4 = nullptr;
     IPv6 = nullptr;
     name = nullptr;
-    upload = nullptr;
-    download = nullptr;
     status = nullptr;
+    speedIndex = 0;
+    downloadPath = nullptr;
+    uploadPath = nullptr;
     //获取网卡数量
     PIP_ADAPTER_ADDRESSES pAdapter = nullptr;
     PIP_ADAPTER_ADDRESSES currentAdapter = nullptr;
@@ -38,8 +39,6 @@ network::network()
     hardwareAddress = new std::string[quantity];
     IPv4 = new std::string[quantity];
     IPv6 = new std::string[quantity];
-    upload = new io[quantity];
-    download = new io[quantity];
     status = new bool[quantity];
     name = new std::string[quantity];
     //寻找最佳网卡
@@ -88,8 +87,59 @@ network::network()
         currentAdapter = currentAdapter->Next;
     }
     free(pAdapter);
+    //获取最佳网卡编号
+    for (int i = 0; i < quantity; i++)
+    {
+        if (index[i] == bestIndex)
+        {
+            bestIndex = i;
+            break;
+        }
+    }
+    //枚举测速网络适配器
+    speedQuantity = 0;
+    std::string counters;
+    std::string adapters;
+    DWORD countersLength = 0;
+    DWORD adaptersLength = 0;
+    PdhEnumObjectItemsA(0, 0, "Network Interface", 0, &countersLength, 0, &adaptersLength, PERF_DETAIL_WIZARD, 0);
+    counters.assign(countersLength, 0);
+    adapters.assign(adaptersLength, 0);
+    if (ERROR_SUCCESS != PdhEnumObjectItemsA(0, 0, "Network Interface", &counters[0], &countersLength,
+        &adapters[0], &adaptersLength, PERF_DETAIL_WIZARD, 0))
+    {
+        return;
+    }
+    //获取测速网卡数量
+    char* p = &adapters[0];
+    for (; *p != 0; p += (strlen(p) + 1))
+    {
+        speedQuantity++;
+    }
+    //分配内存并生成路径
+    downloadPath = new std::string[speedQuantity];
+    uploadPath = new std::string[speedQuantity];
+    p = &adapters[0];
+    for (int i = 0; i < speedQuantity; i++)
+    {
+        downloadPath[i] = "\\Network Interface(";
+        downloadPath[i] += p;
+        downloadPath[i] += ")\\Bytes Received/sec";
+        uploadPath[i] = "\\Network Interface(";
+        uploadPath[i] += p;
+        uploadPath[i] += ")\\Bytes Sent/sec";
+        p += (strlen(p) + 1);
+    }
     //获取上传下载速度
     updateNetworkUD(this);
+}
+void network::setBestIndex(int n) 
+{
+    bestIndex = n;
+}
+void network::setSpeedIndex(int n)
+{
+    speedIndex = n;
 }
 network::~network()
 {
@@ -110,14 +160,6 @@ network::~network()
     {
         delete[] IPv6;
     }
-    if (upload != nullptr)
-    {
-        delete[] upload;
-    }
-    if (download != nullptr)
-    {
-        delete[]  download;
-    }
     if (index != nullptr)
     {
         delete[]  index;
@@ -130,15 +172,19 @@ network::~network()
     {
         delete[]  name;
     }
+    if (downloadPath != nullptr)
+    {
+        delete[]  downloadPath;
+    }
+    if (uploadPath != nullptr)
+    {
+        delete[]  uploadPath;
+    }
 }
 
 int network::getQuantity()
 {
 	return quantity;
-}
-DWORD network::getBestIndex()
-{
-    return bestIndex;
 }
 std::string network::getDescription(int n)
 {
@@ -156,13 +202,13 @@ std::string network::getIPv6(int n)
 {
 	return IPv6[n];
 }
-io network::getUpload(int n)
+io network::getUpload()
 {
-	return upload[n];
+	return upload;
 }
-io network::getDownload(int n)
+io network::getDownload()
 {
-	return download[n];
+	return download;
 }
 bool network::getStatus(int n)
 {

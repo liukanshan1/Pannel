@@ -8,17 +8,18 @@ public:
 	~network();
 
 	friend void updateNetworkUD(network* n);
+	void setBestIndex(int n);
+	void setSpeedIndex(int n);
 
 	int getQuantity();
-	DWORD getBestIndex();
 	std::string getDescription(int n);
 	std::string getHardwareAddress(int n);
 	std::string getIPv4(int n);
 	std::string getIPv6(int n);
 	std::string getName(int n);
 	bool getStatus(int n);
-	io getUpload(int n);
-	io getDownload(int n);
+	io getUpload();
+	io getDownload();
 
 private:
 	friend class update;
@@ -32,8 +33,12 @@ private:
 	std::string* hardwareAddress;
 	std::string* IPv4;
 	std::string* IPv6;
+	int speedQuantity;
+	int speedIndex;
+	std::string* downloadPath;
+	std::string* uploadPath;
 	//¶¯Ì¬Êý¾Ý
-	io* upload;
-	io* download;
+	io upload;
+	io download;
 };
 #endif

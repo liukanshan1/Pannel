@@ -4,77 +4,92 @@ network::network()
 {
     quantity = 0;
     bestIndex = -1;
+    index = nullptr;
     description = nullptr;
     hardwareAddress = nullptr;
     IPv4 = nullptr;
     IPv6 = nullptr;
-    gatewayAddress = nullptr;
-    dhcp = nullptr;
+    name = nullptr;
     upload = nullptr;
     download = nullptr;
+    status = nullptr;
     //获取网卡数量
+    PIP_ADAPTER_ADDRESSES pAdapter = nullptr;
+    PIP_ADAPTER_ADDRESSES currentAdapter = nullptr;
     ULONG bufferSize = 0;
-    IP_ADAPTER_INFO* pAdapter = nullptr;
-    if (GetAdaptersInfo(pAdapter, &bufferSize) == ERROR_BUFFER_OVERFLOW)
+    GetAdaptersAddresses(AF_UNSPEC, 0, NULL, pAdapter, &bufferSize);
+    pAdapter = (IP_ADAPTER_ADDRESSES*)malloc(bufferSize);
+    if ((GetAdaptersAddresses(AF_INET, GAA_FLAG_SKIP_ANYCAST, NULL, pAdapter, &bufferSize)) == NO_ERROR)
     {
-        pAdapter = (IP_ADAPTER_INFO*)new char[bufferSize];
+        currentAdapter = pAdapter;
+        while (currentAdapter)
+        {
+            quantity++;
+            currentAdapter = currentAdapter->Next;
+        }
     }
     else
     {
         return;
     }
-    if (GetAdaptersInfo(pAdapter, &bufferSize) != ERROR_SUCCESS)
-    {
-        return;
-    }
-    for (auto* currentAdapter = pAdapter; currentAdapter != NULL; currentAdapter = currentAdapter->Next) 
-    {
-        quantity++;
-    }
-    //开辟内存
+    //分配内存
+    index = new int[quantity];
     description = new std::string[quantity];
     hardwareAddress = new std::string[quantity];
     IPv4 = new std::string[quantity];
     IPv6 = new std::string[quantity];
-    gatewayAddress = new std::string[quantity];
-    dhcp = new dhcpInfo[quantity];
     upload = new io[quantity];
     download = new io[quantity];
+    status = new bool[quantity];
+    name = new std::string[quantity];
     //寻找最佳网卡
     IPAddr ipAddress = { 0 };
     if (NO_ERROR != GetBestInterface(ipAddress, &bestIndex))
     {
         return;
     }
-    //遍历获得description、IPv4、gatewayAddress、dhcp
+    //遍历获得静态信息
+    currentAdapter = pAdapter;
     for (int i = 0; i < quantity; i++)
     {
-        auto* currentAdapter = pAdapter;
-        description[i] = currentAdapter->Description;
-        IPv4[i] = currentAdapter->IpAddressList.IpAddress.String;
-        gatewayAddress[i] = currentAdapter->GatewayList.IpAddress.String;
-        if (currentAdapter->DhcpEnabled!=0)
+        //获取mac地址
+        char temp[100];
+        sprintf_s(temp, "%.2x-%.2x-%.2x-%.2x-%.2x-%.2x",
+            currentAdapter->PhysicalAddress[0], currentAdapter->PhysicalAddress[1],
+            currentAdapter->PhysicalAddress[2], currentAdapter->PhysicalAddress[3],
+            currentAdapter->PhysicalAddress[4], currentAdapter->PhysicalAddress[5]);
+        hardwareAddress[i] += temp;
+        //获取name
+        name[i] = tcharToString(currentAdapter->FriendlyName);
+        //获取status
+        status[i] = (currentAdapter->OperStatus == IfOperStatusUp ? true : false);
+        //获取index
+        index[i] = currentAdapter->IfIndex;
+        //获取description
+        description[i] = WStringToString(currentAdapter->Description);
+        //获取IPv4、IPv6地址
+        PIP_ADAPTER_UNICAST_ADDRESS pAddress = currentAdapter->FirstUnicastAddress;
+        while(pAddress != NULL)
         {
-            dhcp[i].enable = true;
-            dhcp[i].dhcpAddress = currentAdapter->DhcpServer.IpAddress.String;
-            dhcp[i].LeaseExpires= currentAdapter->LeaseExpires;
-            dhcp[i].LeaseObtained = currentAdapter->LeaseObtained;
+            char temp[100];
+            DWORD tempLength = 100;
+            if (pAddress->Address.lpSockaddr->sa_family == AF_INET)
+            {
+                sockaddr_in* ipv4 = (sockaddr_in*)pAddress->Address.lpSockaddr;
+                IPv4[i] = inet_ntop(AF_INET, &(ipv4->sin_addr), temp, tempLength);
+            }
+            else if (pAddress->Address.lpSockaddr->sa_family == AF_INET6)
+            {
+                sockaddr_in6* ipv6 = (sockaddr_in6*)pAddress->Address.lpSockaddr;
+                IPv6[i] = inet_ntop(AF_INET6, &(ipv6->sin6_addr), temp, tempLength);
+            }
+            pAddress = pAddress->Next;
         }
         currentAdapter = currentAdapter->Next;
     }
-    delete[] pAdapter;
-    //获取MAC地址，IPv6
-	updateBasicInfo();
+    free(pAdapter);
     //获取上传下载速度
     updateNetworkUD(this);
-}
-void network::updateBasicInfo()
-{
-    //获取MAC地址，IPv6
-
-
-
-
 }
 network::~network()
 {
@@ -95,14 +110,6 @@ network::~network()
     {
         delete[] IPv6;
     }
-    if (gatewayAddress != nullptr)
-    {
-        delete[] gatewayAddress;
-    }
-    if (dhcp != nullptr)
-    {
-        delete[] dhcp;
-    }
     if (upload != nullptr)
     {
         delete[] upload;
@@ -110,6 +117,18 @@ network::~network()
     if (download != nullptr)
     {
         delete[]  download;
+    }
+    if (index != nullptr)
+    {
+        delete[]  index;
+    }
+    if (status != nullptr)
+    {
+        delete[]  status;
+    }
+    if (name != nullptr)
+    {
+        delete[]  name;
     }
 }
 
@@ -137,14 +156,6 @@ std::string network::getIPv6(int n)
 {
 	return IPv6[n];
 }
-std::string network::getGatewayAddress(int n)
-{
-    return gatewayAddress[n];
-}
-dhcpInfo network::getDHCP(int n)
-{
-    return dhcp[n];
-}
 io network::getUpload(int n)
 {
 	return upload[n];
@@ -152,4 +163,12 @@ io network::getUpload(int n)
 io network::getDownload(int n)
 {
 	return download[n];
+}
+bool network::getStatus(int n)
+{
+    return status[n];
+}
+std::string network::getName(int n)
+{
+    return name[n];
 }

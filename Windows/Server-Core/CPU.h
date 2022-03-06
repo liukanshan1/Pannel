@@ -4,10 +4,13 @@ class CPU
 {
 public:
 	CPU();
+
+	friend void updateCpuUsage(CPU* c);
+
 	int getUsage();
 	cpuInfo getInfo();
 	std::string getDescription();
-	friend void updateCpuUsage(CPU* c);
+
 private:
 	friend class update;
 	void updateBasicInfo();

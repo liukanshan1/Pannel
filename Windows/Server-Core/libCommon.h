@@ -1,9 +1,8 @@
 //放置整个类库公共的声明部分，可能用到的系统库
-#pragma comment(lib,"pdh")
-#pragma comment(lib, "IPHlpApi.lib")
-#pragma comment(lib, "dxgi.lib")
 #include <iostream>
 #include <string>
+#include <WinSock2.h>
+#include <WS2tcpip.h>
 #include <windows.h>
 #include <stdio.h>
 #include <VersionHelpers.h>
@@ -20,6 +19,10 @@
 #include <pdhmsg.h>
 #include <IPHlpApi.h>
 
+#pragma comment(lib,"pdh")
+#pragma comment(lib, "IPHlpApi.lib")
+#pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "ws2_32.lib")
 
 #define _WIN32_WINNT 0x0500
 
@@ -46,13 +49,6 @@ struct io
 {
 	int speed = -1;
 	dataUnit unit = kb;
-};
-struct dhcpInfo
-{
-	bool enable = false;
-	std::string dhcpAddress; //值 255.255.255.255 表示无法访问 DHCP 服务器，或者正在访问中。
-	time_t LeaseObtained; //获得当前 DHCP 租约的时间。
-	time_t LeaseExpires; //当前 DHCP 租约到期的时间。
 };
 struct runningTime
 {

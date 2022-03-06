@@ -3,17 +3,17 @@
 
 int main()
 {
-	CPU c;
-	disks d;
-	while (true)
+	network dn;
+	int a = dn.getQuantity();
+	std::cout << a << "\n\n";
+	for (int i = 0; i < a; i++)
 	{
-		update::updateCpuDiskNetwork(&c, &d, nullptr);
-		
-		std::cout << c.getUsage() << std::endl
-			<< d.getWrite().speed << " " << d.getWrite().unit << std::endl
-			<< d.getRead().speed << " " << d.getWrite().unit << std::endl
-			<< d.getDiskIO().speed << " " << d.getDiskIO().unit << std::endl
-			<< std::endl;
+		std::cout << dn.getStatus(i) << " " 
+			<< dn.getName(i)
+			<< " " << dn.getDescription(i) << " " 
+			<< dn.getHardwareAddress(i) << " "
+			<< dn.getIPv4(i) << " " 
+			<< dn.getIPv6(i) << "\n\n";
 	}
 	
 

@@ -63,4 +63,4 @@ void runTask(const wchar_t* fileName);
 void openFile(const char* fileName, std::string& data);
 std::string WStringToString(const std::wstring& wstr);
 std::string tcharToString(TCHAR* str);
-void handleError(char c,int location);
+void error(char c,int location);

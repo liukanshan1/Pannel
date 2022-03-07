@@ -107,10 +107,8 @@ void CPU::updateLogicalProcessorInfo()
         "GetLogicalProcessorInformation");
     if (NULL == glpi)
     {
-        
-        //GetLogicalProcessorInformation is not supported.
-        error('c',001);
-        return /*(1)*/;
+        error('c',001,"GetLogicalProcessorInformation is not supported.");
+        return;
     }
 
     while (!done)
@@ -129,14 +127,12 @@ void CPU::updateLogicalProcessorInfo()
 
                 if (NULL == buffer)
                 {
-                   //Error: Allocation failure
-                    error('c',002);
+                    error('c',002,"Allocation failure.");
                     return;
                 }
             }
             else
             {
-                //unkown Getlasterror
                 error('c',003)
                 return;
             }
@@ -188,8 +184,7 @@ void CPU::updateLogicalProcessorInfo()
             break;
 
         default:
-            error('c',004)
-            // Unsupported LOGICAL_PROCESSOR_RELATIONSHIP value.
+            error('c',004,"Unsupported LOGICAL_PROCESSOR_RELATIONSHIP value.")
             break;
         }
         byteOffset += sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION);

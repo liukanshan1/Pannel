@@ -31,7 +31,7 @@ network::network()
     }
     else
     {
-	    error('n',001);
+	    throwError('n',1,"获取网卡数量失败.");
         return;
     }
     //分配内存
@@ -46,7 +46,7 @@ network::network()
     IPAddr ipAddress = { 0 };
     if (NO_ERROR != GetBestInterface(ipAddress, &bestIndex))
     {
-	    error('n',002);
+	    throwError('n',2,"寻找主网卡失败，请指定主网卡.");
         return;
     }
     //遍历获得静态信息
@@ -110,7 +110,7 @@ network::network()
     if (ERROR_SUCCESS != PdhEnumObjectItemsA(0, 0, "Network Interface", &counters[0], &countersLength,
         &adapters[0], &adaptersLength, PERF_DETAIL_WIZARD, 0))
     {
-	    error('n',003);
+	    throwError('n',3,"枚举测速网卡失败.");
         return;
     }
     //获取测速网卡数量

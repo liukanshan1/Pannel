@@ -13,7 +13,7 @@ void operatingSystem::updateBasicInfo()
     DWORD dwSize = _countof(buffer);
 	if (!GetComputerNameEx(ComputerNamePhysicalDnsHostname, buffer, &dwSize))
 	{
-		error('o',001,"GetComputerNameEx failed");
+		throwError('o',1,"GetComputerNameEx failed.");
 		return;
 	}
 	else name = tcharToString(buffer);

@@ -10,7 +10,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	HCOUNTER diskRead, diskWrite;
 	HCOUNTER download, upload;
 
-	status = PdhAddCounter(query, _TEXT("\\Processor(_Total)\\% Processor Time"), NULL, &cpuUsage); //%å·å’ŒPä¹‹é—´è¦æœ‰ç©ºæ ¼
+	status = PdhAddCounter(query, _TEXT("\\Processor(_Total)\\% Processor Time"), NULL, &cpuUsage); //%ºÅºÍPÖ®¼äÒªÓĞ¿Õ¸ñ
 	status = PdhAddCounter(query, _TEXT("\\PhysicalDisk(_Total)\\Disk Read Bytes/sec"), NULL, &diskRead);
 	status = PdhAddCounter(query, _TEXT("\\PhysicalDisk(_Total)\\Disk Write Bytes/sec"), NULL, &diskWrite);
 	if (n != nullptr)
@@ -26,19 +26,15 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	
 	if (ERROR_SUCCESS != status)
 	{
-		error('u',001);
+		throwError('u', 1, "³õÊ¼»¯¸üĞÂÊı¾İÊ§°Ü.");
 		return;
 	}
 	PdhCollectQueryData(query);
-<<<<<<< Updated upstream
-	Sleep(500);  //è¿™é‡Œè¦æœ‰å»¶æ—¶ä¸ç„¶ç»“æœç›¸å½“ä¸å‡†ç¡®  
-=======
 	Sleep(1000);  //ÕâÀïÒªÓĞÑÓÊ±²»È»½á¹ûÏàµ±²»×¼È·  
->>>>>>> Stashed changes
 	PdhCollectQueryData(query);
 	if (ERROR_SUCCESS != status)
 	{
-error('u',002);
+		throwError('u',2,"¸üĞÂÊı¾İÊ§°Ü.");
 		return;
 	}
 	PDH_FMT_COUNTERVALUE pdhValue;
@@ -48,7 +44,7 @@ error('u',002);
 		status = PdhGetFormattedCounterValue(cpuUsage, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			error('u',003);
+			throwError('u',3,"¸üĞÂCPUÊ¹ÓÃÂÊÊ§°Ü.");
 			return;
 		}
 		else
@@ -64,7 +60,7 @@ error('u',002);
 		status = PdhGetFormattedCounterValue(diskRead, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			error('u',004);
+			throwError('u',4,"¸üĞÂ´ÅÅÌ¶ÁÈ¡ËÙ¶ÈÊ§°Ü.");
 			return;
 		}
 		else
@@ -93,7 +89,7 @@ error('u',002);
 		status = PdhGetFormattedCounterValue(diskWrite, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			error('u',005);
+			throwError('u',5,"¸üĞÂ´ÅÅÌ¶ÁÈ¡ËÙ¶ÈÊ§°Ü.");
 			return;
 		}
 		else
@@ -144,7 +140,7 @@ error('u',002);
 		status = PdhGetFormattedCounterValue(download, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			error('u',006);
+			throwError('u',6,"¸üĞÂÏÂÔØËÙ¶ÈÊ§°Ü.");
 			return;
 		}
 		else
@@ -172,7 +168,7 @@ error('u',002);
 		status = PdhGetFormattedCounterValue(upload, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			error('u',007);
+			throwError('u',7, "¸üĞÂÉÏ´«ËÙ¶ÈÊ§°Ü.");
 			return;
 		}
 		else
@@ -203,7 +199,7 @@ error('u',002);
 	PdhCloseQuery(query);
 	if (status != ERROR_SUCCESS)
 	{
-		error('u',008);
+		throwError('u', 8,"¹Ø±Õ²éÑ¯¾ä±úÊ§°Ü.");
 		return;
 	}
 }

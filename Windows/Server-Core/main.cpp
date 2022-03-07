@@ -17,7 +17,7 @@ int main()
 
 }
 
-std::string operatingSystem::checkVersion() //åœ¨operatingSystem.cppå®šä¹‰ä¼šæŠ¥é”™
+std::string operatingSystem::checkVersion() //ÔÚoperatingSystem.cpp¶¨Òå»á±¨´í
 {
 	if (IsWindowsServer())
 	{
@@ -36,7 +36,7 @@ std::string operatingSystem::checkVersion() //åœ¨operatingSystem.cppå®šä¹‰ä¼šæŠ¥
 	checkVersion.push_back(IsWindowsXPSP2OrGreater);
 	checkVersion.push_back(IsWindowsXPSP1OrGreater);
 	checkVersion.push_back(IsWindowsXPOrGreater);
-	std::string versions[12] = { "Windows10æˆ–æ›´é«˜ç‰ˆæœ¬","Windows8.1","Windows8",
+	std::string versions[12] = { "Windows10»ò¸ü¸ß°æ±¾","Windows8.1","Windows8",
 		"Windows7 SP1","Windows7","Vista SP2","Vista SP1","Vista",
 		"WindowsXP SP3","WindowsXP SP2","WindowsXP SP1","WindowsXP"
 	};
@@ -56,17 +56,17 @@ void runTask(const wchar_t* fileName)
 	ZeroMemory(&si, sizeof(si));
 	si.cb = sizeof(si);
 	si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
-	if (CreateProcess(fileName,// ä½äºå·¥ç¨‹æ‰€åœ¨ç›®å½•ä¸‹
+	if (CreateProcess(fileName, //Î»ÓÚ¹¤³ÌËùÔÚÄ¿Â¼ÏÂ
 		NULL,
 		NULL,
 		NULL,
 		FALSE,
-		CREATE_NO_WINDOW,// è¿™é‡Œä¸ä¸ºè¯¥è¿›ç¨‹åˆ›å»ºä¸€ä¸ªæ§åˆ¶å°çª—å£
+		CREATE_NO_WINDOW, //ÕâÀï²»Îª¸Ã½ø³Ì´´½¨Ò»¸ö¿ØÖÆÌ¨´°¿Ú
 		NULL,
 		NULL,
 		&si, &pi))
 	{
-		WaitForSingleObject(pi.hProcess, INFINITE);// ç­‰å¾…batæ‰§è¡Œç»“æŸ
+		WaitForSingleObject(pi.hProcess, INFINITE); //µÈ´ıbatÖ´ĞĞ½áÊø
 		CloseHandle(pi.hProcess);
 		CloseHandle(pi.hThread);
 	}
@@ -93,7 +93,7 @@ void openFile(const char* fileName, std::string& data)
 	std::fstream file(fileName);
 	if (!file.is_open())
 	{
-		error('m',001);
+		throwError('m',1,"´ò¿ªÎÄ¼şÊ§°Ü.");
 		return;
 	}
 	std::string pre, now;
@@ -120,7 +120,7 @@ std::string tcharToString(TCHAR* str)
 	}
 	catch (std::exception e)
 	{
-		error('m',002);
+		throwError('m',2,"×Ö·û´®×ª»»Ê§°Ü.");
 	}
 	return s;
 }
@@ -142,7 +142,7 @@ void updateNetworkUD(network* n)
 {
 	update::updateCpuDiskNetwork(nullptr, nullptr, n);
 }
-void error(char c,int location,std::string description="")
+void throwError(char c,int location,std::string description="")
 {
 	
 }

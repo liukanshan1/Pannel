@@ -39,7 +39,7 @@ void GPU::updateBasicInfo()
     HRESULT hr = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pFactory));
     if (FAILED(hr))
     {
-	    error('g',001);
+        throwError('g', 1, "获取显卡信息失败.");
         return;
     }
     //获取GPU数量并开辟内存

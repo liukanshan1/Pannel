@@ -34,14 +34,15 @@ void GPU::updateBasicInfo()
     quantity = 0;
     IDXGIFactory* pFactory;
     IDXGIAdapter* pAdapter;
-    std::vector <IDXGIAdapter*> gpu; //ÏÔ¿¨
-    //´´½¨Ò»¸öDXGI¹¤³§  
+    std::vector <IDXGIAdapter*> gpu; //æ˜¾å¡
+    //åˆ›å»ºä¸€ä¸ªDXGIå·¥åŽ‚  
     HRESULT hr = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pFactory));
     if (FAILED(hr))
     {
+	    error('g',001);
         return;
     }
-    //»ñÈ¡GPUÊýÁ¿²¢¿ª±ÙÄÚ´æ
+    //èŽ·å–GPUæ•°é‡å¹¶å¼€è¾Ÿå†…å­˜
     while (pFactory->EnumAdapters(quantity, &pAdapter) != DXGI_ERROR_NOT_FOUND)
     {
         gpu.push_back(pAdapter);
@@ -53,14 +54,14 @@ void GPU::updateBasicInfo()
     info = new std::string[quantity];
     for (size_t i = 0; i < gpu.size(); i++)
     {
-        //·Ö±ð»ñÈ¡ÏêÏ¸ÐÅÏ¢  
+        //åˆ†åˆ«èŽ·å–è¯¦ç»†ä¿¡æ¯  
         DXGI_ADAPTER_DESC adapterDesc;
         gpu[i]->GetDesc(&adapterDesc);
         std::wstring temp(adapterDesc.Description);
         info[i] = WStringToString(temp);
         //dedicatedSystemMemory[i] = adapterDesc.DedicatedSystemMemory / 1024 / 1024;
-        dedicatedVideoMemory[i] = adapterDesc.DedicatedVideoMemory / 1024 / 1024; //GPUÄÚ´æ
-        sharedSystemMemory[i] = adapterDesc.SharedSystemMemory / 1024 / 1024; //¹²ÏíGPUÄÚ´æ
+        dedicatedVideoMemory[i] = adapterDesc.DedicatedVideoMemory / 1024 / 1024; //GPUå†…å­˜
+        sharedSystemMemory[i] = adapterDesc.SharedSystemMemory / 1024 / 1024; //å…±äº«GPUå†…å­˜
     }
     gpu.clear();
 }

@@ -96,6 +96,7 @@ void openFile(const char* fileName, std::string& data)
 	std::fstream file(fileName);
 	if (!file.is_open())
 	{
+		error('m',001);
 		return;
 	}
 	std::string pre, now;
@@ -122,6 +123,7 @@ std::string tcharToString(TCHAR* str)
 	}
 	catch (std::exception e)
 	{
+		error('m',002);
 	}
 	return s;
 }
@@ -143,7 +145,7 @@ void updateNetworkUD(network* n)
 {
 	update::updateCpuDiskNetwork(nullptr, nullptr, n);
 }
-void handleError(char c,int location)
+void error(char c,int location)
 {
 	
 }

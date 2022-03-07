@@ -145,7 +145,7 @@ void updateNetworkUD(network* n)
 {
 	update::updateCpuDiskNetwork(nullptr, nullptr, n);
 }
-void error(char c,int location)
+void error(char c,int location,std::string description="")
 {
 	
 }

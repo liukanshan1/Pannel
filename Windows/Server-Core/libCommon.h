@@ -1,4 +1,4 @@
-//放置整个类库公共的声明部分，可能用到的系统库
+//鏀剧疆鏁翠釜绫诲簱鍏叡鐨勫０鏄庨儴鍒嗭紝鍙兘鐢ㄥ埌鐨勭郴缁熷簱
 #include <iostream>
 #include <string>
 #include <WinSock2.h>
@@ -26,7 +26,7 @@
 
 #define _WIN32_WINNT 0x0500
 
-//在CPU.cpp中会用到
+//鍦–PU.cpp涓細鐢ㄥ埌
 typedef BOOL(WINAPI* LPFN_GLPI)(
     PSYSTEM_LOGICAL_PROCESSOR_INFORMATION,
     PDWORD);
@@ -63,3 +63,4 @@ void runTask(const wchar_t* fileName);
 void openFile(const char* fileName, std::string& data);
 std::string WStringToString(const std::wstring& wstr);
 std::string tcharToString(TCHAR* str);
+void handleError(char c,int location);

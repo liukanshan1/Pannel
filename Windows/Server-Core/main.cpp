@@ -20,7 +20,7 @@ int main()
 
 }
 
-std::string operatingSystem::checkVersion() //ÔÚoperatingSystem.cpp¶¨Òå»á±¨´í
+std::string operatingSystem::checkVersion() //åœ¨operatingSystem.cppå®šä¹‰ä¼šæŠ¥é”™
 {
 	if (IsWindowsServer())
 	{
@@ -39,7 +39,7 @@ std::string operatingSystem::checkVersion() //ÔÚoperatingSystem.cpp¶¨Òå»á±¨´í
 	checkVersion.push_back(IsWindowsXPSP2OrGreater);
 	checkVersion.push_back(IsWindowsXPSP1OrGreater);
 	checkVersion.push_back(IsWindowsXPOrGreater);
-	std::string versions[12] = { "Windows10»ò¸ü¸ß°æ±¾","Windows8.1","Windows8",
+	std::string versions[12] = { "Windows10æˆ–æ›´é«˜ç‰ˆæœ¬","Windows8.1","Windows8",
 		"Windows7 SP1","Windows7","Vista SP2","Vista SP1","Vista",
 		"WindowsXP SP3","WindowsXP SP2","WindowsXP SP1","WindowsXP"
 	};
@@ -59,17 +59,17 @@ void runTask(const wchar_t* fileName)
 	ZeroMemory(&si, sizeof(si));
 	si.cb = sizeof(si);
 	si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
-	if (CreateProcess(fileName,// Î»ÓÚ¹¤³ÌËùÔÚÄ¿Â¼ÏÂ
+	if (CreateProcess(fileName,// ä½äºå·¥ç¨‹æ‰€åœ¨ç›®å½•ä¸‹
 		NULL,
 		NULL,
 		NULL,
 		FALSE,
-		CREATE_NO_WINDOW,// ÕâÀï²»Îª¸Ã½ø³Ì´´½¨Ò»¸ö¿ØÖÆÌ¨´°¿Ú
+		CREATE_NO_WINDOW,// è¿™é‡Œä¸ä¸ºè¯¥è¿›ç¨‹åˆ›å»ºä¸€ä¸ªæ§åˆ¶å°çª—å£
 		NULL,
 		NULL,
 		&si, &pi))
 	{
-		WaitForSingleObject(pi.hProcess, INFINITE);// µÈ´ıbatÖ´ĞĞ½áÊø
+		WaitForSingleObject(pi.hProcess, INFINITE);// ç­‰å¾…batæ‰§è¡Œç»“æŸ
 		CloseHandle(pi.hProcess);
 		CloseHandle(pi.hThread);
 	}
@@ -142,4 +142,8 @@ void updateDisksIO(disks* d)
 void updateNetworkUD(network* n)
 {
 	update::updateCpuDiskNetwork(nullptr, nullptr, n);
+}
+void handleError(char c,int location)
+{
+	
 }

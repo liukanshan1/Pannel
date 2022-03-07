@@ -10,7 +10,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	HCOUNTER diskRead, diskWrite;
 	HCOUNTER download, upload;
 
-	status = PdhAddCounter(query, _TEXT("\\Processor(_Total)\\% Processor Time"), NULL, &cpuUsage); //%∫≈∫ÕP÷Æº‰“™”–ø’∏Ò
+	status = PdhAddCounter(query, _TEXT("\\Processor(_Total)\\% Processor Time"), NULL, &cpuUsage); //%Âè∑ÂíåP‰πãÈó¥Ë¶ÅÊúâÁ©∫Ê†º
 	status = PdhAddCounter(query, _TEXT("\\PhysicalDisk(_Total)\\Disk Read Bytes/sec"), NULL, &diskRead);
 	status = PdhAddCounter(query, _TEXT("\\PhysicalDisk(_Total)\\Disk Write Bytes/sec"), NULL, &diskWrite);
 	if (n != nullptr)
@@ -26,13 +26,15 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	
 	if (ERROR_SUCCESS != status)
 	{
+		error('u',001);
 		return;
 	}
 	PdhCollectQueryData(query);
-	Sleep(500);  //’‚¿Ô“™”–—” ±≤ª»ªΩ·π˚œ‡µ±≤ª◊º»∑  
+	Sleep(500);  //ËøôÈáåË¶ÅÊúâÂª∂Êó∂‰∏çÁÑ∂ÁªìÊûúÁõ∏ÂΩì‰∏çÂáÜÁ°Æ  
 	PdhCollectQueryData(query);
 	if (ERROR_SUCCESS != status)
 	{
+error('u',002);
 		return;
 	}
 	PDH_FMT_COUNTERVALUE pdhValue;
@@ -42,6 +44,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(cpuUsage, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
+			error('u',003);
 			return;
 		}
 		else
@@ -57,6 +60,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(diskRead, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
+			error('u',004);
 			return;
 		}
 		else
@@ -85,6 +89,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(diskWrite, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
+			error('u',005);
 			return;
 		}
 		else
@@ -135,6 +140,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(download, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
+			error('u',006);
 			return;
 		}
 		else
@@ -162,6 +168,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(upload, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
+			error('u',007);
 			return;
 		}
 		else
@@ -192,6 +199,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	PdhCloseQuery(query);
 	if (status != ERROR_SUCCESS)
 	{
+		error('u',008);
 		return;
 	}
 }

@@ -8,23 +8,24 @@ operatingSystem::operatingSystem()
 }
 void operatingSystem::updateBasicInfo()
 {
-	//»ñÈ¡¼ÆËã»úÃû³Æ
+	//èŽ·å–è®¡ç®—æœºåç§°
     TCHAR buffer[256] = TEXT("");
     DWORD dwSize = _countof(buffer);
 	if (!GetComputerNameEx(ComputerNamePhysicalDnsHostname, buffer, &dwSize))
 	{
-		//_tprintf(TEXT("GetComputerNameEx failed (%d)\n"), GetLastError());
+		error('o',001);
+		//GetComputerNameEx failed
 		return;
 	}
 	else name = tcharToString(buffer);
     dwSize = _countof(buffer);
     ZeroMemory(buffer, dwSize);
-	//»ñÈ¡Windows°æ±¾
+	//èŽ·å–Windowsç‰ˆæœ¬
 	version = checkVersion();
 }
 void operatingSystem::update()
 {
-	//»ñÈ¡ÏµÍ³ÔËÐÐÊ±¼ä
+	//èŽ·å–ç³»ç»Ÿè¿è¡Œæ—¶é—´
 	t.sec = GetTickCount64() / 1000;
 	if (t.sec >= 60)
 	{

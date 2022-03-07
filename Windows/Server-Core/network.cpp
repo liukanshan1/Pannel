@@ -14,7 +14,7 @@ network::network()
     speedIndex = 0;
     downloadPath = nullptr;
     uploadPath = nullptr;
-    //»ñÈ¡Íø¿¨ÊıÁ¿
+    //è·å–ç½‘å¡æ•°é‡
     PIP_ADAPTER_ADDRESSES pAdapter = nullptr;
     PIP_ADAPTER_ADDRESSES currentAdapter = nullptr;
     ULONG bufferSize = 0;
@@ -31,9 +31,10 @@ network::network()
     }
     else
     {
+	    error('n',001);
         return;
     }
-    //·ÖÅäÄÚ´æ
+    //åˆ†é…å†…å­˜
     index = new int[quantity];
     description = new std::string[quantity];
     hardwareAddress = new std::string[quantity];
@@ -41,32 +42,33 @@ network::network()
     IPv6 = new std::string[quantity];
     status = new bool[quantity];
     name = new std::string[quantity];
-    //Ñ°ÕÒ×î¼ÑÍø¿¨
+    //å¯»æ‰¾æœ€ä½³ç½‘å¡
     IPAddr ipAddress = { 0 };
     if (NO_ERROR != GetBestInterface(ipAddress, &bestIndex))
     {
+	    error('n',002);
         return;
     }
-    //±éÀú»ñµÃ¾²Ì¬ĞÅÏ¢
+    //éå†è·å¾—é™æ€ä¿¡æ¯
     currentAdapter = pAdapter;
     for (int i = 0; i < quantity; i++)
     {
-        //»ñÈ¡macµØÖ·
+        //è·å–macåœ°å€
         char temp[100];
         sprintf_s(temp, "%.2x-%.2x-%.2x-%.2x-%.2x-%.2x",
             currentAdapter->PhysicalAddress[0], currentAdapter->PhysicalAddress[1],
             currentAdapter->PhysicalAddress[2], currentAdapter->PhysicalAddress[3],
             currentAdapter->PhysicalAddress[4], currentAdapter->PhysicalAddress[5]);
         hardwareAddress[i] += temp;
-        //»ñÈ¡name
+        //è·å–name
         name[i] = tcharToString(currentAdapter->FriendlyName);
-        //»ñÈ¡status
+        //è·å–status
         status[i] = (currentAdapter->OperStatus == IfOperStatusUp ? true : false);
-        //»ñÈ¡index
+        //è·å–index
         index[i] = currentAdapter->IfIndex;
-        //»ñÈ¡description
+        //è·å–description
         description[i] = WStringToString(currentAdapter->Description);
-        //»ñÈ¡IPv4¡¢IPv6µØÖ·
+        //è·å–IPv4ã€IPv6åœ°å€
         PIP_ADAPTER_UNICAST_ADDRESS pAddress = currentAdapter->FirstUnicastAddress;
         while(pAddress != NULL)
         {
@@ -87,7 +89,7 @@ network::network()
         currentAdapter = currentAdapter->Next;
     }
     free(pAdapter);
-    //»ñÈ¡×î¼ÑÍø¿¨±àºÅ
+    //è·å–æœ€ä½³ç½‘å¡ç¼–å·
     for (int i = 0; i < quantity; i++)
     {
         if (index[i] == bestIndex)
@@ -96,7 +98,7 @@ network::network()
             break;
         }
     }
-    //Ã¶¾Ù²âËÙÍøÂçÊÊÅäÆ÷
+    //æšä¸¾æµ‹é€Ÿç½‘ç»œé€‚é…å™¨
     speedQuantity = 0;
     std::string counters;
     std::string adapters;
@@ -108,15 +110,16 @@ network::network()
     if (ERROR_SUCCESS != PdhEnumObjectItemsA(0, 0, "Network Interface", &counters[0], &countersLength,
         &adapters[0], &adaptersLength, PERF_DETAIL_WIZARD, 0))
     {
+	    error('n',003);
         return;
     }
-    //»ñÈ¡²âËÙÍø¿¨ÊıÁ¿
+    //è·å–æµ‹é€Ÿç½‘å¡æ•°é‡
     char* p = &adapters[0];
     for (; *p != 0; p += (strlen(p) + 1))
     {
         speedQuantity++;
     }
-    //·ÖÅäÄÚ´æ²¢Éú³ÉÂ·¾¶
+    //åˆ†é…å†…å­˜å¹¶ç”Ÿæˆè·¯å¾„
     downloadPath = new std::string[speedQuantity];
     uploadPath = new std::string[speedQuantity];
     p = &adapters[0];
@@ -130,7 +133,7 @@ network::network()
         uploadPath[i] += ")\\Bytes Sent/sec";
         p += (strlen(p) + 1);
     }
-    //»ñÈ¡ÉÏ´«ÏÂÔØËÙ¶È
+    //è·å–ä¸Šä¼ ä¸‹è½½é€Ÿåº¦
     updateNetworkUD(this);
 }
 void network::setBestIndex(int n) 
@@ -143,7 +146,7 @@ void network::setSpeedIndex(int n)
 }
 network::~network()
 {
-	//ÊÍ·ÅÄÚ´æ
+	//é‡Šæ”¾å†…å­˜
     if (description != nullptr)
     {
         delete[] description;

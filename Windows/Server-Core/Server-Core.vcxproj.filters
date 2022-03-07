@@ -30,9 +30,6 @@
     <ClCompile Include="memory.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="task.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="network.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="operatingSystem.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="task.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="libCommon.h">

@@ -30,7 +30,11 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		return;
 	}
 	PdhCollectQueryData(query);
+<<<<<<< Updated upstream
 	Sleep(500);  //è¿™é‡Œè¦æœ‰å»¶æ—¶ä¸ç„¶ç»“æžœç›¸å½“ä¸å‡†ç¡®  
+=======
+	Sleep(1000);  //ÕâÀïÒªÓÐÑÓÊ±²»È»½á¹ûÏàµ±²»×¼È·  
+>>>>>>> Stashed changes
 	PdhCollectQueryData(query);
 	if (ERROR_SUCCESS != status)
 	{

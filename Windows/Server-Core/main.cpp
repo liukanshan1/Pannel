@@ -3,17 +3,14 @@
 
 int main()
 {
-	network n;
-	disks d;
-	CPU c;
-	while (true)
-	{
-		update::updateCpuDiskNetwork(&c, &d, &n);
-		std::cout << c.getUsage() << "\n"
-			<< d.getDiskIO().speed << " " << d.getDiskIO().unit << "\n"
-			<< n.getUpload().speed << " " << n.getUpload().unit << "\n"
-			<< n.getDownload().speed << " " << n.getDownload().unit << "\n\n";
-	}
+	//³õÊ¼»¯
+	CPU myCPU;
+	disks myDisks;
+	GPU myGPU;
+	memory myMemory;
+	network myNetwork;
+	operatingSystem mySystem;
+	Time myTime;
 	
 	
 

@@ -16,16 +16,16 @@ CPU::CPU()
 
 void CPU::updateBasicInfo()
 {
-    ////ªÒ»°¬ﬂº≠¥¶¿Ì∆˜ ˝¡ø
+    ////Ëé∑ÂèñÈÄªËæëÂ§ÑÁêÜÂô®Êï∞Èáè
     //SYSTEM_INFO coreInfo;
     //GetSystemInfo(&coreInfo);
     //cpuInfo.logicalProcessorQuantity = coreInfo.dwNumberOfProcessors;
 
-    //ªÒ»°CPU–≈œ¢
+    //Ëé∑ÂèñCPU‰ø°ÊÅØ
     updateLogicalProcessorInfo();
-    //ªÒ»°CPU√Ë ˆ
+    //Ëé∑ÂèñCPUÊèèËø∞
     updateCpuDiscription();
-    //ªÒ»°CPUº‹ππ
+    //Ëé∑ÂèñCPUÊû∂ÊûÑ
     SYSTEM_INFO architectureInfo;
     GetSystemInfo(&architectureInfo);
     switch (architectureInfo.wProcessorArchitecture)
@@ -107,7 +107,9 @@ void CPU::updateLogicalProcessorInfo()
         "GetLogicalProcessorInformation");
     if (NULL == glpi)
     {
-        /*_tprintf(TEXT("\nGetLogicalProcessorInformation is not supported.\n"));*/
+        
+        //GetLogicalProcessorInformation is not supported.
+        error('c',001);
         return /*(1)*/;
     }
 
@@ -127,14 +129,16 @@ void CPU::updateLogicalProcessorInfo()
 
                 if (NULL == buffer)
                 {
-                   /* _tprintf(TEXT("\nError: Allocation failure\n"));*/
-                    return /*(2)*/;
+                   //Error: Allocation failure
+                    error('c',002);
+                    return;
                 }
             }
             else
             {
-                /*_tprintf(TEXT("\nError %d\n"), GetLastError());*/
-                return /*(3)*/;
+                //unkown Getlasterror
+                error('c',003)
+                return;
             }
         }
         else
@@ -184,7 +188,8 @@ void CPU::updateLogicalProcessorInfo()
             break;
 
         default:
-            _tprintf(TEXT("\nError: Unsupported LOGICAL_PROCESSOR_RELATIONSHIP value.\n"));
+            error('c',004)
+            // Unsupported LOGICAL_PROCESSOR_RELATIONSHIP value.
             break;
         }
         byteOffset += sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION);
@@ -200,7 +205,7 @@ void CPU::updateLogicalProcessorInfo()
     info.processorL3CacheQuantity = processorL3CacheCount;
 
     free(buffer);
-    return /*0*/;
+    return;
 }
 //https://docs.microsoft.com/zh-cn/windows/win32/api/sysinfoapi/nf-sysinfoapi-getlogicalprocessorinformation?redirectedfrom=MSDN
 

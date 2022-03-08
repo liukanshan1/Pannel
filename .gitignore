@@ -40,3 +40,7 @@
 *.sln
 CpuDiscription
 CpuUsage
+Windows/Server-Core/.vs/Server-Core/v17/ipch/AutoPCH/1cd6c9af62e571e1/MAIN.ipch
+Windows/Server-Core/.vs/Server-Core/v17/Browse.VC.db
+Windows/Server-Core/.vs/Server-Core/v17/.suo
+Windows/Server-Core/.vs/Server-Core/project-colors.json

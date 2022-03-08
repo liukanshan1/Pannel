@@ -155,7 +155,7 @@ void updateNetworkUD(network* n)
 {
 	update::updateCpuDiskNetwork(nullptr, nullptr, n);
 }
-void throwError(char c,int location,std::string description="") //allert函数
+void throwError(char c,int location,std::string description="") //TODO：allert函数
 {
 	int x;
 	std::string temp = c + std::to_string(location) + ":" + description;

@@ -5,6 +5,7 @@ network::network()
     createLogs('i', "初始化网络信息");
     quantity = 0;
     bestIndex = -1;
+    speedQuantity = 0;
     index = nullptr;
     description = nullptr;
     hardwareAddress = nullptr;

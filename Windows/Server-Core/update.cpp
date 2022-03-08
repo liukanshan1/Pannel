@@ -204,3 +204,44 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		return;
 	}
 }
+void update::createDataLog(CPU* c, disks* d, memory* m, network* n) 
+{
+	time_t t;
+	time(&t); //获取从1970至今过了多少秒
+	tm currentTime;
+	localtime_s(&currentTime, &t);
+	std::string filename = std::to_string(currentTime.tm_year + 1900) + "." + std::to_string(currentTime.tm_mon + 1) + "." + std::to_string(currentTime.tm_mday);
+	std::fstream file;
+	_mkdir("data");
+	file.open("data\\" + filename + ".csv", std::ios::app);
+	if (!file.is_open())
+	{
+		int x;
+		x = MessageBox(GetForegroundWindow(), L"写入数据文件失败！", L"错误", 1);
+		return;
+	}
+	file << std::to_string(currentTime.tm_year + 1900) << "," //TODO:补0。
+		<< std::to_string(currentTime.tm_mon + 1) << ","
+		<< std::to_string(currentTime.tm_mday) << ","
+		<< std::to_string(currentTime.tm_hour) << ","
+		<< std::to_string(currentTime.tm_min) << ","
+		<< std::to_string(currentTime.tm_sec) << ",";
+	file << c->usage << ","
+		<<d->diskIO.speed<<","
+		<<d->diskIO.unit<<","
+		<<d->read.speed<<","
+		<<d->read.unit<<","
+		<<d->write.speed<<","
+		<<d->write.unit<<","
+		<<m->usage<<","
+		<<n->upload.speed<<","
+		<<n->upload.unit<<","
+		<<n->download.speed<<","
+		<<n->download.unit<<std::endl;
+	file.close();
+}
+//年，月，日，时，分，秒，
+//CPU使用率，
+//磁盘IO，磁盘IO单位（2的多少次方），磁盘读取，磁盘读取单位，磁盘写入，磁盘写入单位，
+//内存使用率，
+//网络上传速率，网络上传单位，网络下载速率，网络下载单位

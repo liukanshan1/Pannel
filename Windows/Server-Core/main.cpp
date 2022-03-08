@@ -1,6 +1,9 @@
 ﻿#include "libCommon.h"
 #include "classLib.h"
 
+//待设置
+bool enableLog = true;
+
 int main()
 {
 	//初始化
@@ -11,8 +14,7 @@ int main()
 	memory myMemory;
 	network myNetwork;
 	operatingSystem mySystem;
-
-	
+	update::createDataLog(&myCPU, &myDisks, &myMemory, &myNetwork);
 
 
 	
@@ -153,7 +155,7 @@ void updateNetworkUD(network* n)
 {
 	update::updateCpuDiskNetwork(nullptr, nullptr, n);
 }
-void throwError(char c,int location,std::string description="")
+void throwError(char c,int location,std::string description="") //allert函数
 {
 	int x;
 	std::string temp = c + std::to_string(location) + ":" + description;
@@ -168,33 +170,37 @@ void throwError(char c,int location,std::string description="")
 }
 void createLogs(char type, std::string description)
 {
-	time_t t;
-	time(&t); //获取从1970至今过了多少秒
-	tm currentTime;
-	localtime_s(&currentTime, &t);
-	std::string filename = std::to_string(currentTime.tm_year+1900)+"."+std::to_string(currentTime.tm_mon+1)+"."+ std::to_string(currentTime.tm_mday);
-	std::fstream file;
-	file.open(filename+".log", std::ios::app);
-	if (!file.is_open())
+	if (enableLog)
 	{
-		int x;
-		x = MessageBox(GetForegroundWindow(), L"错误", L"写入日志文件失败！", 1);
-		return;
+		time_t t;
+		time(&t); //获取从1970至今过了多少秒
+		tm currentTime;
+		localtime_s(&currentTime, &t);
+		std::string filename = std::to_string(currentTime.tm_year + 1900) + "." + std::to_string(currentTime.tm_mon + 1) + "." + std::to_string(currentTime.tm_mday);
+		std::fstream file;
+		_mkdir("log");
+		file.open("log\\" + filename + ".log", std::ios::app);
+		if (!file.is_open())
+		{
+			int x;
+			x = MessageBox(GetForegroundWindow(), L"写入日志文件失败！", L"错误", 1);
+			return;
+		}
+		filename += " " + std::to_string(currentTime.tm_hour) + ":" + std::to_string(currentTime.tm_min) + ":" + std::to_string(currentTime.tm_sec) + " "; //TODO:补0。
+		file << filename;
+		if (type == 'i')
+		{
+			file << "[info] ";
+		}
+		else if (type == 'a')
+		{
+			file << "[warning] ";
+		}
+		else if (type == 'e')
+		{
+			file << "[error] ";
+		}
+		file << description << std::endl;
+		file.close();
 	}
-	filename += " " + std::to_string(currentTime.tm_hour) + ":" + std::to_string(currentTime.tm_min) + ":" + std::to_string(currentTime.tm_sec)+" "; //TODO:补0。
-	file << filename;
-	if (type=='i')
-	{
-		file << "[info] ";
-	}
-	else if(type=='a')
-	{
-		file << "[warning] ";
-	}
-	else if (type=='e')
-	{
-		file << "[error] ";
-	}
-	file << description << std::endl;
-	file.close();
 }

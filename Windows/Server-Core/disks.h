@@ -20,13 +20,13 @@ public:
 	io getWrite();
 private:
 	friend class update;
-	//半静态信息
+	//半动态信息
 	int quantity;
 	std::string name;
-	//动态信息
 	int* usage;
 	double* totalSpace;
 	double* freeSpace;
+	//动态信息
 	io diskIO;
 	io read;
 	io write;

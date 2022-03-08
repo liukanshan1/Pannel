@@ -14,6 +14,7 @@ public:
 	//int getDedicatedSystemMemory(int n);
 	int getSharedSystemMemory(int n);
 private:
+	//静态信息
 	int quantity;
 	int* dedicatedVideoMemory; //The number of bytes of dedicated video memory that are not shared with the CPU.
 	//int* dedicatedSystemMemory; //The number of bytes of dedicated system memory that are not shared with the CPU. This memory is allocated from available system memory at boot time.

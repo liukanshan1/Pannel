@@ -18,6 +18,7 @@
 #include <pdh.h>
 #include <pdhmsg.h>
 #include <IPHlpApi.h>
+#include <direct.h>
 
 #pragma comment(lib,"pdh")
 #pragma comment(lib, "IPHlpApi.lib")
@@ -31,7 +32,7 @@ typedef BOOL(WINAPI* LPFN_GLPI)(
     PSYSTEM_LOGICAL_PROCESSOR_INFORMATION,
     PDWORD);
 
-enum dataUnit { b = -1, kb = 0, mb = 1, gb = 2, tb = 3 };
+enum dataUnit { b = 0, kb = 10, mb = 100, gb = 1000, tb = 10000 };
 
 struct cpuInfo
 {

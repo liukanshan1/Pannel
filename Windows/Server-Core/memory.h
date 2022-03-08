@@ -10,6 +10,7 @@ public:
 	double getTotalSpace();
 	double getFreeSpace();
 private:
+	friend class update;
 	//静态信息
 	double totalSpace;
 	//动态信息

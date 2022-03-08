@@ -1,4 +1,4 @@
-#include "libCommon.h"
+ï»¿#include "libCommon.h"
 #include"memory.h"
 memory::memory()
 {
@@ -10,7 +10,7 @@ memory::memory()
 }
 void memory::updateBasicInfo()
 {
-    //»ñÈ¡ÄÚ´æ×ÜÈİÁ¿
+    //è·å–å†…å­˜æ€»å®¹é‡
     MEMORYSTATUS ms;
     ::GlobalMemoryStatus(&ms);
     totalSpace = ms.dwTotalPhys / 1024.0 / 1024.0 / 1024.0;

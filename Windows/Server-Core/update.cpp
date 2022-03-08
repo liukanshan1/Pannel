@@ -1,4 +1,4 @@
-#include "libCommon.h"
+ï»¿#include "libCommon.h"
 #include "update.h"
 void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 {
@@ -10,7 +10,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	HCOUNTER diskRead, diskWrite;
 	HCOUNTER download, upload;
 
-	status = PdhAddCounter(query, _TEXT("\\Processor(_Total)\\% Processor Time"), NULL, &cpuUsage); //%ºÅºÍPÖ®¼äÒªÓĞ¿Õ¸ñ
+	status = PdhAddCounter(query, _TEXT("\\Processor(_Total)\\% Processor Time"), NULL, &cpuUsage); //%å·å’ŒPä¹‹é—´è¦æœ‰ç©ºæ ¼
 	status = PdhAddCounter(query, _TEXT("\\PhysicalDisk(_Total)\\Disk Read Bytes/sec"), NULL, &diskRead);
 	status = PdhAddCounter(query, _TEXT("\\PhysicalDisk(_Total)\\Disk Write Bytes/sec"), NULL, &diskWrite);
 	if (n != nullptr)
@@ -26,15 +26,15 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	
 	if (ERROR_SUCCESS != status)
 	{
-		throwError('u', 1, "³õÊ¼»¯¸üĞÂÊı¾İÊ§°Ü.");
+		throwError('u', 1, "åˆå§‹åŒ–æ›´æ–°æ•°æ®å¤±è´¥.");
 		return;
 	}
 	PdhCollectQueryData(query);
-	Sleep(1000);  //ÕâÀïÒªÓĞÑÓÊ±²»È»½á¹ûÏàµ±²»×¼È·  
+	Sleep(1000);  //è¿™é‡Œè¦æœ‰å»¶æ—¶ä¸ç„¶ç»“æœç›¸å½“ä¸å‡†ç¡®  
 	PdhCollectQueryData(query);
 	if (ERROR_SUCCESS != status)
 	{
-		throwError('u',2,"¸üĞÂÊı¾İÊ§°Ü.");
+		throwError('u',2,"æ›´æ–°æ•°æ®å¤±è´¥.");
 		return;
 	}
 	PDH_FMT_COUNTERVALUE pdhValue;
@@ -44,7 +44,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(cpuUsage, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			throwError('u',3,"¸üĞÂCPUÊ¹ÓÃÂÊÊ§°Ü.");
+			throwError('u',3,"æ›´æ–°CPUä½¿ç”¨ç‡å¤±è´¥.");
 			return;
 		}
 		else
@@ -60,7 +60,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(diskRead, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			throwError('u',4,"¸üĞÂ´ÅÅÌ¶ÁÈ¡ËÙ¶ÈÊ§°Ü.");
+			throwError('u',4,"æ›´æ–°ç£ç›˜è¯»å–é€Ÿåº¦å¤±è´¥.");
 			return;
 		}
 		else
@@ -89,7 +89,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(diskWrite, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			throwError('u',5,"¸üĞÂ´ÅÅÌ¶ÁÈ¡ËÙ¶ÈÊ§°Ü.");
+			throwError('u',5,"æ›´æ–°ç£ç›˜è¯»å–é€Ÿåº¦å¤±è´¥.");
 			return;
 		}
 		else
@@ -140,7 +140,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(download, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			throwError('u',6,"¸üĞÂÏÂÔØËÙ¶ÈÊ§°Ü.");
+			throwError('u',6,"æ›´æ–°ä¸‹è½½é€Ÿåº¦å¤±è´¥.");
 			return;
 		}
 		else
@@ -168,7 +168,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(upload, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			throwError('u',7, "¸üĞÂÉÏ´«ËÙ¶ÈÊ§°Ü.");
+			throwError('u',7, "æ›´æ–°ä¸Šä¼ é€Ÿåº¦å¤±è´¥.");
 			return;
 		}
 		else
@@ -199,7 +199,7 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 	PdhCloseQuery(query);
 	if (status != ERROR_SUCCESS)
 	{
-		throwError('u', 8,"¹Ø±Õ²éÑ¯¾ä±úÊ§°Ü.");
+		throwError('u', 8,"å…³é—­æŸ¥è¯¢å¥æŸ„å¤±è´¥.");
 		return;
 	}
 }

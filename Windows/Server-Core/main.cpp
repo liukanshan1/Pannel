@@ -1,9 +1,9 @@
-#include "libCommon.h"
+ï»¿#include "libCommon.h"
 #include "classLib.h"
 
 int main()
 {
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 	CPU myCPU;
 	disks myDisks;
 	GPU myGPU;
@@ -17,7 +17,7 @@ int main()
 
 }
 
-std::string operatingSystem::checkVersion() //ÔÚoperatingSystem.cpp¶¨Òå»á±¨´í
+std::string operatingSystem::checkVersion() //åœ¨operatingSystem.cppå®šä¹‰ä¼šæŠ¥é”™
 {
 	if (IsWindowsServer())
 	{
@@ -36,7 +36,7 @@ std::string operatingSystem::checkVersion() //ÔÚoperatingSystem.cpp¶¨Òå»á±¨´í
 	checkVersion.push_back(IsWindowsXPSP2OrGreater);
 	checkVersion.push_back(IsWindowsXPSP1OrGreater);
 	checkVersion.push_back(IsWindowsXPOrGreater);
-	std::string versions[12] = { "Windows10»ò¸ü¸ß°æ±¾","Windows8.1","Windows8",
+	std::string versions[12] = { "Windows10æˆ–æ›´é«˜ç‰ˆæœ¬","Windows8.1","Windows8",
 		"Windows7 SP1","Windows7","Vista SP2","Vista SP1","Vista",
 		"WindowsXP SP3","WindowsXP SP2","WindowsXP SP1","WindowsXP"
 	};
@@ -56,17 +56,17 @@ void runTask(const wchar_t* fileName)
 	ZeroMemory(&si, sizeof(si));
 	si.cb = sizeof(si);
 	si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
-	if (CreateProcess(fileName, //Î»ÓÚ¹¤³ÌËùÔÚÄ¿Â¼ÏÂ
+	if (CreateProcess(fileName, //ä½äºå·¥ç¨‹æ‰€åœ¨ç›®å½•ä¸‹
 		NULL,
 		NULL,
 		NULL,
 		FALSE,
-		CREATE_NO_WINDOW, //ÕâÀï²»Îª¸Ã½ø³Ì´´½¨Ò»¸ö¿ØÖÆÌ¨´°¿Ú
+		CREATE_NO_WINDOW, //è¿™é‡Œä¸ä¸ºè¯¥è¿›ç¨‹åˆ›å»ºä¸€ä¸ªæ§åˆ¶å°çª—å£
 		NULL,
 		NULL,
 		&si, &pi))
 	{
-		WaitForSingleObject(pi.hProcess, INFINITE); //µÈ´ıbatÖ´ĞĞ½áÊø
+		WaitForSingleObject(pi.hProcess, INFINITE); //ç­‰å¾…batæ‰§è¡Œç»“æŸ
 		CloseHandle(pi.hProcess);
 		CloseHandle(pi.hThread);
 	}
@@ -93,7 +93,7 @@ void openFile(const char* fileName, std::string& data)
 	std::fstream file(fileName);
 	if (!file.is_open())
 	{
-		throwError('m',1,"´ò¿ªÎÄ¼şÊ§°Ü.");
+		throwError('m',1,"æ‰“å¼€æ–‡ä»¶å¤±è´¥.");
 		return;
 	}
 	std::string pre, now;
@@ -120,7 +120,7 @@ std::string tcharToString(TCHAR* str)
 	}
 	catch (std::exception e)
 	{
-		throwError('m',2,"×Ö·û´®×ª»»Ê§°Ü.");
+		throwError('m',2,"å­—ç¬¦ä¸²è½¬æ¢å¤±è´¥.");
 	}
 	return s;
 }

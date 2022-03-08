@@ -1,4 +1,4 @@
-#ifndef CPU_H
+О╩©#ifndef CPU_H
 #define CPU_H
 class CPU
 {
@@ -17,9 +17,9 @@ private:
 	void updateLogicalProcessorInfo();
 	void updateCpuDiscription();
 	DWORD CountSetBits(ULONG_PTR bitMask);
-	//╤╞л╛пео╒
+	//Е┼╗Ф─│Д©║Ф│╞
 	int usage;
-	//╬╡л╛пео╒
+	//И²≥Ф─│Д©║Ф│╞
 	cpuInfo info;
 };
 #endif

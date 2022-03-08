@@ -1,4 +1,4 @@
-#ifndef GPU_HSharedSystemMemory
+﻿#ifndef GPU_HSharedSystemMemory
 #define GPU_H
 class GPU
 {

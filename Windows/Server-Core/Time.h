@@ -1,13 +1,13 @@
-#ifndef TIME_H
+ï»¿#ifndef TIME_H
 #define TIME_H
 class Time
 {
 public:
     Time();
     Time(bool local);
-    //¸üĞÂ¶¯Ì¬ĞÅÏ¢
+    //æ›´æ–°åŠ¨æ€ä¿¡æ¯
     void updateTime();
-    //·µ»ØĞÅÏ¢
+    //è¿”å›ä¿¡æ¯
     int getDate();
     int getMon();
     int getYear();
@@ -17,14 +17,14 @@ public:
     int getHour();
     int getTimeZone();
 private:
-    //¶¯Ì¬ĞÅÏ¢
-    int date;  // Ò»ÔÂÖĞµÄµÚ¼¸Ìì£¬·¶Î§´Ó 1 µ½ 31
-    int mon;   // ÔÂ£¬·¶Î§´Ó 0 µ½ 11
-    int year;  // Äê
-    int day;  // Ò»ÖÜÖĞµÄµÚ¼¸Ìì£¬·¶Î§´Ó 0 µ½ 6£¬´ÓĞÇÆÚÈÕËãÆğ
-    int sec;   // Ãë£¬Õı³£·¶Î§´Ó 0 µ½ 59£¬µ«ÔÊĞíÖÁ 61
-    int min;   // ·Ö£¬·¶Î§´Ó 0 µ½ 59
-    int hour;  // Ğ¡Ê±£¬·¶Î§´Ó 0 µ½ 23
-    int timeZone; //Ê±Çø
+    //åŠ¨æ€ä¿¡æ¯
+    int date;  // ä¸€æœˆä¸­çš„ç¬¬å‡ å¤©ï¼ŒèŒƒå›´ä» 1 åˆ° 31
+    int mon;   // æœˆï¼ŒèŒƒå›´ä» 0 åˆ° 11
+    int year;  // å¹´
+    int day;  // ä¸€å‘¨ä¸­çš„ç¬¬å‡ å¤©ï¼ŒèŒƒå›´ä» 0 åˆ° 6ï¼Œä»æ˜ŸæœŸæ—¥ç®—èµ·
+    int sec;   // ç§’ï¼Œæ­£å¸¸èŒƒå›´ä» 0 åˆ° 59ï¼Œä½†å…è®¸è‡³ 61
+    int min;   // åˆ†ï¼ŒèŒƒå›´ä» 0 åˆ° 59
+    int hour;  // å°æ—¶ï¼ŒèŒƒå›´ä» 0 åˆ° 23
+    int timeZone; //æ—¶åŒº
 };
 #endif

@@ -1,4 +1,4 @@
-#include "libCommon.h"
+﻿#include "libCommon.h"
 #include "GPU.h"
 GPU::GPU()
 {

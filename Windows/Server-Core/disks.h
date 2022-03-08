@@ -1,4 +1,4 @@
-#ifndef DISKS_H
+﻿#ifndef DISKS_H
 #define DISKS_H
 class disks
 {
@@ -20,10 +20,10 @@ public:
 	io getWrite();
 private:
 	friend class update;
-	//�뾲̬��Ϣ
+	//半静态信息
 	int quantity;
 	std::string name;
-	//��̬��Ϣ
+	//动态信息
 	int* usage;
 	double* totalSpace;
 	double* freeSpace;

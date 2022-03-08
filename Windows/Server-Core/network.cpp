@@ -1,4 +1,4 @@
-#include "libCommon.h"
+﻿#include "libCommon.h"
 #include "network.h"
 network::network()
 {

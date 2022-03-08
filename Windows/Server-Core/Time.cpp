@@ -1,4 +1,4 @@
-#include "libCommon.h"
+﻿#include "libCommon.h"
 #include "Time.h"
 Time::Time()
 {

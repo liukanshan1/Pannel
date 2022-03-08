@@ -1,4 +1,4 @@
-//ÒıÓÃÁË¿âÄÚËùÓĞµÄÀà
+ï»¿//å¼•ç”¨äº†åº“å†…æ‰€æœ‰çš„ç±»
 #include "GPU.h"
 #include "Time.h"
 #include "memory.h"

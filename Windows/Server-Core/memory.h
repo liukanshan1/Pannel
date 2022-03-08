@@ -1,4 +1,4 @@
-#ifndef MEMORY_H
+О╩©#ifndef MEMORY_H
 #define MEMONY_H
 class memory
 {
@@ -10,9 +10,9 @@ public:
 	double getTotalSpace();
 	double getFreeSpace();
 private:
-	//╬╡л╛пео╒
+	//И²≥Ф─│Д©║Ф│╞
 	double totalSpace;
-	//╤╞л╛пео╒
+	//Е┼╗Ф─│Д©║Ф│╞
 	double freeSpace;
 	int usage;
 };

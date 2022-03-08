@@ -1,4 +1,4 @@
-#ifndef NETWORK_H
+ï»¿#ifndef NETWORK_H
 #define NETWORK_H
 class network
 {
@@ -23,7 +23,7 @@ public:
 
 private:
 	friend class update;
-	//¾²Ì¬Êı¾İ
+	//é™æ€æ•°æ®
 	int quantity;
 	DWORD bestIndex;
 	int* index;
@@ -37,7 +37,7 @@ private:
 	int speedIndex;
 	std::string* downloadPath;
 	std::string* uploadPath;
-	//¶¯Ì¬Êı¾İ
+	//åŠ¨æ€æ•°æ®
 	io upload;
 	io download;
 };

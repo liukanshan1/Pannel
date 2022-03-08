@@ -1,4 +1,4 @@
-#ifndef OPERATINGSYSTEM_H
+ï»¿#ifndef OPERATINGSYSTEM_H
 #define OPERATINGSYSTEM_H
 class operatingSystem
 {
@@ -10,11 +10,11 @@ public:
 	std::string getVersion();
 	runningTime getRuningTime();
 private:
-	//¾²Ì¬Êı¾İ
+	//é™æ€æ•°æ®
 	std::string name;
 	std::string version;
 	std::string checkVersion();
-	//¶¯Ì¬Êı¾İ
+	//åŠ¨æ€æ•°æ®
 	runningTime t;
 };
 #endif

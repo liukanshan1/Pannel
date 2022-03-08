@@ -1,4 +1,4 @@
-#include "libCommon.h"
+ï»¿#include "libCommon.h"
 #include "disks.h"
 disks::disks()
 {
@@ -30,7 +30,7 @@ void disks::updateBasicInfo()
 {
 	int count = 0;
 	quantity = 0;
-	// »ñÈ¡´ÅÅÌÊıÁ¿
+	// è·å–ç£ç›˜æ•°é‡
 	DWORD diskQuantity = GetLogicalDrives();
 	while (diskQuantity != 0)
 	{
@@ -42,17 +42,17 @@ void disks::updateBasicInfo()
 		diskQuantity >>= 1;
 		count++;
 	}
-	//³õÊ¼»¯±äÁ¿
+	//åˆå§‹åŒ–å˜é‡
 	usage = new int[quantity];
 	totalSpace = new double[quantity];
 	freeSpace = new double[quantity];
 }
 void disks::update(int quantity)
 {
-	//ÒÀ´Î»ñÈ¡´ÅÅÌ×ÜÈİÁ¿¡¢Ê£ÓàÈİÁ¿¡¢¼ÆËãÊ¹ÓÃÂÊ
+	//ä¾æ¬¡è·å–ç£ç›˜æ€»å®¹é‡ã€å‰©ä½™å®¹é‡ã€è®¡ç®—ä½¿ç”¨ç‡
 	for (int i = 0; i < quantity; i++)
 	{
-		wchar_t temp[4] = {name[i], ':','\\','\0'}; //'\\'Êµ¼ÊÉÏÊÇÒ»¸ö\£¬µÚÒ»¸ö\ÊÇ×ªÒå×Ö·û
+		wchar_t temp[4] = {name[i], ':','\\','\0'}; //'\\'å®é™…ä¸Šæ˜¯ä¸€ä¸ª\ï¼Œç¬¬ä¸€ä¸ª\æ˜¯è½¬ä¹‰å­—ç¬¦
 		const wchar_t* dir = temp;
 		unsigned _int64 total, free;
 		if (GetDiskFreeSpaceEx(dir, (PULARGE_INTEGER)&free, (PULARGE_INTEGER)&total,NULL))

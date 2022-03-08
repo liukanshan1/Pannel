@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="disks.cpp" />
-    <ClCompile Include="Time.cpp" />
     <ClCompile Include="GPU.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CPU.cpp" />
@@ -154,7 +153,6 @@
     <ClInclude Include="CPU.h" />
     <ClInclude Include="disks.h" />
     <ClInclude Include="libCommon.h" />
-    <ClInclude Include="Time.h" />
     <ClInclude Include="GPU.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="network.h" />

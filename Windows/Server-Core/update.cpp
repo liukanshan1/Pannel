@@ -2,6 +2,7 @@
 #include "update.h"
 void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 {
+	createLogs('i', "更新CPU使用率、磁盘I/O、网络速度");
 	HQUERY query;
 	HCOUNTER pCounterHandle = nullptr;
 	PDH_STATUS status = PdhOpenQuery(NULL, NULL, &query);

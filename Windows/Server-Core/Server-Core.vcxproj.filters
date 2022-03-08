@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="CPU.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -44,9 +41,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Time.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CPU.h">
       <Filter>头文件</Filter>
     </ClInclude>

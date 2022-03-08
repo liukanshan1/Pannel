@@ -2,6 +2,7 @@
 #include "GPU.h"
 GPU::GPU()
 {
+    createLogs('i', "初始化GPU基本信息");
 	quantity = -1;
     dedicatedVideoMemory = nullptr;
     //dedicatedSystemMemory = nullptr;
@@ -35,7 +36,7 @@ void GPU::updateBasicInfo()
     IDXGIFactory* pFactory;
     IDXGIAdapter* pAdapter;
     std::vector <IDXGIAdapter*> gpu; //显卡
-    //创建一个DXGI工厂  
+    //创建一个DXGI工厂
     HRESULT hr = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pFactory));
     if (FAILED(hr))
     {
@@ -43,6 +44,7 @@ void GPU::updateBasicInfo()
         return;
     }
     //获取GPU数量并开辟内存
+    createLogs('i', "获取GPU数量");
     while (pFactory->EnumAdapters(quantity, &pAdapter) != DXGI_ERROR_NOT_FOUND)
     {
         gpu.push_back(pAdapter);
@@ -52,9 +54,10 @@ void GPU::updateBasicInfo()
     //dedicatedSystemMemory = new int[quantity];
     sharedSystemMemory = new int[quantity];
     info = new std::string[quantity];
+    //分别获取详细信息
+    createLogs('i', "获取GPU信息、GPU内存");
     for (size_t i = 0; i < gpu.size(); i++)
     {
-        //分别获取详细信息  
         DXGI_ADAPTER_DESC adapterDesc;
         gpu[i]->GetDesc(&adapterDesc);
         std::wstring temp(adapterDesc.Description);

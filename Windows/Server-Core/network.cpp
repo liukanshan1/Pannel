@@ -2,6 +2,7 @@
 #include "network.h"
 network::network()
 {
+    createLogs('i', "初始化网络信息");
     quantity = 0;
     bestIndex = -1;
     index = nullptr;
@@ -15,6 +16,7 @@ network::network()
     downloadPath = nullptr;
     uploadPath = nullptr;
     //获取网卡数量
+    createLogs('i', "获取网卡数量");
     PIP_ADAPTER_ADDRESSES pAdapter = nullptr;
     PIP_ADAPTER_ADDRESSES currentAdapter = nullptr;
     ULONG bufferSize = 0;
@@ -50,6 +52,7 @@ network::network()
         return;
     }
     //遍历获得静态信息
+    createLogs('i', "获取网卡详细信息");
     currentAdapter = pAdapter;
     for (int i = 0; i < quantity; i++)
     {
@@ -134,6 +137,7 @@ network::network()
         p += (strlen(p) + 1);
     }
     //获取上传下载速度
+    createLogs('i', "获取网络速度");
     updateNetworkUD(this);
 }
 void network::setBestIndex(int n) 

@@ -9,6 +9,7 @@ operatingSystem::operatingSystem()
 void operatingSystem::updateBasicInfo()
 {
 	//获取计算机名称
+	createLogs('i', "获取计算机名称");
     TCHAR buffer[256] = TEXT("");
     DWORD dwSize = _countof(buffer);
 	if (!GetComputerNameEx(ComputerNamePhysicalDnsHostname, buffer, &dwSize))
@@ -20,11 +21,13 @@ void operatingSystem::updateBasicInfo()
     dwSize = _countof(buffer);
     ZeroMemory(buffer, dwSize);
 	//获取Windows版本
+	createLogs('i', "获取Windows版本");
 	version = checkVersion();
 }
 void operatingSystem::update()
 {
 	//获取系统运行时间
+	createLogs('i', "获取系统运行时间");
 	t.sec = GetTickCount64() / 1000;
 	if (t.sec >= 60)
 	{

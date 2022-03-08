@@ -2,6 +2,7 @@
 #include "CPU.h"
 CPU::CPU()
 {
+    createLogs('i', "初始化CPU基本信息");
     usage = -1;
     info.numaNodeQuantity = -1;
     info.processorPackageQuantity = -1;
@@ -11,6 +12,7 @@ CPU::CPU()
     info.processorL2CacheQuantity = -1;
     info.processorL3CacheQuantity = -1;
     updateBasicInfo();
+    createLogs('i', "获取CPU使用率");
     updateCpuUsage(this);
 }
 
@@ -22,10 +24,13 @@ void CPU::updateBasicInfo()
     //cpuInfo.logicalProcessorQuantity = coreInfo.dwNumberOfProcessors;
 
     //获取CPU信息
+    createLogs('i', "获取CPU详细信息");
     updateLogicalProcessorInfo();
     //获取CPU描述
+    createLogs('i', "获取CPU描述");
     updateCpuDiscription();
     //获取CPU架构
+    createLogs('i', "获取CPU架构");
     SYSTEM_INFO architectureInfo;
     GetSystemInfo(&architectureInfo);
     switch (architectureInfo.wProcessorArchitecture)

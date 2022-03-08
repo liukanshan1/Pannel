@@ -4,17 +4,18 @@
 int main()
 {
 	//初始化
+	createLogs('i', "初始化设备");
 	CPU myCPU;
 	disks myDisks;
 	GPU myGPU;
 	memory myMemory;
 	network myNetwork;
 	operatingSystem mySystem;
-	Time myTime;
-	
+
 	
 
 
+	
 }
 
 std::string operatingSystem::checkVersion() //在operatingSystem.cpp定义会报错
@@ -130,6 +131,16 @@ std::string WStringToString(const std::wstring& wstr)
 	std::copy(wstr.begin(), wstr.end(), str.begin());
 	return str;
 }
+wchar_t* stringToWCHAR(const std::string& str) //记得释放内存
+{
+	const char* pChar = str.c_str();
+	//第一次调用返回转换后的字符串长度，用于确认为wchar_t*开辟多大的内存空间
+	int len = MultiByteToWideChar(CP_OEMCP, 0, pChar, strlen(pChar) + 1, NULL, 0);
+	wchar_t* pWCHAR = new wchar_t[len];
+	//第二次调用将单字节字符串转换成双字节字符串
+	MultiByteToWideChar(CP_OEMCP, 0, pChar, strlen(pChar) + 1, pWCHAR, len);
+	return pWCHAR;
+}
 void updateCpuUsage(CPU* c)
 {
 	update::updateCpuDiskNetwork(c, nullptr, nullptr);
@@ -144,5 +155,46 @@ void updateNetworkUD(network* n)
 }
 void throwError(char c,int location,std::string description="")
 {
-	
+	int x;
+	std::string temp = c + std::to_string(location) + ":" + description;
+	temp[0] = toupper(temp[0]);
+	WCHAR* p = stringToWCHAR(temp);
+	x = MessageBox(GetForegroundWindow(), p, L"错误", 1);
+	if (p != nullptr)
+	{
+		delete p;
+	}
+	createLogs('e', temp);
+}
+void createLogs(char type, std::string description)
+{
+	time_t t;
+	time(&t); //获取从1970至今过了多少秒
+	tm currentTime;
+	localtime_s(&currentTime, &t);
+	std::string filename = std::to_string(currentTime.tm_year+1900)+"."+std::to_string(currentTime.tm_mon+1)+"."+ std::to_string(currentTime.tm_mday);
+	std::fstream file;
+	file.open(filename+".log", std::ios::app);
+	if (!file.is_open())
+	{
+		int x;
+		x = MessageBox(GetForegroundWindow(), L"错误", L"写入日志文件失败！", 1);
+		return;
+	}
+	filename += " " + std::to_string(currentTime.tm_hour) + ":" + std::to_string(currentTime.tm_min) + ":" + std::to_string(currentTime.tm_sec)+" "; //TODO:补0。
+	file << filename;
+	if (type=='i')
+	{
+		file << "[info] ";
+	}
+	else if(type=='a')
+	{
+		file << "[warning] ";
+	}
+	else if (type=='e')
+	{
+		file << "[error] ";
+	}
+	file << description << std::endl;
+	file.close();
 }

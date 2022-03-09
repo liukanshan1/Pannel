@@ -58,11 +58,15 @@ void CPU::updateBasicInfo()
 void CPU::updateCpuDiscription()
 {
     runTask(L"CpuDiscription.bat");
-    openFile("CpuDiscription", info.discription);
+    openCpuDiscription("CpuDiscription", info.discription);
 }
 
 std::string CPU::getDescription()
 {
+    if (int(info.discription[0])==0)
+    {
+        info.discription.erase(0, 1);
+    }
     return info.discription;
 }
 cpuInfo CPU::getInfo()

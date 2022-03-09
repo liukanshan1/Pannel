@@ -13,7 +13,6 @@ int main()
 	operatingSystem mySystem;
 	myUpdate.createDataLog(&myCPU, &myDisks, &myMemory, &myNetwork);
 
-
 	
 }
 
@@ -51,6 +50,18 @@ std::string operatingSystem::checkVersion() //在operatingSystem.cpp定义会报
 }
 void runTask(const wchar_t* fileName)
 {
+	std::ifstream file(fileName);
+	if (!file.is_open())
+	{
+		std::fstream file;
+		file.open(fileName, std::ios::app);
+		file << "@echo off" << std::endl << "wmic cpu get name>>CpuDiscription";
+		file.close();
+	}
+	else
+	{
+		file.close();
+	}
 	PROCESS_INFORMATION pi;
 	STARTUPINFO si;
 	ZeroMemory(&si, sizeof(si));
@@ -88,11 +99,12 @@ void runTask(const wchar_t* fileName)
 //	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
 //	cleanFile.close();
 //}
-void openFile(const char* fileName, std::string& data)
+void openCpuDiscription(const char* fileName, std::string& data)
 {
 	std::fstream file(fileName);
 	if (!file.is_open())
 	{
+
 		throwError('m',1,"打开文件失败.");
 		return;
 	}
@@ -104,6 +116,11 @@ void openFile(const char* fileName, std::string& data)
 	}
 	//std::cout << pre << std::endl;
 	data = pre;
+	//for (int i = 0; i < data.length(); i++)
+	//{
+	//	std::cout << int(data[i]) << " " << data[i] << "\n";
+	//}
+	//std::cout << data << std::endl;
 	file.close();
 	std::fstream cleanFile(fileName, std::ios::out | std::ios::trunc);
 	cleanFile.close();
@@ -208,5 +225,27 @@ void createLogs(char type, std::string description)
 		}
 		file << description << std::endl;
 		file.close();
+	}
+}
+void deleteLog()
+{
+	if (_rmdir("log") == -1)
+	{
+		throwError('m', 3, "删除日志失败.");
+	}
+	else
+	{
+		createLogs('i', "删除日志成功");
+	}
+}
+void deleteData()
+{
+	if (_rmdir("data") == -1)
+	{
+		throwError('m', 4, "删除数据记录失败.");
+	}
+	else
+	{
+		createLogs('i', "删除数据记录成功");
 	}
 }

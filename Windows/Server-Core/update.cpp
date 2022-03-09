@@ -213,7 +213,14 @@ void update::createDataLog(CPU* c, disks* d, memory* m, network* n)
 	localtime_s(&currentTime, &t);
 	std::string filename = std::to_string(currentTime.tm_year + 1900) + "." + std::to_string(currentTime.tm_mon + 1) + "." + std::to_string(currentTime.tm_mday);
 	std::fstream file;
-	_mkdir("data");
+	if (_mkdir("data")==-1)
+	{
+		throwError('u', 21, "创建数据记录文件夹失败.");
+	}
+	else
+	{
+		createLogs('i', "创建数据记录文件夹.");
+	}
 	file.open("data\\" + filename + ".csv", std::ios::app);
 	if (!file.is_open())
 	{
@@ -380,6 +387,7 @@ void update::setNetDownloadWarning(io i)
 		throwError('u', 20, "请输入正确的值.");
 	}
 }
+//错误编码22（包含22）开始
 
 //设置阈值报警开关
 void update::setDiskUsageWarning(bool i)

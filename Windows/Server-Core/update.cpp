@@ -1,5 +1,6 @@
 ﻿#include "libCommon.h"
 #include "update.h"
+
 void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 {
 	createLogs('i', "更新CPU使用率、磁盘I/O、网络速度");
@@ -217,15 +218,20 @@ void update::createDataLog(CPU* c, disks* d, memory* m, network* n)
 	if (!file.is_open())
 	{
 		int x;
-		x = MessageBox(GetForegroundWindow(), L"写入数据文件失败！", L"错误", 1);
+		throwError('u', 9, "写入数据文件失败.");
 		return;
 	}
-	file << std::to_string(currentTime.tm_year + 1900) << "," //TODO:补0。
-		<< std::to_string(currentTime.tm_mon + 1) << ","
-		<< std::to_string(currentTime.tm_mday) << ","
-		<< std::to_string(currentTime.tm_hour) << ","
-		<< std::to_string(currentTime.tm_min) << ","
-		<< std::to_string(currentTime.tm_sec) << ",";
+	file << std::to_string(currentTime.tm_year + 1900);
+	file << (std::to_string(currentTime.tm_mon + 1).length() == 1) ? ",0" : ",";
+	file << std::to_string(currentTime.tm_mon + 1);
+	file << (std::to_string(currentTime.tm_mday).length() == 1) ? ",0" : ",";
+	file << std::to_string(currentTime.tm_mday);
+	file << (std::to_string(currentTime.tm_hour).length() == 1) ? ",0" : ",";
+	file << std::to_string(currentTime.tm_hour);
+	file << (std::to_string(currentTime.tm_min).length() == 1) ? ",0" : ",";
+	file << std::to_string(currentTime.tm_min);
+	file << (std::to_string(currentTime.tm_sec).length() == 1) ? ",0" : ",";
+	file << std::to_string(currentTime.tm_sec) << ",";;
 	file << c->usage << ","
 		<<d->diskIO.speed<<","
 		<<d->diskIO.unit<<","
@@ -245,3 +251,209 @@ void update::createDataLog(CPU* c, disks* d, memory* m, network* n)
 //磁盘IO，磁盘IO单位（2的多少次方），磁盘读取，磁盘读取单位，磁盘写入，磁盘写入单位，
 //内存使用率，
 //网络上传速率，网络上传单位，网络下载速率，网络下载单位
+
+//其他设置
+void update::setNetBestIndex(network* n, int i)
+{
+	if (i >= 0 && i < n->quantity)
+	{
+		n->bestIndex = i;
+	}
+	else
+	{
+		throwError('u', 10, "请输入正确的值.");
+	}
+}
+void update::setNetSpeedIndex(network* n, int i)
+{
+	if (i >= 0 && i < n->speedQuantity)
+	{
+		n->speedIndex = i;
+	}
+	else
+	{
+		throwError('u', 11, "请输入正确的值.");
+	}
+}
+void update::setEnableLog(bool i)
+{
+	enableLog = i;
+}
+
+//设置报警阈值
+void update::setDiskUsageWarning(int i)
+{
+	if (i > 0 && i <= 100)
+	{
+		diskUsage = i;
+	}
+	else
+	{
+		throwError('u', 12, "请输入正确的值.");
+	}
+}
+void update::setMemoryUsageWarning(int i)
+{
+	if (i > 0 && i <= 100)
+	{
+		memoryUsage = i;
+	}
+	else
+	{
+		throwError('u', 13, "请输入正确的值.");
+	}
+}
+void update::setCpuUsageWarning(int i)
+{
+	if (i > 0 && i <= 100)
+	{
+		cpuUsage = i;
+	}
+	else
+	{
+		throwError('u', 14, "请输入正确的值.");
+	}
+}
+void update::setDiskIOWarning(io i)
+{
+	if (i.speed>0)
+	{
+		diskIO = i;
+	}
+	else
+	{
+		throwError('u', 15, "请输入正确的值.");
+	}
+}
+void update::setDiskReadWarning(io i)
+{
+	if (i.speed > 0)
+	{
+		diskRead = i;
+	}
+	else
+	{
+		throwError('u', 16, "请输入正确的值.");
+	}
+}
+void update::setDiskWriteWarning(io i)
+{
+	if (i.speed > 0)
+	{
+		diskWrite = i;
+	}
+	else
+	{
+		throwError('u', 17, "请输入正确的值.");
+	}
+}
+void update::setNetIOWarning(io i)
+{
+	if (i.speed > 0)
+	{
+		netIO = i;
+	}
+	else
+	{
+		throwError('u', 18, "请输入正确的值.");
+	}
+}
+void update::setNetUploadWarning(io i)
+{
+	if (i.speed > 0)
+	{
+		netUpload = i;
+	}
+	else
+	{
+		throwError('u', 19, "请输入正确的值.");
+	}
+}
+void update::setNetDownloadWarning(io i)
+{
+	if (i.speed > 0)
+	{
+		netDownload = i;
+	}
+	else
+	{
+		throwError('u', 20, "请输入正确的值.");
+	}
+}
+
+//设置阈值报警开关
+void update::setDiskUsageWarning(bool i)
+{
+	enableDiskUsageWarning = i;
+}
+void update::setMemoryUsageWarning(bool i)
+{
+	enableMemoryUsageWarning = i;
+}
+void update::setCpuUsageWarning(bool i)
+{
+	enableCpuUsageWarning = i;
+}
+void update::setDiskIOWarning(bool i)
+{
+	enableDiskIOWarning = i;
+}
+void update::setDiskReadWarning(bool i)
+{
+	enableDiskReadWarning = i;
+}
+void update::setDiskWriteWarning(bool i)
+{
+	enableDiskWriteWarning = i;
+}
+void update::setNetIOWarning(bool i)
+{
+	enableNetIOWarning = i;
+}
+void update::setNetUploadWarning(bool i)
+{
+	enableNetUploadWarning = i;
+}
+void update::setNetDownloadWarning(bool i)
+{
+	enableNetDownloadWarning = i;
+}
+
+//阈值报警 TODO 一定时间 解除提醒
+void update::diskUsageWarning(disks* d)
+{
+
+}
+void update::memoryUsageWarning(memory* m)
+{
+
+}
+
+void update::cpuUsageWarning(CPU* c)
+{
+
+}
+void update::diskIOWarning(disks* d)
+{
+
+}
+void update::diskReadWarning(disks* d)
+{
+
+}
+void update::diskWriteWarning(disks* d)
+{
+
+}
+void update::netIOWarning(network* n)
+{
+
+}
+void update::netUploadWarning(network* n)
+{
+
+}
+void update::netDownloadWarning(network* n)
+{
+
+}

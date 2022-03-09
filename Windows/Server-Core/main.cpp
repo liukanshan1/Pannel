@@ -1,9 +1,6 @@
 ﻿#include "libCommon.h"
 #include "classLib.h"
 
-//待设置
-bool enableLog = true;
-
 int main()
 {
 	//初始化
@@ -14,7 +11,7 @@ int main()
 	memory myMemory;
 	network myNetwork;
 	operatingSystem mySystem;
-	update::createDataLog(&myCPU, &myDisks, &myMemory, &myNetwork);
+	myUpdate.createDataLog(&myCPU, &myDisks, &myMemory, &myNetwork);
 
 
 	
@@ -145,15 +142,15 @@ wchar_t* stringToWCHAR(const std::string& str) //记得释放内存
 }
 void updateCpuUsage(CPU* c)
 {
-	update::updateCpuDiskNetwork(c, nullptr, nullptr);
+	myUpdate.updateCpuDiskNetwork(c, nullptr, nullptr);
 }
 void updateDisksIO(disks* d)
 {
-	update::updateCpuDiskNetwork(nullptr, d, nullptr);
+	myUpdate.updateCpuDiskNetwork(nullptr, d, nullptr);
 }
 void updateNetworkUD(network* n)
 {
-	update::updateCpuDiskNetwork(nullptr, nullptr, n);
+	myUpdate.updateCpuDiskNetwork(nullptr, nullptr, n);
 }
 void throwError(char c,int location,std::string description="") //TODO：allert函数
 {
@@ -170,7 +167,7 @@ void throwError(char c,int location,std::string description="") //TODO：allert�
 }
 void createLogs(char type, std::string description)
 {
-	if (enableLog)
+	if (myUpdate.enableLog)
 	{
 		time_t t;
 		time(&t); //获取从1970至今过了多少秒
@@ -186,8 +183,17 @@ void createLogs(char type, std::string description)
 			x = MessageBox(GetForegroundWindow(), L"写入日志文件失败！", L"错误", 1);
 			return;
 		}
-		filename += " " + std::to_string(currentTime.tm_hour) + ":" + std::to_string(currentTime.tm_min) + ":" + std::to_string(currentTime.tm_sec) + " "; //TODO:补0。
-		file << filename;
+		file << std::to_string(currentTime.tm_year + 1900);
+		file << (std::to_string(currentTime.tm_mon + 1).length() == 1)? ".0" : ".";
+		file << std::to_string(currentTime.tm_mon + 1);
+		file << (std::to_string(currentTime.tm_mday).length() == 1) ? ".0" : ".";
+		file << std::to_string(currentTime.tm_mday);
+		file << (std::to_string(currentTime.tm_hour).length() == 1) ? " 0" : " ";
+		file << std::to_string(currentTime.tm_hour);
+		file << (std::to_string(currentTime.tm_min).length() == 1) ? ":0" : ":";
+		file << std::to_string(currentTime.tm_min) ;
+		file << (std::to_string(currentTime.tm_sec).length() == 1) ? ":0" : ":";
+		file << std::to_string(currentTime.tm_sec) << " ";;
 		if (type == 'i')
 		{
 			file << "[info] ";

@@ -141,14 +141,6 @@ network::network()
     createLogs('i', "获取网络速度");
     updateNetworkUD(this);
 }
-void network::setBestIndex(int n) 
-{
-    bestIndex = n;
-}
-void network::setSpeedIndex(int n)
-{
-    speedIndex = n;
-}
 network::~network()
 {
 	//释放内存

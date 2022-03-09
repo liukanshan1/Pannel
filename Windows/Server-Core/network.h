@@ -8,8 +8,6 @@ public:
 	~network();
 
 	friend void updateNetworkUD(network* n);
-	void setBestIndex(int n);
-	void setSpeedIndex(int n);
 
 	int getQuantity();
 	std::string getDescription(int n);

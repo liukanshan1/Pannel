@@ -207,51 +207,54 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 }
 void update::createDataLog(CPU* c, disks* d, memory* m, network* n) 
 {
-	time_t t;
-	time(&t); //获取从1970至今过了多少秒
-	tm currentTime;
-	localtime_s(&currentTime, &t);
-	std::string filename = std::to_string(currentTime.tm_year + 1900) + "." + std::to_string(currentTime.tm_mon + 1) + "." + std::to_string(currentTime.tm_mday);
-	std::fstream file;
-	if (_mkdir("data")==-1)
+	if (myUpdate.enableDataLog)
 	{
-		throwError('u', 21, "创建数据记录文件夹失败.");
+		time_t t;
+		time(&t); //获取从1970至今过了多少秒
+		tm currentTime;
+		localtime_s(&currentTime, &t);
+		std::string filename = std::to_string(currentTime.tm_year + 1900) + "." + std::to_string(currentTime.tm_mon + 1) + "." + std::to_string(currentTime.tm_mday);
+		std::fstream file;
+		if (_mkdir("data") == -1)
+		{
+			throwError('u', 21, "创建数据记录文件夹失败.");
+		}
+		else
+		{
+			createLogs('i', "创建数据记录文件夹.");
+		}
+		file.open("data\\" + filename + ".csv", std::ios::app);
+		if (!file.is_open())
+		{
+			int x;
+			throwError('u', 9, "写入数据文件失败.");
+			return;
+		}
+		file << std::to_string(currentTime.tm_year + 1900);
+		file << (std::to_string(currentTime.tm_mon + 1).length() == 1) ? ",0" : ",";
+		file << std::to_string(currentTime.tm_mon + 1);
+		file << (std::to_string(currentTime.tm_mday).length() == 1) ? ",0" : ",";
+		file << std::to_string(currentTime.tm_mday);
+		file << (std::to_string(currentTime.tm_hour).length() == 1) ? ",0" : ",";
+		file << std::to_string(currentTime.tm_hour);
+		file << (std::to_string(currentTime.tm_min).length() == 1) ? ",0" : ",";
+		file << std::to_string(currentTime.tm_min);
+		file << (std::to_string(currentTime.tm_sec).length() == 1) ? ",0" : ",";
+		file << std::to_string(currentTime.tm_sec) << ",";;
+		file << c->usage << ","
+			<< d->diskIO.speed << ","
+			<< d->diskIO.unit << ","
+			<< d->read.speed << ","
+			<< d->read.unit << ","
+			<< d->write.speed << ","
+			<< d->write.unit << ","
+			<< m->usage << ","
+			<< n->upload.speed << ","
+			<< n->upload.unit << ","
+			<< n->download.speed << ","
+			<< n->download.unit << std::endl;
+		file.close();
 	}
-	else
-	{
-		createLogs('i', "创建数据记录文件夹.");
-	}
-	file.open("data\\" + filename + ".csv", std::ios::app);
-	if (!file.is_open())
-	{
-		int x;
-		throwError('u', 9, "写入数据文件失败.");
-		return;
-	}
-	file << std::to_string(currentTime.tm_year + 1900);
-	file << (std::to_string(currentTime.tm_mon + 1).length() == 1) ? ",0" : ",";
-	file << std::to_string(currentTime.tm_mon + 1);
-	file << (std::to_string(currentTime.tm_mday).length() == 1) ? ",0" : ",";
-	file << std::to_string(currentTime.tm_mday);
-	file << (std::to_string(currentTime.tm_hour).length() == 1) ? ",0" : ",";
-	file << std::to_string(currentTime.tm_hour);
-	file << (std::to_string(currentTime.tm_min).length() == 1) ? ",0" : ",";
-	file << std::to_string(currentTime.tm_min);
-	file << (std::to_string(currentTime.tm_sec).length() == 1) ? ",0" : ",";
-	file << std::to_string(currentTime.tm_sec) << ",";;
-	file << c->usage << ","
-		<<d->diskIO.speed<<","
-		<<d->diskIO.unit<<","
-		<<d->read.speed<<","
-		<<d->read.unit<<","
-		<<d->write.speed<<","
-		<<d->write.unit<<","
-		<<m->usage<<","
-		<<n->upload.speed<<","
-		<<n->upload.unit<<","
-		<<n->download.speed<<","
-		<<n->download.unit<<std::endl;
-	file.close();
 }
 //年，月，日，时，分，秒，
 //CPU使用率，
@@ -286,7 +289,10 @@ void update::setEnableLog(bool i)
 {
 	enableLog = i;
 }
-
+void update::setDataLog(bool i)
+{
+	enableDataLog = i;
+}
 //设置报警阈值
 void update::setDiskUsageWarning(int i)
 {

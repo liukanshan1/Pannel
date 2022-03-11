@@ -11,6 +11,7 @@ public:
 	void createDataLog(CPU* c, disks* d, memory* usage, network* n);
 	//其他设置
 	void setEnableLog(bool i);
+	void setDataLog(bool i);
 	void setNetBestIndex(network* n, int i);
 	void setNetSpeedIndex(network* n, int i);
 	//设置阈值报警数值
@@ -46,7 +47,8 @@ public:
 private:
 	friend void createLogs(char type, std::string description);
 	//日志开关
-	bool enableLog = true;;
+	bool enableLog = true;
+	bool enableDataLog = true;
 	//阈值报警开关
 	bool enableDiskUsageWarning = false;
 	bool enableMemoryUsageWarning = false;

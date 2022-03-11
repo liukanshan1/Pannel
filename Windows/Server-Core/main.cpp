@@ -11,6 +11,37 @@ int main()
 	memory myMemory;
 	network myNetwork;
 	operatingSystem mySystem;
+
+
+	//CPU info
+	//int quantity;int* dedicatedVideoMemory;int* sharedSystemMemory; /std::string * info;
+	//double totalSpace;
+	//int quantity;bool* status;std::string* name;std::string* description;std::string* hardwareAddress;std::string* IPv4;std::string* IPv6;
+	//std::string name;std::string version;	std::string checkVersion();
+	while (true)
+	{
+		myUpdate.updateCpuDiskNetwork(&myCPU, &myDisks, &myNetwork); 
+		/*cpu usage、
+		diskIO;read;write;
+		io getUpload();io getDownload();
+		*/
+		mySystem.update();
+		//runningTime t;
+		myMemory.update();
+		//double freeSpace;int usage;
+
+
+		//半动态信息
+		//int quantity;std::string name;* usage;double* totalSpace;double* freeSpace;
+
+
+	}
+
+
+
+
+
+
 	myUpdate.createDataLog(&myCPU, &myDisks, &myMemory, &myNetwork);
 
 	
@@ -169,13 +200,13 @@ void updateNetworkUD(network* n)
 {
 	myUpdate.updateCpuDiskNetwork(nullptr, nullptr, n);
 }
-void throwError(char c,int location,std::string description="") //TODO：allert函数
+void throwError(char c, int location, std::string description) //TODO：allert函数
 {
 	int x;
 	std::string temp = c + std::to_string(location) + ":" + description;
 	temp[0] = toupper(temp[0]);
 	WCHAR* p = stringToWCHAR(temp);
-	x = MessageBox(GetForegroundWindow(), p, L"错误", 1);
+	//x = MessageBox(GetForegroundWindow(), p, L"错误", 1);
 	if (p != nullptr)
 	{
 		delete p;

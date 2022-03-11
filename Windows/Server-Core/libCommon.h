@@ -64,7 +64,7 @@ void runTask(const wchar_t* fileName);
 void openCpuDiscription(const char* fileName, std::string& data);
 std::string WStringToString(const std::wstring& wstr);
 std::string tcharToString(TCHAR* str);
-void throwError(char c,int location,std::string description);
+void throwError(char c, int location, std::string description);
 void createLogs(char type, std::string description);
 wchar_t* stringToWCHAR(const std::string& str);
 void deleteLog();

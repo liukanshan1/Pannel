@@ -1,0 +1,61 @@
+﻿  disks.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\disks.cpp(59,28): warning C4838: 从“char”转换到“wchar_t”需要收缩转换
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\disks.cpp(67,19): warning C4244: “=”: 从“unsigned __int64”转换到“int”，可能丢失数据
+  GPU.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\GPU.cpp(66,75): warning C4244: “=”: 从“SIZE_T”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\GPU.cpp(67,71): warning C4244: “=”: 从“SIZE_T”转换到“int”，可能丢失数据
+  main.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(185,78): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(188,72): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(205,6): warning C4101: “x”: 未引用的局部变量
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\xutility(4022,18): warning C4244: “=”: 从“const wchar_t”转换到“char”，可能丢失数据
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\xutility(4034): message : 查看对正在编译的函数 模板 实例化“_OutIt *std::_Copy_unchecked<const wchar_t*,char*>(_InIt,_InIt,_OutIt)”的引用
+          with
+          [
+              _OutIt=char *,
+              _InIt=const wchar_t *
+          ]
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(178): message : 查看对正在编译的函数 模板 实例化“_OutIt std::copy<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<char>>>>(_InIt,_InIt,_OutIt)”的引用
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=wchar_t,
+              _InIt=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>
+          ]
+  CPU.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  memory.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  network.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+  operatingSystem.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\operatingSystem.cpp(31,27): warning C4244: “=”: 从“ULONGLONG”转换到“int”，可能丢失数据
+  update.cpp
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\libCommon.h(28,1): warning C4005: “_WIN32_WINNT”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\sdkddkver.h(218): message : 参见“_WIN32_WINNT”的前一个定义
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(71,13): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(100,14): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(123,22): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(129,22): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(134,22): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(151,16): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(179,13): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\update.cpp(229,8): warning C4101: “x”: 未引用的局部变量
+  正在生成代码
+C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\main.cpp(81): warning C4715: “operatingSystem::checkVersion”: 不是所有的控件路径都返回值
+  403 of 488 functions (82.6%) were compiled, the rest were copied from previous compilation.
+    280 functions were new in current compilation
+    13 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  Server-Core.vcxproj -> C:\Users\L-kanshan\OneDrive - arocyx\文档\GitHub\Pannel\Windows\Server-Core\x64\Release\Server-Core.exe

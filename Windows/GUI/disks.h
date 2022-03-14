@@ -1,3 +1,4 @@
+#include "libCommon.h"
 #ifndef DISKS_H
 #define DISKS_H
 class disks

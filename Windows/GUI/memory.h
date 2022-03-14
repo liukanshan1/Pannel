@@ -1,3 +1,4 @@
+#include "libCommon.h"
 #ifndef MEMORY_H
 #define MEMONY_H
 class memory

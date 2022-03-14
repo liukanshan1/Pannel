@@ -2,6 +2,7 @@
 #include "disks.h"
 #include "network.h"
 #include "memory.h"
+#include "libCommon.h"
 #ifndef UPDATE_H
 #define UPDATE_H
 static class update

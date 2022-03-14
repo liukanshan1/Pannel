@@ -1,5 +1,4 @@
 #include "mainWindow.h"
-#include "libCommon.h"
 #include "classLib.h"
 #include <QtWidgets/QApplication>
 

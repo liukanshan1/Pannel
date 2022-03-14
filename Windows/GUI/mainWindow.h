@@ -1,4 +1,6 @@
-#pragma once
+#include "libCommon.h"
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QtWidgets/QMainWindow>
 #include "ui_mainWindow.h"
@@ -13,3 +15,7 @@ public:
 private:
     Ui::mainWindowClass ui;
 };
+
+#endif 
+
+

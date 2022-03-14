@@ -1,3 +1,4 @@
+#include "libCommon.h"
 #ifndef NETWORK_H
 #define NETWORK_H
 class network

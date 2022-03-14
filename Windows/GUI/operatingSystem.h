@@ -1,3 +1,4 @@
+#include "libCommon.h"
 #ifndef OPERATINGSYSTEM_H
 #define OPERATINGSYSTEM_H
 class operatingSystem

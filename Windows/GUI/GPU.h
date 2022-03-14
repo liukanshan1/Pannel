@@ -1,3 +1,4 @@
+#include "libCommon.h"
 #ifndef GPU_HSharedSystemMemory
 #define GPU_H
 class GPU

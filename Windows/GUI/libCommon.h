@@ -1,3 +1,5 @@
+#ifndef LIBCOMMON_H
+#define LIBCOMMON_H
 //放置整个类库公共的声明部分，可能用到的系统库
 #include <iostream>
 #include <string>
@@ -19,6 +21,10 @@
 #include <pdhmsg.h>
 #include <IPHlpApi.h>
 #include <direct.h>
+#include <QApplication>
+#include <QThread>
+#include <QObject>
+#include <QPushButton>
 
 #pragma comment(lib,"pdh")
 #pragma comment(lib, "IPHlpApi.lib")
@@ -69,3 +75,5 @@ void createLogs(char type, std::string description);
 wchar_t* stringToWCHAR(const std::string& str);
 void deleteLog();
 void deleteData();
+
+#endif

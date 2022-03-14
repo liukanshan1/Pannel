@@ -1,4 +1,3 @@
-#include "libCommon.h"
 #include "network.h"
 network::network()
 {

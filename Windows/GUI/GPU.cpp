@@ -1,4 +1,3 @@
-#include "libCommon.h"
 #include "GPU.h"
 GPU::GPU()
 {

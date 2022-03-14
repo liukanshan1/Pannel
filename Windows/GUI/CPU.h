@@ -1,3 +1,4 @@
+#include "libCommon.h"
 #ifndef CPU_H
 #define CPU_H
 class CPU

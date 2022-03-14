@@ -226,7 +226,6 @@ void update::createDataLog(CPU* c, disks* d, memory* m, network* n)
 		file.open("data\\" + filename + ".csv", std::ios::app);
 		if (!file.is_open())
 		{
-			int x;
 			throwError('u', 9, "写入数据文件失败.");
 			return;
 		}

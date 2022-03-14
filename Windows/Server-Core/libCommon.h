@@ -25,7 +25,7 @@
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "ws2_32.lib")
 
-#define _WIN32_WINNT 0x0500
+//#define _WIN32_WINNT 0x0500
 
 //在CPU.cpp中会用到
 typedef BOOL(WINAPI* LPFN_GLPI)(

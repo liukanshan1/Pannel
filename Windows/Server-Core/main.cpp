@@ -78,6 +78,7 @@ std::string operatingSystem::checkVersion() //在operatingSystem.cpp定义会报
 			return versions[i];
 		}
 	}
+	return "";
 }
 void runTask(const wchar_t* fileName)
 {
@@ -202,7 +203,6 @@ void updateNetworkUD(network* n)
 }
 void throwError(char c, int location, std::string description) //TODO：allert函数
 {
-	int x;
 	std::string temp = c + std::to_string(location) + ":" + description;
 	temp[0] = toupper(temp[0]);
 	WCHAR* p = stringToWCHAR(temp);

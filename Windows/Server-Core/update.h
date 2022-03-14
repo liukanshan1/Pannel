@@ -60,9 +60,9 @@ private:
 	bool enableNetUploadWarning = false;
 	bool enableNetDownloadWarning = false;
 	//阈值报警数值
-	int diskUsage;
-	int memoryUsage;
-	int cpuUsage;
+	int diskUsage = -1;
+	int memoryUsage = -1;
+	int cpuUsage = -1;
 	io diskIO;
 	io diskRead;
 	io diskWrite;

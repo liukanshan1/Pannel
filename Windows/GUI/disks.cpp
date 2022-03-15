@@ -60,7 +60,6 @@ void disks::update(int quantity)
 		unsigned _int64 total, free;
 		if (GetDiskFreeSpaceEx(dir, (PULARGE_INTEGER)&free, (PULARGE_INTEGER)&total,NULL))
 		{
-
 			totalSpace[i] = total / 1024.0 / 1024.0 / 1024.0;
 			freeSpace[i] = free / 1024.0 / 1024.0 / 1024.0;
 			usage[i] = 100 - free * 100 / total;

@@ -1,49 +1,11 @@
-#include "mainWindow.h"
+#include "libCommon.h"
 #include "classLib.h"
-#include <QtWidgets/QApplication>
-
+#include "mainWindow.h"
 int main(int argc, char *argv[])
 {
-
-	////初始化
-	//createLogs('i', "初始化设备");
-	//CPU myCPU;
-	//disks myDisks;
-	//GPU myGPU;
-	//memory myMemory;
-	//network myNetwork;
-	//operatingSystem mySystem;
-
-
-	////CPU info
-	////int quantity;int* dedicatedVideoMemory;int* sharedSystemMemory; /std::string * info;
-	////double totalSpace;
-	////int quantity;bool* status;std::string* name;std::string* description;std::string* hardwareAddress;std::string* IPv4;std::string* IPv6;
-	////std::string name;std::string version;	std::string checkVersion();
-	//while (true)
-	//{
-	//	myUpdate.updateCpuDiskNetwork(&myCPU, &myDisks, &myNetwork);
-	//	/*cpu usage、
-	//	diskIO;read;write;
-	//	io getUpload();io getDownload();
-	//	*/
-	//	mySystem.update();
-	//	//runningTime t;
-	//	myMemory.update();
-	//	//double freeSpace;int usage;
-
-
-	//	//半动态信息
-	//	//int quantity;std::string name;* usage;double* totalSpace;double* freeSpace;
-
-
-	//}
-	//myUpdate.createDataLog(&myCPU, &myDisks, &myMemory, &myNetwork);
-
-
     QApplication a(argc, argv);
     mainWindow w;
-    w.show();
+	w.show();
     return a.exec();
 }
 

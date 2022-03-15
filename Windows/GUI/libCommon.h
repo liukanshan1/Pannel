@@ -25,6 +25,11 @@
 #include <QThread>
 #include <QObject>
 #include <QPushButton>
+#include <QDebug>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
+#include "ui_mainWindow.h"
+#include <QMutex>
 
 #pragma comment(lib,"pdh")
 #pragma comment(lib, "IPHlpApi.lib")

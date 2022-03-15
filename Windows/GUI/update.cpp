@@ -230,16 +230,16 @@ void update::createDataLog(CPU* c, disks* d, memory* m, network* n)
 			return;
 		}
 		file << std::to_string(currentTime.tm_year + 1900);
-		file << (std::to_string(currentTime.tm_mon + 1).length() == 1) ? ",0" : ",";
+		file << ((std::to_string(currentTime.tm_mon + 1).length() == 1) ? ",0" : ",");
 		file << std::to_string(currentTime.tm_mon + 1);
-		file << (std::to_string(currentTime.tm_mday).length() == 1) ? ",0" : ",";
+		file << ((std::to_string(currentTime.tm_mday).length() == 1) ? ",0" : ",");
 		file << std::to_string(currentTime.tm_mday);
-		file << (std::to_string(currentTime.tm_hour).length() == 1) ? ",0" : ",";
+		file << ((std::to_string(currentTime.tm_hour).length() == 1) ? ",0" : ",");
 		file << std::to_string(currentTime.tm_hour);
-		file << (std::to_string(currentTime.tm_min).length() == 1) ? ",0" : ",";
+		file << ((std::to_string(currentTime.tm_min).length() == 1) ? ",0" : ",");
 		file << std::to_string(currentTime.tm_min);
-		file << (std::to_string(currentTime.tm_sec).length() == 1) ? ",0" : ",";
-		file << std::to_string(currentTime.tm_sec) << ",";;
+		file << ((std::to_string(currentTime.tm_sec).length() == 1) ? ",0" : ",");
+		file << std::to_string(currentTime.tm_sec) << ",";
 		file << c->usage << ","
 			<< d->diskIO.speed << ","
 			<< d->diskIO.unit << ","

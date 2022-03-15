@@ -194,15 +194,15 @@ void createLogs(char type, std::string description)
 			return;
 		}
 		file << std::to_string(currentTime.tm_year + 1900);
-		file << (std::to_string(currentTime.tm_mon + 1).length() == 1) ? ".0" : ".";
+		file << ((std::to_string(currentTime.tm_mon + 1).length() == 1) ? ".0" : ".");
 		file << std::to_string(currentTime.tm_mon + 1);
-		file << (std::to_string(currentTime.tm_mday).length() == 1) ? ".0" : ".";
+		file << ((std::to_string(currentTime.tm_mday).length() == 1) ? ".0" : ".");
 		file << std::to_string(currentTime.tm_mday);
-		file << (std::to_string(currentTime.tm_hour).length() == 1) ? " 0" : " ";
+		file << ((std::to_string(currentTime.tm_hour).length() == 1) ? " 0" : " ");
 		file << std::to_string(currentTime.tm_hour);
-		file << (std::to_string(currentTime.tm_min).length() == 1) ? ":0" : ":";
+		file << ((std::to_string(currentTime.tm_min).length() == 1) ? ":0" : ":");
 		file << std::to_string(currentTime.tm_min);
-		file << (std::to_string(currentTime.tm_sec).length() == 1) ? ":0" : ":";
+		file << ((std::to_string(currentTime.tm_sec).length() == 1) ? ":0" : ":");
 		file << std::to_string(currentTime.tm_sec) << " ";;
 		if (type == 'i')
 		{

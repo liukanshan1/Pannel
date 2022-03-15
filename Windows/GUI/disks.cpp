@@ -48,10 +48,24 @@ void disks::updateBasicInfo()
 	usage = new int[quantity];
 	totalSpace = new double[quantity];
 	freeSpace = new double[quantity];
+	//获取磁盘总容量
+	createLogs('i', "获取磁盘总容量、剩余容量、使用率");
+	for (int i = 0; i < quantity; i++)
+	{
+		wchar_t temp[4] = { name[i], ':','\\','\0' }; //'\\'实际上是一个\，第一个\是转义字符
+		const wchar_t* dir = temp;
+		unsigned _int64 total, free;
+		if (GetDiskFreeSpaceEx(dir, (PULARGE_INTEGER)&free, (PULARGE_INTEGER)&total, NULL))
+		{
+			totalSpace[i] = total / 1024.0 / 1024.0 / 1024.0;
+			//freeSpace[i] = free / 1024.0 / 1024.0 / 1024.0;
+			//usage[i] = 100 - free * 100 / total;
+		}
+	}
 }
 void disks::update(int quantity)
 {
-	//依次获取磁盘总容量、剩余容量、计算使用率
+	//获取磁盘剩余容量、计算使用率
 	createLogs('i', "获取磁盘总容量、剩余容量、使用率");
 	for (int i = 0; i < quantity; i++)
 	{
@@ -60,7 +74,7 @@ void disks::update(int quantity)
 		unsigned _int64 total, free;
 		if (GetDiskFreeSpaceEx(dir, (PULARGE_INTEGER)&free, (PULARGE_INTEGER)&total,NULL))
 		{
-			totalSpace[i] = total / 1024.0 / 1024.0 / 1024.0;
+			//totalSpace[i] = total / 1024.0 / 1024.0 / 1024.0;
 			freeSpace[i] = free / 1024.0 / 1024.0 / 1024.0;
 			usage[i] = 100 - free * 100 / total;
 		}
@@ -71,21 +85,21 @@ int disks::getQuantity()
 {
 	return quantity;
 }
-char disks::getName(int n)
+std::string disks::getName()
 {
-	return name[n];
+	return name;
 }
-int disks::getUsage(int n)
+int* disks::getUsage()
 {
-	return usage[n];
+	return usage;
 }
-double disks::getTotalSpace(int n)
+double* disks::getTotalSpace()
 {
-	return totalSpace[n];
+	return totalSpace;
 }
-double disks::getFreeSpace(int n)
+double* disks::getFreeSpace()
 {
-	return freeSpace[n];
+	return freeSpace;
 }
 io disks::getDiskIO()
 {

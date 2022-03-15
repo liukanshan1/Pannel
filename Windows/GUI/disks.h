@@ -12,10 +12,10 @@ public:
 	friend void updateDisksIO(disks* d);
 
 	int getQuantity();
-	char getName(int n);
-	int getUsage(int n);
-	double getTotalSpace(int n);
-	double getFreeSpace(int n);
+	std::string getName();
+	int* getUsage();
+	double* getTotalSpace();
+	double* getFreeSpace();
 	io getDiskIO();
 	io getRead();
 	io getWrite();

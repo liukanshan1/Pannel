@@ -8,15 +8,15 @@ class mainLoop : public QThread
 
 signals:
     //TODO
-    /*void sentCpuUsage(int usage);
+    void sentCpuUsage(int usage);
     void sentDiskIO(io diskIO);
     void sentDiskRead(io read);
     void sentDiskWrite(io write);
     void sentNetworkDownload(io download);
     void sentNetworkUpload(io upload);
-    void sentMemoryUsage(int usage,double freespace);
     void sentRunningTime(runningTime t);
-    void sentDiskQuantity(int quantity);*/
+    void sentMemoryUsage(int usage,double freespace);
+    void sentDiskUsage(int* usage,double* freeSpace);
 public slots:
     void stopLoop();
 public:

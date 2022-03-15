@@ -214,14 +214,15 @@ void update::createDataLog(CPU* c, disks* d, memory* m, network* n)
 		localtime_s(&currentTime, &t);
 		std::string filename = std::to_string(currentTime.tm_year + 1900) + "." + std::to_string(currentTime.tm_mon + 1) + "." + std::to_string(currentTime.tm_mday);
 		std::fstream file;
-		if (_mkdir("data") == -1)
+		_mkdir("data");
+		/*if (_mkdir("data") == -1)
 		{
 			throwError('u', 21, "创建数据记录文件夹失败.");
 		}
 		else
 		{
 			createLogs('i', "创建数据记录文件夹.");
-		}
+		}*/
 		file.open("data\\" + filename + ".csv", std::ios::app);
 		if (!file.is_open())
 		{

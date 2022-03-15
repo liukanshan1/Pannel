@@ -35,6 +35,9 @@
 /Windows/Server-Core/log/
 /Windows/Server-Core/x64/
 Windows/GUI/x64/
+Windows/GUI/data/
+Windows/GUI/log/
+Windows/GUI/.vs/
 *.user
 *.vcxproj
 *.filters

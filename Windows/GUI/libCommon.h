@@ -30,6 +30,13 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_mainWindow.h"
 #include <QMutex>
+#include <QItemSelection>
+#include <QTabWidget>
+#include <QFrame>
+#include <QLabel>
+#include <QLineEdit>
+#include <QHBoxLayout>
+#include <QComboBox>
 
 #pragma comment(lib,"pdh")
 #pragma comment(lib, "IPHlpApi.lib")

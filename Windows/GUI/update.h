@@ -22,7 +22,6 @@ public:
 	void setDiskIOWarning(io i);
 	void setDiskReadWarning(io i);
 	void setDiskWriteWarning(io i);
-	void setNetIOWarning(io i);
 	void setNetUploadWarning(io i);
 	void setNetDownloadWarning(io i);
 	//阈值报警开关
@@ -32,21 +31,12 @@ public:
 	void setDiskIOWarning(bool i);
 	void setDiskReadWarning(bool i);
 	void setDiskWriteWarning(bool i);
-	void setNetIOWarning(bool i);
 	void setNetUploadWarning(bool i);
 	void setNetDownloadWarning(bool i);
-	//阈值报警
-	void diskUsageWarning(disks* d);
-	void memoryUsageWarning(memory* m);
-	void cpuUsageWarning(CPU* c);
-	void diskIOWarning(disks* d);
-	void diskReadWarning(disks* d);
-	void diskWriteWarning(disks* d);
-	void netIOWarning(network* n);
-	void netUploadWarning(network* n);
-	void netDownloadWarning(network* n);
+	
 private:
 	friend void createLogs(char type, std::string description);
+	friend class mainLoop;
 	//日志开关
 	bool enableLog = true;
 	bool enableDataLog = true;
@@ -57,13 +47,12 @@ private:
 	bool enableDiskIOWarning = false;
 	bool enableDiskReadWarning = false;
 	bool enableDiskWriteWarning = false;
-	bool enableNetIOWarning = false;
 	bool enableNetUploadWarning = false;
 	bool enableNetDownloadWarning = false;
 	//阈值报警数值
-	int diskUsage = -1;
-	int memoryUsage = -1;
-	int cpuUsage = -1;
+	int diskUsage = 100;
+	int memoryUsage = 100;
+	int cpuUsage = 100;
 	io diskIO;
 	io diskRead;
 	io diskWrite;

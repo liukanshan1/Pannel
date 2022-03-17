@@ -359,17 +359,6 @@ void update::setDiskWriteWarning(io i)
 		throwError('u', 17, "请输入正确的值.");
 	}
 }
-void update::setNetIOWarning(io i)
-{
-	if (i.speed > 0)
-	{
-		netIO = i;
-	}
-	else
-	{
-		throwError('u', 18, "请输入正确的值.");
-	}
-}
 void update::setNetUploadWarning(io i)
 {
 	if (i.speed > 0)
@@ -419,10 +408,6 @@ void update::setDiskWriteWarning(bool i)
 {
 	enableDiskWriteWarning = i;
 }
-void update::setNetIOWarning(bool i)
-{
-	enableNetIOWarning = i;
-}
 void update::setNetUploadWarning(bool i)
 {
 	enableNetUploadWarning = i;
@@ -432,41 +417,4 @@ void update::setNetDownloadWarning(bool i)
 	enableNetDownloadWarning = i;
 }
 
-//阈值报警 TODO 一定时间 解除提醒
-void update::diskUsageWarning(disks* d)
-{
 
-}
-void update::memoryUsageWarning(memory* m)
-{
-
-}
-
-void update::cpuUsageWarning(CPU* c)
-{
-
-}
-void update::diskIOWarning(disks* d)
-{
-
-}
-void update::diskReadWarning(disks* d)
-{
-
-}
-void update::diskWriteWarning(disks* d)
-{
-
-}
-void update::netIOWarning(network* n)
-{
-
-}
-void update::netUploadWarning(network* n)
-{
-
-}
-void update::netDownloadWarning(network* n)
-{
-
-}

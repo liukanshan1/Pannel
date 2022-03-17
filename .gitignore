@@ -52,3 +52,4 @@ Windows/Server-Core/.vs/Server-Core/project-colors.json
 *.db-shm
 *.db-wal
 *.opendb
+*.csv

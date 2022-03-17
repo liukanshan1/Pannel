@@ -37,6 +37,8 @@
 #include <QLineEdit>
 #include <QHBoxLayout>
 #include <QComboBox>
+#include <QTime>
+#include <vector>
 
 #pragma comment(lib,"pdh")
 #pragma comment(lib, "IPHlpApi.lib")

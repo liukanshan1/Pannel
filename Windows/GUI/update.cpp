@@ -326,61 +326,6 @@ void update::setCpuUsageWarning(int i)
 		throwError('u', 14, "请输入正确的值.");
 	}
 }
-void update::setDiskIOWarning(io i)
-{
-	if (i.speed>0)
-	{
-		diskIO = i;
-	}
-	else
-	{
-		throwError('u', 15, "请输入正确的值.");
-	}
-}
-void update::setDiskReadWarning(io i)
-{
-	if (i.speed > 0)
-	{
-		diskRead = i;
-	}
-	else
-	{
-		throwError('u', 16, "请输入正确的值.");
-	}
-}
-void update::setDiskWriteWarning(io i)
-{
-	if (i.speed > 0)
-	{
-		diskWrite = i;
-	}
-	else
-	{
-		throwError('u', 17, "请输入正确的值.");
-	}
-}
-void update::setNetUploadWarning(io i)
-{
-	if (i.speed > 0)
-	{
-		netUpload = i;
-	}
-	else
-	{
-		throwError('u', 19, "请输入正确的值.");
-	}
-}
-void update::setNetDownloadWarning(io i)
-{
-	if (i.speed > 0)
-	{
-		netDownload = i;
-	}
-	else
-	{
-		throwError('u', 20, "请输入正确的值.");
-	}
-}
 //错误编码22（包含22）开始
 
 //设置阈值报警开关
@@ -395,26 +340,6 @@ void update::setMemoryUsageWarning(bool i)
 void update::setCpuUsageWarning(bool i)
 {
 	enableCpuUsageWarning = i;
-}
-void update::setDiskIOWarning(bool i)
-{
-	enableDiskIOWarning = i;
-}
-void update::setDiskReadWarning(bool i)
-{
-	enableDiskReadWarning = i;
-}
-void update::setDiskWriteWarning(bool i)
-{
-	enableDiskWriteWarning = i;
-}
-void update::setNetUploadWarning(bool i)
-{
-	enableNetUploadWarning = i;
-}
-void update::setNetDownloadWarning(bool i)
-{
-	enableNetDownloadWarning = i;
 }
 
 

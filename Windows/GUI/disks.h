@@ -21,6 +21,7 @@ public:
 	io getWrite();
 private:
 	friend class update;
+	friend class mainLoop;
 	//半动态信息
 	int quantity;
 	std::string name;

@@ -9,6 +9,7 @@ class mainWindow : public QMainWindow
 
 signals:
     void stopLoop();
+	void sentLog(std::string s);
 public slots:
 	int enableLogChanged();
 	int enableUpdateChanged();
@@ -28,9 +29,11 @@ public slots:
 	void runningTimeChanged(runningTime t);
 	void memoryUsageChanged(int usage, double freespace);
 	void diskUsageChanged(int* usage, double* freeSpace);
+	void updateLog(std::string s);
 public:
     mainWindow(QWidget *parent = Q_NULLPTR);
     ~mainWindow();
+	void logChanged(std::string s);
 private:
     Ui::mainWindowClass ui;
 	CPU myCPU;

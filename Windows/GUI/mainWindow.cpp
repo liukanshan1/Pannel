@@ -14,23 +14,21 @@ mainWindow::mainWindow(QWidget *parent)
 	connect(ui.cpuLimit, SIGNAL(editingFinished()), this, SLOT(cpuUsageLimit()));
 	connect(ui.memoryLimit, SIGNAL(editingFinished()), this, SLOT(memoryUsageLimit()));
 	connect(ui.diskLimit, SIGNAL(editingFinished()), this, SLOT(diskUsageLimit()));
+	connect(this, SIGNAL(sentLog(std::string)), this, SLOT(updateLog(std::string)));
 	
 	ui.cpuData->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	ui.cpuDes->insertPlainText("L3缓存：" + QString::number(myCPU.getInfo().processorL3CacheQuantity) + "KB\n");
-	ui.cpuDes->insertPlainText("L2缓存：" + QString::number(myCPU.getInfo().processorL2CacheQuantity) + "KB\n");
-	ui.cpuDes->insertPlainText("L1缓存：" + QString::number(myCPU.getInfo().processorL1CacheQuantity) + "KB\n");
+	ui.cpuDes->insertPlainText("描述：" + QString::fromStdString(myCPU.getInfo().discription));
+	ui.cpuDes->insertPlainText("架构：" + QString::fromStdString(myCPU.getInfo().architecture) + "\n");
+	ui.cpuDes->insertPlainText("NUMA节点数量：" + QString::number(myCPU.getInfo().numaNodeQuantity) + "\n");
+	ui.cpuDes->insertPlainText("ProcessorPackage数量：" + QString::number(myCPU.getInfo().processorPackageQuantity) + "\n");
 	ui.cpuDes->insertPlainText("逻辑处理器数量：" + QString::number(myCPU.getInfo().logicalProcessorQuantity) + "\n");
 	ui.cpuDes->insertPlainText("处理器核心数量：" + QString::number(myCPU.getInfo().processorCoreQuantity) + "\n");
-	ui.cpuDes->insertPlainText("ProcessorPackage数量：" + QString::number(myCPU.getInfo().processorPackageQuantity) + "\n");
-	ui.cpuDes->insertPlainText("NUMA节点数量：" + QString::number(myCPU.getInfo().numaNodeQuantity) + "\n");
-	ui.cpuDes->insertPlainText("架构：" + QString::fromStdString(myCPU.getInfo().architecture) + "\n");
-	ui.cpuDes->insertPlainText("描述：" + QString::fromStdString(myCPU.getInfo().discription) + "\n");
+	ui.cpuDes->insertPlainText("L1缓存：" + QString::number(myCPU.getInfo().processorL1CacheQuantity) + "KB\n");
+	ui.cpuDes->insertPlainText("L2缓存：" + QString::number(myCPU.getInfo().processorL2CacheQuantity) + "KB\n");
+	ui.cpuDes->insertPlainText("L3缓存：" + QString::number(myCPU.getInfo().processorL3CacheQuantity) + "KB\n");
 	ui.memData->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-
 	loop = new mainLoop(nullptr, &myCPU, &myDisks, &myMemory, &myNetwork, &mySystem, &myUpdate);
-	//开始更新信息主循环
-	loop->start();
 	connect(this, SIGNAL(stopLoop()), loop, SLOT(stopLoop()));
 	connect(loop, SIGNAL(sentCpuUsage(int)), this, SLOT(cpuUsageChanged(int)));
 	connect(loop, SIGNAL(sentDiskIO(io)), this, SLOT(diskIOChanged(io)));
@@ -39,8 +37,10 @@ mainWindow::mainWindow(QWidget *parent)
 	connect(loop, SIGNAL(sentNetworkDownload(io)), this, SLOT(netDownloadChanged(io)));
 	connect(loop, SIGNAL(sentNetworkUpload(io)), this, SLOT(netUploadChanged(io)));
 	connect(loop, SIGNAL(sentRunningTime(runningTime)), this, SLOT(runningTimeChanged(runningTime)));
-	connect(loop, SIGNAL(sentMemoryUsage(int,double)), this, SLOT(memoryUsageChanged(int , double)));
-	connect(loop, SIGNAL(sentDiskUsage(int*,double*)), this, SLOT(diskUsageChanged(int* , double*)));
+	connect(loop, SIGNAL(sentMemoryUsage(int, double)), this, SLOT(memoryUsageChanged(int, double)));
+	connect(loop, SIGNAL(sentDiskUsage(int*, double*)), this, SLOT(diskUsageChanged(int*, double*)));
+	loop->start();
+	
 
 }
 mainWindow::~mainWindow()
@@ -151,14 +151,12 @@ void mainWindow::diskUsageChanged(int* usage, double* freeSpace)
 {
 
 }
-
-//
-//{
-//
-//		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-//		<html><head><meta name = "qrichtext" content = "1" / ><meta charset = "utf-8" / ><style type = "text/css">
-//		p, li{ white - space: pre - wrap; }
-//		< / style>< / head><body style = " font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;">
-//		<p style = " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">L3缓存：< / p>
-//		< / body>< / html>
-//}
+void mainWindow::logChanged(std::string s)
+{
+	emit sentLog(s);
+}
+void mainWindow::updateLog(std::string s)
+{
+	ui.showLog->insertPlainText(QString::fromStdString(s) + "\n");
+	ui.showLog->moveCursor(QTextCursor::End);
+}

@@ -30,14 +30,16 @@ void mainLoop::run()
 		myMemory->update();  //更新内存freeSpace、usage
 		myDisks->update(diskQuantity); //更新磁盘usage、totalSpace、freeSpace
 		emit sentCpuUsage(myCPU->getUsage());
+		emit sentRunningTime(mySystem->getRuningTime());
+		emit sentMemoryUsage(myMemory->getUsage(), myMemory->getFreeSpace());
+
 		emit sentDiskIO(myDisks->getDiskIO());
 		emit sentDiskRead(myDisks->getRead());
 		emit sentDiskWrite(myDisks->getWrite());
+		emit sentDiskUsage(myDisks->getUsage(), myDisks->getFreeSpace());
 		emit sentNetworkDownload(myNetwork->getDownload());
 		emit sentNetworkUpload(myNetwork->getUpload());
-		emit sentRunningTime(mySystem->getRuningTime());
-		emit sentMemoryUsage(myMemory->getUsage(), myMemory->getFreeSpace());
-		emit sentDiskUsage(myDisks->getUsage(), myDisks->getFreeSpace());
+		
 		myUpdate->createDataLog(myCPU, myDisks, myMemory, myNetwork);
 		//5分钟平均负载
 		memoryUsage.push_back(myMemory->getUsage());

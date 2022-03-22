@@ -1,10 +1,12 @@
 #include "libCommon.h"
 #include "classLib.h"
 #include "mainWindow.h"
+mainWindow* pWindow = nullptr;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     mainWindow w;
+	pWindow = &w;
 	w.show();
     return a.exec();
 }
@@ -203,7 +205,7 @@ void createLogs(char type, std::string description)
 		file << ((std::to_string(currentTime.tm_min).length() == 1) ? ":0" : ":");
 		file << std::to_string(currentTime.tm_min);
 		file << ((std::to_string(currentTime.tm_sec).length() == 1) ? ":0" : ":");
-		file << std::to_string(currentTime.tm_sec) << " ";;
+		file << std::to_string(currentTime.tm_sec) << " ";
 		if (type == 'i')
 		{
 			file << "[info] ";
@@ -217,7 +219,24 @@ void createLogs(char type, std::string description)
 			file << "[error] ";
 		}
 		file << description << std::endl;
+		std::string temp;
 		file.close();
+		temp += std::to_string(currentTime.tm_year + 1900)
+			+ ((std::to_string(currentTime.tm_mon + 1).length() == 1) ? ".0" : ".")
+			+ std::to_string(currentTime.tm_mon + 1)
+			+ ((std::to_string(currentTime.tm_mday).length() == 1) ? ".0" : ".")
+			+ std::to_string(currentTime.tm_mday)
+			+ ((std::to_string(currentTime.tm_hour).length() == 1) ? " 0" : " ")
+			+ std::to_string(currentTime.tm_hour)
+			+ ((std::to_string(currentTime.tm_min).length() == 1) ? ":0" : ":")
+			+ std::to_string(currentTime.tm_min)
+			+ ((std::to_string(currentTime.tm_sec).length() == 1) ? ":0" : ":")
+			+ std::to_string(currentTime.tm_sec)
+			+ " " + description;
+		if (pWindow != nullptr)
+		{
+			pWindow->logChanged(temp);
+		}
 	}
 }
 void deleteLog()

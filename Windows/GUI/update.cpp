@@ -262,7 +262,7 @@ void update::createDataLog(CPU* c, disks* d, memory* m, network* n)
 //网络上传速率，网络上传单位，网络下载速率，网络下载单位
 
 //其他设置
-void update::setNetBestIndex(network* n, int i)
+/*void update::setNetBestIndex(network* n, int i)
 {
 	if (i >= 0 && i < n->quantity)
 	{
@@ -272,7 +272,7 @@ void update::setNetBestIndex(network* n, int i)
 	{
 		throwError('u', 10, "请输入正确的值.");
 	}
-}
+}*/
 void update::setNetSpeedIndex(network* n, int i)
 {
 	if (i >= 0 && i < n->speedQuantity)

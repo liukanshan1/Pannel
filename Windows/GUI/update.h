@@ -13,7 +13,7 @@ public:
 	//其他设置
 	void setEnableLog(bool i);
 	void setDataLog(bool i);
-	void setNetBestIndex(network* n, int i);
+	//void setNetBestIndex(network* n, int i);
 	void setNetSpeedIndex(network* n, int i);
 	//设置阈值报警数值
 	void setDiskUsageWarning(int i);

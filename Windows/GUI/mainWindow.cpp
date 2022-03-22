@@ -15,6 +15,19 @@ mainWindow::mainWindow(QWidget *parent)
 	connect(ui.memoryLimit, SIGNAL(editingFinished()), this, SLOT(memoryUsageLimit()));
 	connect(ui.diskLimit, SIGNAL(editingFinished()), this, SLOT(diskUsageLimit()));
 	
+	ui.cpuData->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	ui.cpuDes->insertPlainText("L3缓存：" + QString::number(myCPU.getInfo().processorL3CacheQuantity) + "KB\n");
+	ui.cpuDes->insertPlainText("L2缓存：" + QString::number(myCPU.getInfo().processorL2CacheQuantity) + "KB\n");
+	ui.cpuDes->insertPlainText("L1缓存：" + QString::number(myCPU.getInfo().processorL1CacheQuantity) + "KB\n");
+	ui.cpuDes->insertPlainText("逻辑处理器数量：" + QString::number(myCPU.getInfo().logicalProcessorQuantity) + "\n");
+	ui.cpuDes->insertPlainText("处理器核心数量：" + QString::number(myCPU.getInfo().processorCoreQuantity) + "\n");
+	ui.cpuDes->insertPlainText("ProcessorPackage数量：" + QString::number(myCPU.getInfo().processorPackageQuantity) + "\n");
+	ui.cpuDes->insertPlainText("NUMA节点数量：" + QString::number(myCPU.getInfo().numaNodeQuantity) + "\n");
+	ui.cpuDes->insertPlainText("架构：" + QString::fromStdString(myCPU.getInfo().architecture) + "\n");
+	ui.cpuDes->insertPlainText("描述：" + QString::fromStdString(myCPU.getInfo().discription) + "\n");
+	ui.memData->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+
 	loop = new mainLoop(nullptr, &myCPU, &myDisks, &myMemory, &myNetwork, &mySystem, &myUpdate);
 	//开始更新信息主循环
 	loop->start();
@@ -38,6 +51,7 @@ mainWindow::~mainWindow()
 		delete loop;
 	}
 }
+
 int mainWindow::enableLogChanged()
 {
 	myUpdate.setEnableLog(ui.log->isChecked());
@@ -96,7 +110,8 @@ void mainWindow::cpuUsageLimit()
 
 void mainWindow::cpuUsageChanged(int usage)
 {
-	//qDebug() << "A";
+	ui.cpuData->clear();
+	ui.cpuData->insertPlainText("占用率：" + QString::number(usage) + "%");
 }
 void mainWindow::diskIOChanged(io diskIO)
 {
@@ -120,11 +135,17 @@ void mainWindow::netUploadChanged(io upload)
 }
 void mainWindow::runningTimeChanged(runningTime t)
 {
-
+	ui.sysData->clear();
+	ui.sysData->insertPlainText("电脑名称：" + QString::fromStdString(mySystem.getName()) + "\n");
+	ui.sysData->insertPlainText("系统版本：" + QString::fromStdString(mySystem.getVersion()) + "\n");
+	ui.sysData->insertPlainText("系统运行时间：" + QString::number(t.day) + ":" + QString::number(t.hour) + ":" + QString::number(t.min) + ":" + QString::number(t.sec));
 }
 void mainWindow::memoryUsageChanged(int usage, double freespace)
 {
-
+	ui.memData->clear();
+	ui.memData->insertPlainText("占用率：" + QString::number(usage) + "%"+"\n");
+	ui.memData->insertPlainText("总容量：" + QString::number(myMemory.getTotalSpace()) + "GB" + "\n");
+	ui.memData->insertPlainText("剩余容量：" + QString::number(freespace) + "GB");
 }
 void mainWindow::diskUsageChanged(int* usage, double* freeSpace)
 {

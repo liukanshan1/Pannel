@@ -67,17 +67,17 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		else
 		{
 			double temp = pdhValue.doubleValue;
-			int read = (double)((temp / (1024 * 1.0f)));
+			double read = (double)((temp / (1024 * 1.0f)));
 			ioTemp += read;
-			if (read > (1024 * 1024))
+			if (read > (1024.0 * 1024.0 * 1.0f))
 			{
-				read /= (1024 * 1024);
+				read /= (1024.0 * 1024.0 * 1.0f);
 				d->read.speed = read;
 				d->read.unit = gb;
 			}
 			else if (read > 1024)
 			{
-				read /= 1024;
+				read /= 1024.0;
 				d->read.speed = read;
 				d->read.unit = mb;
 			}
@@ -90,23 +90,23 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		status = PdhGetFormattedCounterValue(diskWrite, PDH_FMT_DOUBLE, &dwValue, &pdhValue);
 		if (ERROR_SUCCESS != status)
 		{
-			throwError('u',5,"更新磁盘读取速度失败.");
+			throwError('u',5,"更新磁盘写入速度失败.");
 			return;
 		}
 		else
 		{
 			double temp = pdhValue.doubleValue;
-			int write = (double)((temp / (1024 * 1.0f)));
+			double write = (double)((temp / (1024 * 1.0f)));
 			ioTemp += write;
 			if (write > (1024 * 1024))
 			{
-				write /= (1024 * 1024);
+				write /= (1024.0 * 1024.0 * 1.0f);
 				d->write.speed = write;
 				d->write.unit = gb;
 			}
 			else if (write > 1024)
 			{
-				write /= 1024;
+				write /= 1024.0;
 				d->write.speed = write;
 				d->write.unit = mb;
 			}
@@ -118,13 +118,13 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		}
 		if (ioTemp > (1024 * 1024))
 		{
-			ioTemp /= (1024 * 1024);
+			ioTemp /= (1024.0 * 1024.0 * 1.0f);
 			d->diskIO.speed = ioTemp;
 			d->diskIO.unit = gb;
 		}
 		else if (ioTemp > 1024)
 		{
-			ioTemp /= 1024;
+			ioTemp /= 1024.0;
 			d->diskIO.speed = ioTemp;
 			d->diskIO.unit = mb;
 		}

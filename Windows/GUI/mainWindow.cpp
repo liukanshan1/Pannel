@@ -178,7 +178,67 @@ void mainWindow::cpuUsageChanged(int usage)
 }
 void mainWindow::diskIOchanged(io diskIO, io read, io write)
 {
-
+	QString i, r, w;
+	i += QString::number(diskIO.speed);
+	r += QString::number(read.speed);
+	w += QString::number(write.speed);
+	switch (diskIO.unit)
+	{
+	case 0:
+		i += "B/s";
+		break;
+	case 10:
+		i += "K/s";
+		break;
+	case 100:
+		i += "M/s";
+		break;
+	case 1000:
+		i += "G/s";
+		break;
+	case 10000:
+		i += "T/s";
+		break;
+	}
+	switch (read.unit)
+	{
+	case 0:
+		r += "B/s";
+		break;
+	case 10:
+		r += "K/s";
+		break;
+	case 100:
+		r += "M/s";
+		break;
+	case 1000:
+		r += "G/s";
+		break;
+	case 10000:
+		r += "T/s";
+		break;
+	}
+	switch (write.unit)
+	{
+	case 0:
+		w += "B/s";
+		break;
+	case 10:
+		w += "K/s";
+		break;
+	case 100:
+		w += "M/s";
+		break;
+	case 1000:
+		w += "G/s";
+		break;
+	case 10000:
+		w += "T/s";
+		break;
+	}
+	ui.diskIO->setText("磁盘I/O：" + i);
+	ui.diskRead->setText("磁盘读取速度：" + r);
+	ui.diskWrite->setText("磁盘写入速度：" + w);
 }
 void mainWindow::netUDchanged(io upload, io download)
 {
@@ -227,7 +287,34 @@ void mainWindow::netUDchanged(io upload, io download)
 }
 void mainWindow::diskUsageChanged(std::string name, std::string usage)
 {
-
+	int* p = new int[myDisks.getQuantity()];
+	std::string temp;
+	int i = 0;
+	while (usage.length() != 0)
+	{
+		if (usage[0] != '/')
+		{
+			temp += usage[0];
+			usage.erase(0, 1);
+		}
+		else
+		{
+			usage.erase(0, 1);
+			p[i] = stoi(temp);
+			temp.erase(0);
+			i++;
+		}
+	}
+		ui.diskInfo->clear();
+	for (int i = 0; i < myDisks.getQuantity(); i++)
+	{
+		std::string temp(name, i, 1);
+		ui.diskInfo->insertPlainText("盘符：" + QString::fromStdString(temp)+ "\n");
+		ui.diskInfo->insertPlainText("占用率：" + QString::number(p[i]) + "%\n");
+		ui.diskInfo->insertPlainText("总容量：" + QString::number(myDisks.getTotalSpace()[i]) + "GB\n");
+		ui.diskInfo->insertPlainText("剩余容量：" + QString::number(myDisks.getTotalSpace()[i]*0.01* p[i]) + "GB\n");
+		ui.diskInfo->insertPlainText("\n");
+	}
 }
 void mainWindow::runningTimeChanged(runningTime t)
 {

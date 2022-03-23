@@ -147,16 +147,16 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		else
 		{
 			double temp = pdhValue.doubleValue;
-			int receive = (double)((temp / (1024 * 1.0f)));
+			double receive = (double)((temp / (1024 * 1.0f)));
 			if (receive > (1024 * 1024))
 			{
-				receive /= (1024 * 1024);
+				receive /= (1024.0 * 1024.0 * 1.0f);
 				n->download.speed = receive;
 				n->download.unit = gb;
 			}
 			else if (receive > 1024)
 			{
-				receive /= 1024;
+				receive /= 1024.0;
 				n->download.speed = receive;
 				n->download.unit = mb;
 			}
@@ -175,16 +175,16 @@ void update::updateCpuDiskNetwork(CPU* c, disks* d, network* n)
 		else
 		{
 			double temp = pdhValue.doubleValue;
-			int sent = (double)((temp / (1024 * 1.0f)));
+			double sent = (double)((temp / (1024 * 1.0f)));
 			if (sent > (1024 * 1024))
 			{
-				sent /= (1024 * 1024);
+				sent /= (1024.0 * 1024.0 * 1.0f);
 				n->upload.speed = sent;
 				n->upload.unit = gb;
 			}
 			else if (sent > 1024)
 			{
-				sent /= 1024;
+				sent /= 1024.0;
 				n->upload.speed = sent;
 				n->upload.unit = mb;
 			}

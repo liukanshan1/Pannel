@@ -15,7 +15,14 @@ mainWindow::mainWindow(QWidget *parent)
 	connect(ui.memoryLimit, SIGNAL(editingFinished()), this, SLOT(memoryUsageLimit()));
 	connect(ui.diskLimit, SIGNAL(editingFinished()), this, SLOT(diskUsageLimit()));
 	connect(this, SIGNAL(sentLog(std::string)), this, SLOT(updateLog(std::string)));
-	
+	connect(ui.netSpeedIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setNetSpeedIndex(int)));
+	connect(ui.deleteLog, SIGNAL(clicked()), this, SLOT(deleteLogs()));
+	connect(ui.deleteData, SIGNAL(clicked()), this, SLOT(deleteHistoryData()));
+
+	for (int i = 0; i < myNetwork.speedQuantity; i++)
+	{
+		ui.netSpeedIndex->addItem(QString::asprintf("%d", i));
+	}
 	ui.cpuData->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui.cpuDes->insertPlainText("描述：" + QString::fromStdString(myCPU.getInfo().discription));
 	ui.cpuDes->insertPlainText("架构：" + QString::fromStdString(myCPU.getInfo().architecture) + "\n");
@@ -27,18 +34,40 @@ mainWindow::mainWindow(QWidget *parent)
 	ui.cpuDes->insertPlainText("L2缓存：" + QString::number(myCPU.getInfo().processorL2CacheQuantity) + "KB\n");
 	ui.cpuDes->insertPlainText("L3缓存：" + QString::number(myCPU.getInfo().processorL3CacheQuantity) + "KB\n");
 	ui.memData->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
+	ui.netSpeed->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	for (int i = 0; i < myNetwork.getQuantity(); i++)
+	{
+		ui.netData->insertPlainText("网卡" + QString::number(i) + ":\n");
+		ui.netData->insertPlainText("名称：" + QString(QString::fromLocal8Bit(myNetwork.getName(i).c_str())) + "\n");
+		if (myNetwork.getStatus(i))
+		{
+			ui.netData->insertPlainText("已启用：是\n");
+		}
+		else
+		{
+			ui.netData->insertPlainText("已启用：否\n");
+		}
+		ui.netData->insertPlainText("描述：" + QString::fromStdString(myNetwork.getDescription(i)) + "\n");
+		ui.netData->insertPlainText("硬件地址：" + QString::fromStdString(myNetwork.getHardwareAddress(i)) + "\n");
+		if (myNetwork.getIPv4(i).length() != 0)
+		{
+			ui.netData->insertPlainText("IPv4：" + QString::fromStdString(myNetwork.getIPv4(i)) + "\n");
+		}
+		if (myNetwork.getIPv6(i).length() != 0)
+		{
+			ui.netData->insertPlainText("IPv6：" + QString::fromStdString(myNetwork.getIPv6(i)) + "\n");
+		}
+		ui.netData->insertPlainText("\n");
+	}
+	
 	loop = new mainLoop(nullptr, &myCPU, &myDisks, &myMemory, &myNetwork, &mySystem, &myUpdate);
 	connect(this, SIGNAL(stopLoop()), loop, SLOT(stopLoop()));
 	connect(loop, SIGNAL(sentCpuUsage(int)), this, SLOT(cpuUsageChanged(int)));
-	connect(loop, SIGNAL(sentDiskIO(io)), this, SLOT(diskIOChanged(io)));
-	connect(loop, SIGNAL(sentDiskRead(io)), this, SLOT(diskReadChanged(io)));
-	connect(loop, SIGNAL(sentDiskWrite(io)), this, SLOT(diskWriteChanged(io)));
-	connect(loop, SIGNAL(sentNetworkDownload(io)), this, SLOT(netDownloadChanged(io)));
-	connect(loop, SIGNAL(sentNetworkUpload(io)), this, SLOT(netUploadChanged(io)));
+	connect(loop, SIGNAL(sentDiskIO(io, io, io)), this, SLOT(diskIOchanged(io, io, io)));
+	connect(loop, SIGNAL(sentNetworkUD(io, io)), this, SLOT(netUDchanged(io, io)));
 	connect(loop, SIGNAL(sentRunningTime(runningTime)), this, SLOT(runningTimeChanged(runningTime)));
 	connect(loop, SIGNAL(sentMemoryUsage(int, double)), this, SLOT(memoryUsageChanged(int, double)));
-	connect(loop, SIGNAL(sentDiskUsage(int*, double*)), this, SLOT(diskUsageChanged(int*, double*)));
+	connect(loop, SIGNAL(sentDiskUsage(std::string, std::string)), this, SLOT(diskUsageChanged(std::string, std::string)));
 	loop->start();
 	
 
@@ -52,6 +81,40 @@ mainWindow::~mainWindow()
 	}
 }
 
+void mainWindow::deleteLogs()
+{
+	QMessageBox::StandardButton result = QMessageBox::information(NULL, "警告", "是否删除日志？", QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+	if (result == QMessageBox::Yes)
+	{
+		emit stopLoop();
+		deleteLog();
+		if (loop == nullptr)
+		{
+			loop = new mainLoop(nullptr, &myCPU, &myDisks, &myMemory, &myNetwork, &mySystem, &myUpdate);
+		}
+		loop->start();
+		connect(this, SIGNAL(stopLoop()), loop, SLOT(stopLoop()));
+	}
+}
+void mainWindow::deleteHistoryData()
+{
+	QMessageBox::StandardButton result = QMessageBox::information(NULL, "警告", "是否删除历史数据？", QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+	if (result == QMessageBox::Yes)
+	{
+		emit stopLoop();
+		deleteData();
+		if (loop == nullptr)
+		{
+			loop = new mainLoop(nullptr, &myCPU, &myDisks, &myMemory, &myNetwork, &mySystem, &myUpdate);
+		}
+		loop->start();
+		connect(this, SIGNAL(stopLoop()), loop, SLOT(stopLoop()));
+	}
+}
+void mainWindow::setNetSpeedIndex(int i)
+{
+	myUpdate.setNetSpeedIndex(&myNetwork, i);
+}
 int mainWindow::enableLogChanged()
 {
 	myUpdate.setEnableLog(ui.log->isChecked());
@@ -113,23 +176,56 @@ void mainWindow::cpuUsageChanged(int usage)
 	ui.cpuData->clear();
 	ui.cpuData->insertPlainText("占用率：" + QString::number(usage) + "%");
 }
-void mainWindow::diskIOChanged(io diskIO)
+void mainWindow::diskIOchanged(io diskIO, io read, io write)
 {
 
 }
-void mainWindow::diskReadChanged(io read)
+void mainWindow::netUDchanged(io upload, io download)
 {
-
+	ui.netSpeed->clear();
+	QString u, d;
+	u += QString::number(upload.speed);
+	d += QString::number(download.speed);
+	switch (upload.unit)
+	{
+	case 0:
+		u += "B/s";
+		break;
+	case 10:
+		u += "K/s";
+		break;
+	case 100:
+		u += "M/s";
+		break;
+	case 1000:
+		u += "G/s";
+		break;
+	case 10000:
+		u += "T/s";
+		break;
+	}
+	switch (download.unit)
+	{
+	case 0:
+		d += "B/s";
+		break;
+	case 10:
+		d += "K/s";
+		break;
+	case 100:
+		d += "M/s";
+		break;
+	case 1000:
+		d += "G/s";
+		break;
+	case 10000:
+		d += "T/s";
+		break;
+	}
+	ui.netSpeed->insertPlainText("下载速度：" + d + "\n");
+	ui.netSpeed->insertPlainText("上传速度：" + u);
 }
-void mainWindow::diskWriteChanged(io write)
-{
-
-}
-void mainWindow::netDownloadChanged(io download)
-{
-
-}
-void mainWindow::netUploadChanged(io upload)
+void mainWindow::diskUsageChanged(std::string name, std::string usage)
 {
 
 }
@@ -146,10 +242,6 @@ void mainWindow::memoryUsageChanged(int usage, double freespace)
 	ui.memData->insertPlainText("占用率：" + QString::number(usage) + "%"+"\n");
 	ui.memData->insertPlainText("总容量：" + QString::number(myMemory.getTotalSpace()) + "GB" + "\n");
 	ui.memData->insertPlainText("剩余容量：" + QString::number(freespace) + "GB");
-}
-void mainWindow::diskUsageChanged(int* usage, double* freeSpace)
-{
-
 }
 void mainWindow::logChanged(std::string s)
 {

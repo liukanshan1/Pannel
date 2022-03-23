@@ -22,6 +22,7 @@ public:
 
 private:
 	friend class update;
+	friend class mainWindow;
 	//静态数据
 	int quantity;
 	DWORD bestIndex;

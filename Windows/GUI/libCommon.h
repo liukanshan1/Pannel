@@ -37,8 +37,8 @@
 #include <QLineEdit>
 #include <QHBoxLayout>
 #include <QComboBox>
+#include <QMessageBox>
 #include <QTime>
-#include <vector>
 
 #pragma comment(lib,"pdh")
 #pragma comment(lib, "IPHlpApi.lib")
@@ -68,7 +68,7 @@ struct cpuInfo
 };
 struct io
 {
-	int speed = -1;
+	double speed = -1;
 	dataUnit unit = kb;
 };
 struct runningTime

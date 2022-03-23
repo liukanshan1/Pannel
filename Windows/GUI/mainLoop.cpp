@@ -32,13 +32,14 @@ void mainLoop::run()
 		emit sentCpuUsage(myCPU->getUsage());
 		emit sentRunningTime(mySystem->getRuningTime());
 		emit sentMemoryUsage(myMemory->getUsage(), myMemory->getFreeSpace());
-
-		emit sentDiskIO(myDisks->getDiskIO());
-		emit sentDiskRead(myDisks->getRead());
-		emit sentDiskWrite(myDisks->getWrite());
-		emit sentDiskUsage(myDisks->getUsage(), myDisks->getFreeSpace());
-		emit sentNetworkDownload(myNetwork->getDownload());
-		emit sentNetworkUpload(myNetwork->getUpload());
+		emit sentDiskIO(myDisks->getDiskIO(), myDisks->getRead(), myDisks->getWrite());
+		emit sentNetworkUD(myNetwork->getUpload(), myNetwork->getDownload());
+		std::string temp;
+		for (int i = 0; i < myDisks->getQuantity(); i++)
+		{
+			temp += std::to_string(myDisks->usage[i]) + '/';
+		}
+		emit sentDiskUsage(myDisks->getName(), temp);
 		
 		myUpdate->createDataLog(myCPU, myDisks, myMemory, myNetwork);
 		//5分钟平均负载

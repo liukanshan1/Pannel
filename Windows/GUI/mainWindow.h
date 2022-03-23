@@ -11,8 +11,11 @@ signals:
     void stopLoop();
 	void sentLog(std::string s);
 public slots:
+	void deleteLogs();
+	void deleteHistoryData();
 	int enableLogChanged();
 	int enableUpdateChanged();
+	void setNetSpeedIndex(int i);
 	int dataLogChanged();
 	int diskUsageWarningChanged();
 	int memoryUsageWarningChanged();
@@ -21,14 +24,11 @@ public slots:
 	void memoryUsageLimit();
 	void cpuUsageLimit();
 	void cpuUsageChanged(int usage);
-	void diskIOChanged(io diskIO);
-	void diskReadChanged(io read);
-	void diskWriteChanged(io write);
-	void netDownloadChanged(io download);
-	void netUploadChanged(io upload);
+	void diskIOchanged(io diskIO, io read, io write);
+	void netUDchanged(io upload, io download);
+	void diskUsageChanged(std::string name, std::string usage);
 	void runningTimeChanged(runningTime t);
 	void memoryUsageChanged(int usage, double freespace);
-	void diskUsageChanged(int* usage, double* freeSpace);
 	void updateLog(std::string s);
 public:
     mainWindow(QWidget *parent = Q_NULLPTR);

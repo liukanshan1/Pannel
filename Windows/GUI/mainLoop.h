@@ -9,16 +9,13 @@ class mainLoop : public QThread
 signals:
     //Sent Info
     void sentCpuUsage(int usage);
-    void sentDiskIO(io diskIO);
-    void sentDiskRead(io read);
-    void sentDiskWrite(io write);
-    void sentNetworkDownload(io download);
-    void sentNetworkUpload(io upload);
+    void sentDiskIO(io diskIO, io read, io write);
+    void sentDiskUsage(std::string name, std::string usage);
+    void sentNetworkUD(io upload,io download);
     void sentRunningTime(runningTime t);
     void sentMemoryUsage(int usage,double freespace);
-    void sentDiskUsage(int* usage,double* freeSpace);
     //Allert
-    void diskUsageWarning(char d,int usage);
+    void diskUsageWarning(char d, int usage);
     void memoryUsageWarning(int usage, bool status = false);
     void cpuUsageWarning(int usage, bool status = false);
 

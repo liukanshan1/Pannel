@@ -59,6 +59,26 @@ mainWindow::mainWindow(QWidget *parent)
 		}
 		ui.netData->insertPlainText("\n");
 	}
+
+	//QChartView* cpuView = new QChartView;
+	//QChart* cpuChart = new QChart;
+	//QLineSeries* cpuSeries = new QLineSeries;//曲线
+	//QValueAxis* x_cpu = new QValueAxis;//x轴
+	//QValueAxis* y_cpu = new QValueAxis;//y轴
+	//ui.cpuChart->setChart(cpuChart);
+	//cpuChart->addSeries(cpuSeries);//添加曲线
+	//x_cpu->setRange(0, 20);//设置x轴范围
+	//y_cpu->setRange(0, 100);
+	//cpuChart->setAxisX(x_cpu, cpuSeries);//设置坐标轴
+	//cpuChart->setAxisY(y_cpu, cpuSeries);
+	//cpuChart->legend()->hide();
+	//cpuSeries->append(66,56);
+	//cpuSeries->append(QPointF(12, 57));
+
+
+	
+
+
 	
 	loop = new mainLoop(nullptr, &myCPU, &myDisks, &myMemory, &myNetwork, &mySystem, &myUpdate);
 	connect(this, SIGNAL(stopLoop()), loop, SLOT(stopLoop()));
@@ -68,6 +88,10 @@ mainWindow::mainWindow(QWidget *parent)
 	connect(loop, SIGNAL(sentRunningTime(runningTime)), this, SLOT(runningTimeChanged(runningTime)));
 	connect(loop, SIGNAL(sentMemoryUsage(int, double)), this, SLOT(memoryUsageChanged(int, double)));
 	connect(loop, SIGNAL(sentDiskUsage(std::string, std::string)), this, SLOT(diskUsageChanged(std::string, std::string)));
+	connect(loop, SIGNAL(sentCpuUsage(int)), this, SLOT(cpuChart(int)));
+	connect(loop, SIGNAL(sentDiskIO(io, io, io)), this, SLOT(diskChart(io, io, io)));
+	connect(loop, SIGNAL(sentNetworkUD(io, io)), this, SLOT(netChart(io, io)));
+	connect(loop, SIGNAL(sentMemoryUsage(int, double)), this, SLOT(memoryChart(int, double)));
 	loop->start();
 	
 
@@ -169,7 +193,6 @@ void mainWindow::cpuUsageLimit()
 {
 	myUpdate.setCpuUsageWarning(ui.cpuLimit->value());
 }
-
 
 void mainWindow::cpuUsageChanged(int usage)
 {
@@ -338,4 +361,20 @@ void mainWindow::updateLog(std::string s)
 {
 	ui.showLog->insertPlainText(QString::fromStdString(s) + "\n");
 	ui.showLog->moveCursor(QTextCursor::End);
+}
+void mainWindow::cpuChart(int usage)
+{
+
+}
+void mainWindow::diskChart(io diskIO, io read, io write)
+{
+
+}
+void mainWindow::netChart(io upload, io download)
+{
+
+}
+void mainWindow::memoryChart(int usage, double freespace)
+{
+
 }

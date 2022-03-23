@@ -28,7 +28,6 @@
 #include <QDebug>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
-#include "ui_mainWindow.h"
 #include <QMutex>
 #include <QItemSelection>
 #include <QTabWidget>
@@ -39,6 +38,7 @@
 #include <QComboBox>
 #include <QMessageBox>
 #include <QTime>
+#include <QtCharts/QtCharts>
 
 #pragma comment(lib,"pdh")
 #pragma comment(lib, "IPHlpApi.lib")

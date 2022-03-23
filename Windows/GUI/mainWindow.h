@@ -1,6 +1,7 @@
 #include "libCommon.h"
 #include "classLib.h"
 #include "mainLoop.h"
+#include "ui_mainWindow.h"
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 class mainWindow : public QMainWindow
@@ -30,6 +31,10 @@ public slots:
 	void runningTimeChanged(runningTime t);
 	void memoryUsageChanged(int usage, double freespace);
 	void updateLog(std::string s);
+	void cpuChart(int usage);
+	void diskChart(io diskIO, io read, io write);
+	void netChart(io upload, io download);
+	void memoryChart(int usage, double freespace);
 public:
     mainWindow(QWidget *parent = Q_NULLPTR);
     ~mainWindow();

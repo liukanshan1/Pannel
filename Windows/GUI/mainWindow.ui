@@ -60,12 +60,26 @@ p, li { white-space: pre-wrap; }
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageOverview">
        <attribute name="title">
         <string>概览</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="1" column="0">
+         <widget class="QChartView" name="netChart"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QChartView" name="diskChart"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QChartView" name="memChart"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QChartView" name="cpuChart"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="pageCPU">
        <attribute name="title">
@@ -148,7 +162,7 @@ p, li { white-space: pre-wrap; }
         <item row="2" column="0">
          <widget class="QLabel" name="diskWrite">
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -158,14 +172,14 @@ p, li { white-space: pre-wrap; }
         <item row="1" column="0">
          <widget class="QLabel" name="diskRead">
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
           </property>
          </widget>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="diskIO">
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -370,6 +384,13 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">qchartview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="mainWindow.qrc"/>
  </resources>
